@@ -24,8 +24,9 @@
 
 #flags="-cpp -O0 -pg -fbounds-check -fbacktrace -fimplicit-none -mwin32"
 #flags="-p -cpp -O0 -fopenmp -ffpe-trap=zero,overflow,invalid,underflow -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
-flags="-g -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow,denormal -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-g -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow,denormal -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
 #flags="-cpp -O2"
+flags="-cpp -O3"
 
 echo Changing directory to 'source' ...
 cd ../source

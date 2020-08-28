@@ -1795,6 +1795,7 @@ SUBROUTINE GetTimeStamp(stamp, time_full)
   stamp = lowcasef(time_full1(14:)//time_full1(:8)//time_full1(10:12))
   
   !! Remove spaces and colons from stamp
+  CALL ReplaceAllSubstr(stamp, "-", "_")
   CALL ReplaceAllSubstr(stamp, space, "_")
   CALL ReplaceAllSubstr(stamp, colon, "_")
   CALL ReplaceAllSubstr(stamp, "_", "")

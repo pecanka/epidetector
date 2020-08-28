@@ -258,7 +258,7 @@ SUBROUTINE InitGlobalVars()
   tmp_to_out_only = .FALSE.
   append_ts = .TRUE.
   append_pid = .TRUE.
-  add_settings_filename = .TRUE.
+  add_settings_filename = .FALSE.
   add_settings_filename_long = .FALSE.
   no_openfile_iostat = .FALSE.
   pause_run = .FALSE.
@@ -2789,10 +2789,12 @@ SUBROUTINE SetFilenames()
     details = "pid"//TRIM(i2cp(GETPID()))//TRIM(details) 
     
   !! Add time stamp to filenames
-  IF(append_ts) details = TRIM(timestamp)//TRIM(details)
+  IF(append_ts) &
+    details = TRIM(timestamp)//TRIM(details)
 
   !! Add separator
-  IF(append_pid .OR. append_ts) details = "_"//TRIM(details)
+  IF(append_pid .OR. append_ts) & 
+    details = "_"//TRIM(details)
     
   !! Define testing settings that will be attached to filenames
   IF(.NOT.run_analysis .AND. add_settings_filename) THEN
@@ -2804,9 +2806,9 @@ SUBROUTINE SetFilenames()
     IF(add_settings_filename_long) THEN
 
       IF(var_use_beta1) THEN
-        details = "_varb1=yes"//TRIM(details)
+        details = "_varb1=y"//TRIM(details)
       ELSE
-        details = "_varb1=no"//TRIM(details)
+        details = "_varb1=n"//TRIM(details)
       ENDIF
 
       !! Level info
@@ -2817,9 +2819,9 @@ SUBROUTINE SetFilenames()
     
       !! Test selection info
       IF(WT2>0)  details = "_t2="//i2cp(WT2)//TRIM(details)
-      IF(WT2==0) details = "_t2=no"//TRIM(details)
-      IF(WT1>0)   details = "_t1="//i2cp(WT1)//TRIM(details)
-      IF(WT1==0)  details = "_t1=no"//TRIM(details)
+      IF(WT2==0) details = "_t2=n"//TRIM(details)
+      IF(WT1>0)  details = "_t1="//i2cp(WT1)//TRIM(details)
+      IF(WT1==0) details = "_t1=n"//TRIM(details)
 
     ENDIF
 
@@ -2827,31 +2829,31 @@ SUBROUTINE SetFilenames()
     IF(simulate_data) THEN
 
       IF(var_use_beta1 .AND. .NOT.add_settings_filename_long) &
-        details = "_varb1=yes"//TRIM(details)
+        details = "_varb1=y"//TRIM(details)
 
       IF(simulate_HWE) THEN
-        details = "_simHWE=yes"//TRIM(details)
+        details = "_hwe=y"//TRIM(details)
       ELSE
-        details = "_simHWE=no"//TRIM(details)
+        details = "_hwe=n"//TRIM(details)
       ENDIF
       
       IF(allelefreqA > zero) THEN
         tmaf = "_f1="//TRIM(r2c(round(allelefreqA,5)))
       ELSE
-        tmaf = "_f1=NA"
+        tmaf = "_f1=na"
       ENDIF
       
       IF(allelefreqB > zero) THEN
         tmaf = TRIM(tmaf)//"_f2="//TRIM(r2c(round(allelefreqB,5)))
       ELSE
-        tmaf = TRIM(tmaf)//"_f2=NA"
+        tmaf = TRIM(tmaf)//"_f2=na"
       ENDIF
       
       IF(nneutralloci>0) THEN
         IF(allelefreqC > zero) THEN
           tmaf = TRIM(tmaf)//"_f3="//TRIM(r2c(round(allelefreqC,5)))
         ELSE
-          tmaf = TRIM(tmaf)//"_f3=NA"
+          tmaf = TRIM(tmaf)//"_f3=na"
         ENDIF
       ENDIF
       
@@ -2983,9 +2985,9 @@ SUBROUTINE SetFilenames()
   
         !! HWE used in simulation or not
         IF(simulate_HWE) THEN
-          details = TRIM(details)//"_simHWE=yes"
+          details = TRIM(details)//"_hwe=y"
         ELSE
-          details = TRIM(details)//"_simHWE=no"
+          details = TRIM(details)//"_hwe=n"
         ENDIF
   
         !! Add allele info
