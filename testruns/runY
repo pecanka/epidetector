@@ -1,0 +1,31 @@
+model=$1
+nsamples=500
+nca=2000
+Nco="11000 7000 3000"
+Maf="0.25 0.4 0.1"
+mafB="0.15"
+
+if [[ "$model" == "" ]]; then
+  echo "ERROR: Missing model information!"
+  exit
+fi
+
+#$RN="_$RANDOM"
+#cp EpiDetector.exe EpiDetector$RN
+#cp EpiDetector EpiDetector$RN
+
+for maf in $Maf
+do
+  for nco in $Nco
+  do
+    
+    if [[ "${mafB}" = "" ]]; then maf2=$maf ; fi
+
+    ./EpiDetector$RN --simulateinput --test 1 --pretest 3 --model ${model} --fixedmaf --maf1 $maf --maf2 $mafB \
+                  --delta-min $dmin --delta-max $dmax --delta-step $dstep --OR-min 1.0 --OR-max 2 --OR-increase 0.1 --nrepeats max \
+                  --nloci 2 --ncases $nca --ncontrols $nco --nsamples $nsamples --mincellcount 0 --cellcorrection 1 \
+                  --reportdisjoint --reportscore --reportall --alwaysscore --rejectall \
+                  --out-minimalistic --out-maf --out-statistic
+
+  done
+done

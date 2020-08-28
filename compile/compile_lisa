@@ -1,0 +1,46 @@
+##module load marmot c fortran openmpi
+#module load mvapich2/gnu
+
+##gfortran -O3 -fmax-stack-var-size=10000000 -fopenmp epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+
+##gfortran -O3 -fbounds-check -fbacktrace -fmax-stack-var-size=10000000 -fopenmp -march=native -mtune=native epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+##gfortran -O3 -fmax-stack-var-size=50000000 -fopenmp -march=native -mtune=native epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+
+#gfortran -O3 -ftree-vectorize -fopenmp -march=native -mtune=native epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+
+##gfortran -O3 -ftree-vectorize -fopenmp -march=native -mtune=native epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 EpiSimulator.F90 -o EpiSimulator
+
+##gfortran -O2 -fopenmp -lgomp -march=native -mtune=native epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+##marmotf90 epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+##mpif90  -O2 -fopenmp -lgomp -march=native -mtune=native epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_gfort
+
+#rm *.mod -f
+
+#module load fortran/intel
+#module load fortran/intel c/intel mkl
+#module load mvapich2/intel
+
+module load fortran
+
+### OPTIMIZED VERSION ###
+ifort -O2 -ftz -ip -ipo -parallel -axP -openmp -openmp-report2 epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+
+#ifort -O3 -openmp epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+#ifort -xW -fp-model precise -ftz -openmp -O3 -fast epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+
+### DEBUGGING VERSION ###
+##ifort -g -debug all -check all -implicitnone -warn unused -fp-stack-check -heap-arrays -ftrapuv -check pointers -check bounds -openmp epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_simul.F90 epi_init.F90 epi_analysis.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+
+##ifort -openmp -fp-stack-check -check bounds -traceback epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+##ifort -std03 -openmp -fpp -DDEBUG -g -debug all -C -CB -CU -module /tmp -error-limit 3 -fp-stack-check -check bounds -traceback -m64 epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+##mpif90 -std03 -openmp -fpp -DDEBUG -g -debug all -C -CB -CU -module /tmp -error-limit 3 -fp-stack-check -check bounds -traceback -m64 epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+##ifort -FR -O3 -openmp -ipo -parallel -axP -check bounds -traceback -g epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+##ifort -O2 -openmp -lgomp -ipo -parallel -axP -check bounds -traceback epi_logistic3.F90 epi_par_zig_mod.F90 epi_utils.F90 epi_init.F90 epi_procs.F90 epi_dataio.F90 epi_testprocs.F90 epi_test.F90 EpiDetector.F90 -o EpiDetector_ifort
+##cp /home/bochdan/EpiDetector/EpiDetector_source_files/EpiDetector_ifort /home/bochdan/EpiDetector/run/run2/EpiDetector
+##cp /home/bochdan/EpiDetector/EpiDetector_source_files/EpiDetector_ifort /home/bochdan/EpiDetector/EpiDetector
+
+rm *.mod -f
+
+#export OMP_STACKSIZE=800M
+#export KMP_STACKSIZE=800M
+#ulimit -s unlimited

@@ -1,0 +1,55 @@
+#module load fortran/intel
+#ifort -O2 -openmp -lgomp -ipo -parallel -axP \
+
+# This can be run using MinGW-w64 GNU Fortran Compiler as part of Rtools (as of 2020-08-27)
+
+
+#flags="-cpp -O2 -fimplicit-none -Wall -Wline-truncation -Wcharacter-truncation -mwin32 -Wsurprising -Waliasing -Wimplicit-interface -Wunused-parameter -fwhole-file -fcheck=all -std=f2008 -pedantic -fbacktrace -Wl,--stack,50000000" 
+#flags="-cpp -O2 -fstack-check -fopenmp -fbacktrace -mwin32"
+#flags="-cpp -O2 -mwin32"
+#flags="-cpp -O0 -fopenmp -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -O0 -fopenmp -g -fbounds-check -Wall -fbacktrace -D__linux__ -finit-real=nan -ftrapv -ffpe-trap=invalid,zero,overflow"
+#flags="-cpp -O0 -fopenmp -ffpe-trap=zero,overflow,invalid,underflow -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -O3 -fopenmp -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -O2 -fopenmp -D__linux__"
+
+
+#flags="-p -g -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -fopenmp -O3 -D__linux__"
+#flags="-g -fopenmp -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow,denormal -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -fopenmp -O3 -D__linux__"
+#flags="-cpp -O3 -D__linux__"
+
+#flags="-g -fopenmp -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow,denormal -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+
+#flags="-cpp -O0 -pg -fbounds-check -fbacktrace -fimplicit-none -mwin32"
+#flags="-p -cpp -O0 -fopenmp -ffpe-trap=zero,overflow,invalid,underflow -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+flags="-g -cpp -O0 -ffpe-trap=zero,overflow,invalid,underflow,denormal -Wall -Wuninitialized -fcheck=all -fstack-check -fbacktrace -D__linux__"
+#flags="-cpp -O2"
+
+echo Changing directory to 'source' ...
+cd ../source
+echo List of files in the directory 'source':
+ls
+
+echo Compiler call:
+
+call="gfortran $flags \
+  epi_fmin.f epi_logistic3_mod.F90 epi_eispack.F90 epi_params_mod.F90 epi_utils_mod.F90 \
+  epi_par_zig_mod.F90 epi_math_mod.F90 epi_simul_mod.F90 epi_testprocs_mod.F90 \
+  epi_init_mod.F90 epi_analysis_mod.F90 epi_procs_mod.F90 epi_dataio_mod.F90 \
+  epi_test_mod.F90 EpiDetector.F90 -o EpiDetector"
+  
+echo $call
+echo Compiling ...
+eval $call
+echo Done.
+
+echo Cleaning up ...
+rm *.mod
+
+echo Moving the binary to ../binary ...
+mv EpiDetector ../binary/
+
+cd ../compile
+echo Finished.

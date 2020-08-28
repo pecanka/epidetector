@@ -1,0 +1,25 @@
+model="A"
+nsamples=50
+nca=2000
+
+if [[ "$model" == "" ]]; then
+  echo "ERROR: Missing model information!"
+  exit
+fi
+
+RN=$RANDOM
+cp EpiDetector.exe EpiDetector_$RN
+
+for maf in 0.1 #0.25 0.4 0.1
+do
+  for nco in 3000 #11000 7000 3000
+  do
+    
+    ./EpiDetector_$RN --simulateinput --test 1 --pretest 3 --level1 0.1 --auto-delta-oracle \
+                  --delta-min 0.4 --delta-max 0.5 --delta-step 0.1 --OR-min 1.05 --OR-max 3.1 --OR-increase 1 --nrepeats max \
+                  --model ${model} --fixedmaf --maf $maf --nloci 2 --ncases $nca --ncontrols $nco --nsamples $nsamples \
+                  --mincellcount 0 --cellcorrection 1 --reportdisjoint --reportscore --reportall --alwaysscore \
+                  --out-minimalistic --out-maf --out-statistic
+
+  done
+done

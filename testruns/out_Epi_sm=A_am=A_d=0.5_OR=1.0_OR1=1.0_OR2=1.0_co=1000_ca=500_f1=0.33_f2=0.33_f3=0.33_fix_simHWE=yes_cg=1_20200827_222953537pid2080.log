@@ -1,0 +1,162 @@
+EpiDetector 0.1 beta log file created at 22:29:53.537 20200827
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Aug 27 2020 with GNU Fortran Compiler 8.3.0         +
+ +                   Compiled under GNU Linux 32/64bit                    +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 20200827 at 22:29:53.537
+
+Call arguments: --nthreads 1 --simulateinput --test 1 --pretest 3 --delta-start 
+0.5 --delta-end 0.5 --delta-step -0.2 --OR 1 --amodel A --smodel A --maf 0.33 
+--fixed-maf --nloci 100 --ncases 500 --ncontrols 1000 --nsamples 1 
+--cellcorrection 1 --reportdisjoint --reportscore --reportall --rejectall 
+--mincellcount 0 --alwaysscore --out-maf --HWE --group-var --group-cov 
+--center-group 1 --prevalence 0.01 --out-debug --rseed 43232
+
+Effective arguments :
+
+  --nthreads 1
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta-start 0.5
+  --delta-end 0.5
+  --delta-step -0.2
+  --OR 1
+  --amodel A
+  --smodel A
+  --maf 0.33
+  --fixed-maf
+  --nloci 100
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1
+  --cellcorrection 1
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --mincellcount 0
+  --alwaysscore
+  --out-maf
+  --HWE
+  --group-var
+  --group-cov
+  --center-group 1
+  --prevalence 0.01
+  --out-debug
+  --rseed 43232
+
+Random seed initialized to: 43232 43239 43246 43253 43260 43267 43274 43281 
+43288 43295 43302 43309 43316 43323 43330 43337 43344 43351 43358 43365 43372 
+43379 43386 43393 43400 43407 43414 43421 43428 43435 43442 43449 43456
+Note: The seed can be set via '--seed 43232:43239:43246:43253:43260:43267:43274
+:43281:43288:43295:43302:43309:43316:43323:43330:43337:43344:43351:43358:43365:
+43372:43379:43386:43393:43400:43407:43414:43421:43428:43435:43442:43449:43456'
+
+>>> DATA <<<
+Output files :
+ OUT > [out_Epi_sm=A_am=A_d=0.5_OR=1.0_OR1=1.0_OR2=1.0_co=1000_ca=500_f1=0.33_f
+   2=0.33_f3=0.33_fix_simHWE=yes_cg=1_20200827_222953537pid2080.epi]
+ LOG > [out_Epi_sm=A_am=A_d=0.5_OR=1.0_OR1=1.0_OR2=1.0_co=1000_ca=500_f1=0.33_f
+   2=0.33_f3=0.33_fix_simHWE=yes_cg=1_20200827_222953537pid2080.log]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1
+  Total number of markers    :   100
+  Causal markers             :   2
+  Neutral markers            :   98
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (fixed value)          :   0.33
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1
+
+MAFs used in simulation: 0.33 0.33 0.33
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 1,995
+Actual observed prevalence of cases: 0.4987468672
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 100 markers left.
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                  1,500
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :                      0
+ - missing sex                 :                  1,500
+Total number of markers        :                    100
+Total number of markers pairs  :                  4,950
+Number of included markers     :                    100
+Number of excluded markers     :                      0
+Number of included pairs       :                  4,950
+
+>>> ANALYSIS <<<
+S1 tests will be performed using only controls
+S1 p-value threshold is 1
+S1 subsample is determined randomly for each S1 test
+Sample ratio in S1 for AS tests is 0.5
+Sample ratio in S1 for DS tests is 0.5
+Significance level for S2 is 0.05
+Variance error bound for S2 is 0.00001
+Pre-regression centering within AS in S2 will be done using controls
+Variance of S1 generating vector is estimated using all controls
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+
+PARALLELIZATION IS NOT AVAILABLE (Switch --nthreads is ignored)
+
+Hint: To enable parallel processing recompile the source code with an 
+   OPENMP-compliant compiler such as GNU Fortran or Intel Fortran using the 
+   necessary flags.
+Testing started on 20200827 at 22:29:59.476
+AS: S1 subsample determined randomly using the user-given ratio 0.5
+DS: S1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the S1 level level to 1.0, which causes all 
+S1 tests to be rejected irrespective of their p-values
+Results saved (approx.) every 500,000 tests
+Number of tests to perform: 4,950
+Testing in progress ...
+Testing finished on 20200827 at 22:30:52.683
+Testing runtime was 00:00:53.207
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 4950
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 4,950 results (4,950 error-free, 0 with errors, 
+writing time 00:00:08.561):
+[out_Epi_sm=A_am=A_d=0.5_OR=1.0_OR1=1.0_OR2=1.0_co=1000_ca=500_f1=0.33_f2=0.
+   33_f3=0.33_fix_simHWE=yes_cg=1_20200827_222953537pid2080.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 1, PO1: 1, CS: 1
+
+Execution finished on 20200827 at 22:31:02.238
+Total program runtime was 00:01:08.701

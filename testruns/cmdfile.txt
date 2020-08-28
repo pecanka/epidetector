@@ -1,0 +1,4 @@
+#--bfile alz_apoe_recoded_subset --submap APOE-GAB2.submap --save --reject-all --report-all --model A --pretest 4 --delta 0.75 --report-adjusted --report-disjoint
+#--bfile alz_apoe_recoded_subset --submap all_APOE-GAB2.submap --reject-all --report-all --model A --pretest 4 --delta 0.75 --report-adjusted --report-disjoint
+#--bfile alz_apoe_recoded_subset_APOE-GAB2 --skip-same-chr --reject-all --report-all --model A --pretest 4 --delta 0.75
+--bfile PDcontrols_APOE-GAB2 --pretest 3 --delta 1 --report-all --no-maintest

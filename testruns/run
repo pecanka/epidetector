@@ -1,0 +1,13 @@
+cp ../binary/EpiDetector.exe .
+
+./EpiDetector --nthreads 1 --simulateinput --test 1 --pretest 3 --delta-start 0.5 --delta-end 0.5 --delta-step -0.2 \
+  --OR 1 --amodel A --smodel A --maf 0.33 --fixed-maf --nloci 100 --ncases 500 --ncontrols 1000 \
+  --nsamples 1 --cellcorrection 1 --reportdisjoint --reportscore --reportall --rejectall \
+  --mincellcount 0 --alwaysscore --out-maf --HWE \
+  --group-var --group-cov --center-group 1 --prevalence 0.01 --out-debug --rseed 43232
+
+#./EpiDetector --simulateinput --test 1 --pretest 3 --amodel O --smodel A --fixedmaf --maf1 auto --maf2 0.25 \
+#  --delta-min 0.3 --delta-max 0.3 --delta-step 0.4 --OR-min 2 --OR-max 2 --OR-step 1 --nrepeats max \
+#  --ncases 1500 --ncontrols 2500 --nloci 50 --nsamples 1 --prevalence 0.01 --OR1 1 --OR2 1 \
+#  --mincellcount 0 --cellcorrection 1 --reportdisjoint --reportscore --reportall --alwaysscore \
+#  --rejectall --ndigits-pval 3 --HWE --nthreads 1 --out-minimalistic --seed 47897

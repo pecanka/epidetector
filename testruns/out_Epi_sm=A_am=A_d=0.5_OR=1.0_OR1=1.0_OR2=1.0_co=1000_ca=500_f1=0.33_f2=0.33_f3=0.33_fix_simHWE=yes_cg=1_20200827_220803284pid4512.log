@@ -1,0 +1,53 @@
+EpiDetector 0.1 beta log file created at 22:08:03.284 20200827
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Aug 27 2020 with GNU Fortran Compiler 8.3.0         +
+ +                   Compiled under GNU Linux 32/64bit                    +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 20200827 at 22:08:03.284
+
+Call arguments: --nthreads 1 --simulateinput --test 1 --pretest 3 --delta-start 
+0.5 --delta-end 0.5 --delta-step -0.2 --OR 1 --amodel A --smodel A --maf 0.33 
+--fixed-maf --nloci 100 --ncases 500 --ncontrols 1000 --nsamples 1 
+--cellcorrection 1 --reportdisjoint --reportscore --reportall --rejectall 
+--mincellcount 0 --alwaysscore --out-maf --HWE --group-var --group-cov 
+--center-group 1 --prevalence 0.01 --out-debug --rseed 43232
+
+Effective arguments :
+
+  --nthreads 1
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta-start 0.5
+  --delta-end 0.5
+  --delta-step -0.2
+  --OR 1
+  --amodel A
+  --smodel A
+  --maf 0.33
+  --fixed-maf
+  --nloci 100
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1
+  --cellcorrection 1
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --mincellcount 0
+  --alwaysscore
+  --out-maf
+  --HWE
+  --group-var
+  --group-cov
+  --center-group 1
+  --prevalence 0.01
+  --out-debug
+  --rseed 43232
+
