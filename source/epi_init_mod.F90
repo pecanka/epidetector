@@ -989,6 +989,8 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
         keep_temp = .FALSE.
       CASE ("--nocountdown", "--no-countdown")
         countdown = .FALSE.
+      CASE ("--noprogress", "--no-progress")
+        countdown = .FALSE.
       CASE ("--nooutput", "--no-output")
         no_output = .TRUE.
       CASE ("--no-data-summary")

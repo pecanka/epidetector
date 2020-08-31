@@ -65,8 +65,10 @@ PROGRAM EpiDetector
   !! If rerun, announce additional analysis, then switch rerun indicator
   IF(nrun > 1) THEN
     IF(pause_run) &
-      CALL Prnt("Execution paused. Press enter to continue ...", skip1=1, advance='NO', wait=.TRUE.)
-    CALL Prnt("Starting analysis number "//TRIM(i2cp(nrun))//" ...", log=.FALSE., skip1=1, skip2=1)
+      CALL Prnt("Execution paused. Press enter to continue ...", skip1=1, &
+                advance='NO', wait=.TRUE.)
+    CALL Prnt("Starting analysis number "//TRIM(i2cp(nrun))//" ...", & 
+              log=.FALSE., skip1=1, skip2=1)
   ENDIF
 
   premat_halt = .FALSE.
@@ -166,6 +168,8 @@ PROGRAM EpiDetector
 
   !! Print input options
   CALL Report(input_opts=.TRUE.)
+  
+  CALL FlushOutput((/usto, ulog/))
  
   !! Read-in or simulate genetical data 
   CALL GetData()
@@ -189,6 +193,8 @@ PROGRAM EpiDetector
   !  THE FOLLOWING PROCEDURE PERFORMS (TWO-STEP) GENOME WIDE ANALYSIS  ! 
   !********************************************************************!
 
+  CALL FlushOutput((/usto, ulog/))
+  
   IF(.NOT.no_testing) THEN
   
     !! Check for large arrays and announce a hint (OPENMP only)
@@ -322,6 +328,7 @@ PROGRAM EpiDetector
   runtime_total = GetTimeDifference(starttime, stoptime)
   CALL Report(exec_end=.TRUE., stoptime=stoptime_full)
   CALL Dealloc(res_file)
+  CALL FlushOutput((/usto, ulog/))
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

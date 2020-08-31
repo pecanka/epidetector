@@ -3665,19 +3665,20 @@ END SUBROUTINE PrntF
 
 RECURSIVE SUBROUTINE Prnt(text, text1, text2, Q, skip1, skip2, nolead, lead, &
                      advance, trimit, log, screen, unit, file, warning, error, &
-                     premature, wait, l, dots, dellog)
+                     premature, wait, l, dots, dellog, flush)
   IMPLICIT NONE
   CHARACTER(*), INTENT(IN), OPTIONAL  :: text, text1, text2, advance, file
   INTEGER, INTENT(IN), OPTIONAL       :: skip1, skip2, lead, unit, l
   LOGICAL, INTENT(IN), OPTIONAL       :: Q, nolead, log, screen, trimit, &
                                          warning, error, premature, wait, &
-                                         dots, dellog
+                                         dots, dellog, flush
   INTEGER                             :: units(3), i, j, iscreen, ilog, & 
                                          iextra, skip1a, skip2a, lead1, &
                                          length0, length1, length2, &
                                          lempt, lempt1, lempt2
   LOGICAL                             :: printunit(3), Q1, nolead1, trimtext, &
-                                         premature1, wait1, file_exists
+                                         premature1, wait1, file_exists, &
+                                         flush1
   CHARACTER(mel)                      :: emptysp, text00, text0
   CHARACTER(3)                        :: advance1, adv
   CHARACTER(mfl)                      :: filename(3)
@@ -3741,6 +3742,7 @@ RECURSIVE SUBROUTINE Prnt(text, text1, text2, Q, skip1, skip2, nolead, lead, &
   trimtext = .TRUE.
   premature1 = .TRUE.
   wait1 = .FALSE.
+  flush1 = .FALSE.
   advance1 = 'YES'
   
   !! Assign values based on optional variables    
@@ -3753,6 +3755,7 @@ RECURSIVE SUBROUTINE Prnt(text, text1, text2, Q, skip1, skip2, nolead, lead, &
   IF(PRESENT(trimit))    trimtext = trimit
   IF(PRESENT(premature)) premature1 = premature
   IF(PRESENT(wait))      wait1 = wait
+  IF(PRESENT(flush))     flush1 = flush
   IF(PRESENT(advance)) THEN
     IF(LEN_TRIM(advance)>0) THEN
       IF(upcasef(advance(1:1))=='N') advance1='NO'
@@ -3884,7 +3887,7 @@ RECURSIVE SUBROUTINE Prnt(text, text1, text2, Q, skip1, skip2, nolead, lead, &
     DO j=1,skip2a; WRITE(units(i),'(A)'); ENDDO
     
     !! Flush the output
-    CALL FlushOutput(units(i))
+    IF(flush1) CALL FlushOutput(units(i:i))
     
     !! Close log file
     IF(i/=iscreen) CLOSE(units(i))
@@ -4237,24 +4240,31 @@ END SUBROUTINE PrintCD2
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 
-SUBROUTINE FlushOutput(unit)
+SUBROUTINE FlushOutput(units)
   IMPLICIT NONE
   !EXTERNAL :: FLUSH
-  INTEGER, INTENT(IN), OPTIONAL :: unit
-  INTEGER                       :: unit1
+  INTEGER, INTENT(IN), OPTIONAL :: units(:)
+  INTEGER                       :: nu, i
+  INTEGER, ALLOCATABLE          :: us(:)
 
-  unit1 = usto
-  IF(PRESENT(unit)) unit1 = unit
-
+  nu = 1
+  IF(PRESENT(units)) nu = SIZE(units)
+  CALL ResizeVar(us, nu, usto)
+  IF(PRESENT(units)) us = units
+  
+  DO i=1,nu
+  
 #ifdef __INTEL_COMPILER
-  IF(unit1==usto) THEN
-    CLOSE(unit1)
-    OPEN(UNIT=unit1)
-    RETURN
-  ENDIF
+    IF(unit1==usto) THEN
+      CLOSE(us(i))
+      OPEN(UNIT=us(i))
+      CYCLE
+    ENDIF
 #endif
 
-  CALL FLUSH(unit1)
+    CALL FLUSH(us(i))
+  
+  ENDDO
 
   RETURN
 

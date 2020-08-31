@@ -455,43 +455,62 @@ MODULE EPI_PARAMS
     
   !! Define type for a temporary file record    
   TYPE TMPTYPE
-
     REAL(dpp)  :: PTAS4          ! Pretest statistic AS-PT-4
     REAL(dpp)  :: PTAS4p         ! Pretest p-value AS-PT-4                      
     REAL(dpp)  :: PTAS1          ! Pretest statistic AS-PT-1
     REAL(dpp)  :: PTAS1p         ! Pretest p-value AS-PT-1                      
     INTEGER    :: PTASNca        ! Counts of cases used by PTAS
     INTEGER    :: PTASNco        ! Counts of controls used by PTAS
-    INTEGER(2) :: errPTAS4       ! Error indicator for AS-PT-4
-    INTEGER(2) :: errPTAS1       ! Error indicator for AS-PT-1
+    
+    INTEGER    :: errPTAS4       ! Error indicator for AS-PT-4
+    INTEGER    :: errPTAS1       ! Error indicator for AS-PT-1
+    !INTEGER(2) :: errPTAS4       ! Error indicator for AS-PT-4
+    !INTEGER(2) :: errPTAS1       ! Error indicator for AS-PT-1
+        
     REAL(dpp)  :: PTDS4          ! Pretest statistic DS-PT-4
     REAL(dpp)  :: PTDS4p         ! Pretest p-value DS-PT-4                     
     REAL(dpp)  :: PTDS1          ! Pretest statistic DS-PT-1
     REAL(dpp)  :: PTDS1p         ! Pretest p-value DS-PT-1                      
     INTEGER    :: PTDSNca        ! Counts of cases used by PTDS
     INTEGER    :: PTDSNco        ! Counts of controls used by PTDS
-    INTEGER(2) :: errPTDS4       ! Error indicator for DS-PT-4
-    INTEGER(2) :: errPTDS1       ! Error indicator for DS-PT-1
+    
+    INTEGER    :: errPTDS4       ! Error indicator for DS-PT-4
+    INTEGER    :: errPTDS1       ! Error indicator for DS-PT-1
+    !INTEGER(2) :: errPTDS4       ! Error indicator for DS-PT-4
+    !INTEGER(2) :: errPTDS1       ! Error indicator for DS-PT-1
+    
     REAL(dpp)  :: PT4            ! Pretest control-4 statistic
     REAL(dpp)  :: PT4p           ! Pretest control-4 p-value                      
     REAL(dpp)  :: PT1            ! Pretest control-1 statistic
-    REAL(dpp)  :: PT1p           ! Pretest control-1 p-value                      
-    INTEGER(2) :: errPT4         ! Error indicator for PT4
-    INTEGER(2) :: errPT1         ! Error indicator for PT1
+    REAL(dpp)  :: PT1p           ! Pretest control-1 p-value 
+                         
+    INTEGER    :: errPT4         ! Error indicator for PT4
+    INTEGER    :: errPT1         ! Error indicator for PT1
+    !INTEGER(2) :: errPT4         ! Error indicator for PT4
+    !INTEGER(2) :: errPT1         ! Error indicator for PT1
+    
     REAL(dpp)  :: PTPO4          ! Pretest pool-4 statistic
     REAL(dpp)  :: PTPO4p         ! Pretest pool-4 p-value                      
     REAL(dpp)  :: PTPO1          ! Pretest pool-1 statistic
-    REAL(dpp)  :: PTPO1p         ! Pretest pool-1 p-value                      
-    INTEGER(2) :: errPTPO4       ! Error indicator for PTPO4
-    INTEGER(2) :: errPTPO1       ! Error indicator for PTPO1
+    REAL(dpp)  :: PTPO1p         ! Pretest pool-1 p-value    
+                      
+    INTEGER    :: errPTPO4       ! Error indicator for PTPO4
+    INTEGER    :: errPTPO1       ! Error indicator for PTPO1
+    !INTEGER(2) :: errPTPO4       ! Error indicator for PTPO4
+    !INTEGER(2) :: errPTPO1       ! Error indicator for PTPO1
+    
     REAL(dpp)  :: AS4            ! Adjusted score statistic for pretest-4
     REAL(dpp)  :: AS4p           ! Adjusted score p-value for pretest-4 
     REAL(dpp)  :: AS1            ! Adjusted score statistic for pretest-1
     REAL(dpp)  :: AS1p           ! Adjusted score p-value for pretest-1
     INTEGER    :: ASNca          ! Counts of cases used by AS
     INTEGER    :: ASNco          ! Counts of controls used by AS
-    INTEGER(2) :: errAS4         ! Error indicator for AS-4
-    INTEGER(2) :: errAS1         ! Error indicator for AS-1
+    
+    INTEGER    :: errAS4         ! Error indicator for AS-4
+    INTEGER    :: errAS1         ! Error indicator for AS-1
+    !INTEGER(2) :: errAS4         ! Error indicator for AS-4
+    !INTEGER(2) :: errAS1         ! Error indicator for AS-1
+    
     REAL(dpp)  :: DS             ! Disjoint score statistic
     REAL(dpp)  :: DSp            ! Disjoint score p-value
     INTEGER    :: DSNca          ! Counts of cases used by DS
@@ -500,8 +519,12 @@ MODULE EPI_PARAMS
     REAL(dpp)  :: CSp            ! Classical score p-value
     INTEGER    :: CSNca          ! Counts of cases used by CS
     INTEGER    :: CSNco          ! Counts of controls used by CS
-    INTEGER(2) :: errDS          ! Error indicator for DS
-    INTEGER(2) :: errCS          ! Error indicator for CS
+    
+    INTEGER    :: errDS          ! Error indicator for DS
+    INTEGER    :: errCS          ! Error indicator for CS
+    !INTEGER(2) :: errDS          ! Error indicator for DS
+    !INTEGER(2) :: errCS          ! Error indicator for CS
+    
     REAL(dpp)  :: Tn4(dmV)       ! Pretest vector for chisquare-4
     REAL(dpp)  :: Tn1(dmV)       ! Pretest vector for chisquare-1
     REAL(dpp)  :: beta0(0:2)     ! Estimate of beta (under H_0)
@@ -542,111 +565,151 @@ MODULE EPI_PARAMS
     REAL(dpp)  :: AS1p           ! Adjusted score p-value for pretest-1
     REAL(dpp)  :: DSp            ! Disjoint score p-value
     REAL(dpp)  :: CSp            ! Classical score p-value
-    INTEGER(2) :: errPTAS4       ! Error indicator for AS-PT-4
-    INTEGER(2) :: errPTAS1       ! Error indicator for AS-PT-1
-    INTEGER(2) :: errPTDS4       ! Error indicator for DS-PT-4
-    INTEGER(2) :: errPTDS1       ! Error indicator for DS-PT-1
-    INTEGER(2) :: errPT4         ! Error indicator for PTPO4
-    INTEGER(2) :: errPT1         ! Error indicator for PTPO1
-    INTEGER(2) :: errPTPO4       ! Error indicator for PTPO4
-    INTEGER(2) :: errPTPO1       ! Error indicator for PTPO1
-    INTEGER(2) :: errAS4         ! Error indicator for AS-4
-    INTEGER(2) :: errAS1         ! Error indicator for AS-1
-    INTEGER(2) :: errDS          ! Error indicator for DS
-    INTEGER(2) :: errCS          ! Error indicator for CS
+    
+    INTEGER    :: errPTAS4          ! Error indicator for AS-PT-4
+    INTEGER    :: errPTAS1          ! Error indicator for AS-PT-1
+    INTEGER    :: errPTDS4          ! Error indicator for DS-PT-4
+    INTEGER    :: errPTDS1          ! Error indicator for DS-PT-1
+    INTEGER    :: errPT4            ! Error indicator for PTPO4
+    INTEGER    :: errPT1            ! Error indicator for PTPO1
+    INTEGER    :: errPTPO4          ! Error indicator for PTPO4
+    INTEGER    :: errPTPO1          ! Error indicator for PTPO1
+    INTEGER    :: errAS4            ! Error indicator for AS-4
+    INTEGER    :: errAS1            ! Error indicator for AS-1
+    INTEGER    :: errDS             ! Error indicator for DS
+    INTEGER    :: errCS             ! Error indicator for CS
+    
+    !INTEGER(2) :: errPTAS4       ! Error indicator for AS-PT-4
+    !INTEGER(2) :: errPTAS1       ! Error indicator for AS-PT-1
+    !INTEGER(2) :: errPTDS4       ! Error indicator for DS-PT-4
+    !INTEGER(2) :: errPTDS1       ! Error indicator for DS-PT-1
+    !INTEGER(2) :: errPT4         ! Error indicator for PTPO4
+    !INTEGER(2) :: errPT1         ! Error indicator for PTPO1
+    !INTEGER(2) :: errPTPO4       ! Error indicator for PTPO4
+    !INTEGER(2) :: errPTPO1       ! Error indicator for PTPO1
+    !INTEGER(2) :: errAS4         ! Error indicator for AS-4
+    !INTEGER(2) :: errAS1         ! Error indicator for AS-1
+    !INTEGER(2) :: errDS          ! Error indicator for DS
+    !INTEGER(2) :: errCS          ! Error indicator for CS
+    
     REAL(dpp)  :: PLevel(2)      ! Used and optimal pretest level
-    INTEGER    :: Pos(2)           ! Position of the first and second loci in MAPA
+    INTEGER    :: Pos(2)         ! Position of the first and second loci in MAPA
 
   END TYPE TMPTYPEmin
 
   !! Define empty record parameter
   TYPE(TMPTYPE), PARAMETER :: NAtmp = TMPTYPE(  &
-    NAv, &     ! AS-PT4        
-    NAp, &      ! AS-PT4p   
-    NAv, &     ! AS-PT1        
-    NAp, &      ! AS-PT1p   
-    -1, &          ! Nca PTAS
-    -1, &          ! Nco PTAS
-    -1, &          ! Error AS-PT4
-    -1, &          ! Error AS-PT1
-    NAv, &     ! DS-PT4        
-    NAp, &      ! DS-PT4p   
-    NAv, &     ! DS-PT1        
-    NAp, &      ! DS-PT1p   
-    -1, &          ! Nca PTDS
-    -1, &          ! Nco PTDS
-    -1, &          ! Error DS-PT4
-    -1, &          ! Error DS-PT1
-    NAv, &     ! PT4        
-    NAp, &      ! PT4p
-    NAv, &     ! PT1        
-    NAp, &      ! PT1p
-    -1, &          ! Error PT4
-    -1, &          ! Error PT1
-    NAv, &     ! PTPO4        
-    NAp, &      ! PTPO4p
-    NAv, &     ! PTPO1        
-    NAp, &      ! PTPO1p
-    -1, &          ! Error PTPO4
-    -1, &          ! Error PTPO1
-    NAv, &     ! AS4   
-    NAp, &      ! AS4p  
-    NAv, &     ! AS1   
-    NAp, &      ! AS1p  
-    -1, &          ! Nca AS
-    -1, &          ! Nco AS
-    -1, &          ! Error AS4
-    -1, &          ! Error AS1
-    NAv, &     ! DS   
-    NAp, &      ! DSp  
-    -1, &          ! Nca DS
-    -1, &          ! Nco DS
-    NAv, &     ! CS
-    NAp, &      ! CSp
-    -1, &          ! Nca CS
-    -1, &          ! Nco CS
-    -1, &          ! Error DS
-    -1, &          ! Error CS
-    NAv, &     ! Tn4
-    NAv, &     ! Tn1
-    NAv, &     ! beta0
-    !-one, &        ! se_beta0
-    NAv, &     ! beta1
-    -one, &        ! se_beta1
-    !NAneg, &       ! MAF
-    NAneg, &       ! PLevel
-    NAneg, &       ! Lambda
-    NAneg, &       ! Slope
-    NAv, &     ! Debug
-    -1, &          ! Pos
-    !-1, &          ! Chr
-    !-1, &          ! Rs
-    !.FALSE., &     ! Signif
-    .FALSE., &     ! ASstd
-    .TRUE., &      ! Empty
-    !
-    NAv, &     ! AS_co_X        
-    NAp, &      ! etc.   
+
+    NAv, &                                ! PTAS4        
+    NAp, &                                ! PTAS4p   
+    NAv, &                                ! PTAS1        
+    NAp, &                                ! PTAS1p   
+    -1, &                                 ! PTASNca
+    -1, &                                 ! PTASNco
+    
+    -1,        &                          ! errPTAS4
+    -1,        &                          ! errPTAS1
+    !INT(-1,2), &                          ! Error AS-PT4
+    !INT(-1,2), &                          ! Error AS-PT1
+
+    NAv, &                                ! PTDS4        
+    NAp, &                                ! PTDS4p   
+    NAv, &                                ! PTDS1        
+    NAp, &                                ! PTDS1p   
+    -1, &                                 ! PTDSNca
+    -1, &                                 ! PTDSNco
+
+    -1,        &                          ! errPTDS4 
+    -1,        &                          ! errPTDS1 
+    !INT(-1,2), &                          ! errPTDS4
+    !INT(-1,2), &                          ! errPTDS1
+
+    NAv, &                                ! PT4        
+    NAp, &                                ! PT4p
+    NAv, &                                ! PT1        
+    NAp, &                                ! PT1p
+
+    -1,        &                          ! errPTDS4 
+    -1,        &                          ! errPTDS1 
+    !INT(-1,2), &                          ! errPTDS4
+    !INT(-1,2), &                          ! errPTDS1
+
+    NAv, &                                ! PTPO4        
+    NAp, &                                ! PTPO4p
+    NAv, &                                ! PTPO1        
+    NAp, &                                ! PTPO1p
+
+    -1,        &                          ! errPTPO4 
+    -1,        &                          ! errPTPO1 
+    !INT(-1,2), &                          ! errPTPO4
+    !INT(-1,2), &                          ! errPTPO1
+
+    NAv, &                                ! AS4   
+    NAp, &                                ! AS4p  
+    NAv, &                                ! AS1   
+    NAp, &                                ! AS1p  
+    -1, &                                 ! ASNca
+    -1, &                                 ! ASNco
+
+    -1,        &                          ! errAS4 
+    -1,        &                          ! errAS1 
+    !INT(-1,2), &                          ! errAS4
+    !INT(-1,2), &                          ! errAS1
+
+    NAv, &                                ! DS   
+    NAp, &                                ! DSp  
+    -1, &                                 ! Nca DS
+    -1, &                                 ! Nco DS
+    NAv, &                                ! CS
+    NAp, &                                ! CSp
+    -1, &                                 ! CSNca
+    -1, &                                 ! CSNco
+
+    -1,        &                          ! errDS 
+    -1,        &                          ! errCS 
+    !INT(-1,2), &                          ! errDS
+    !INT(-1,2), &                          ! errCS
+
+    NAv, &                                ! Tn4
+    NAv, &                                ! Tn1
+    NAv, &                                ! beta0
+    !-one, &                               ! se_beta0
+    NAv, &                                ! beta1
+    -one, &                               ! se_beta1
+    !NAneg, &                              ! MAF
+    NAneg, &                              ! PLevel
+    NAneg, &                              ! Lambda
+    NAneg, &                              ! Slope
+    NAv, &                                ! Debug
+    -1, &                                 ! Pos
+    !-1, &                                 ! Chr
+    !-1, &                                 ! Rs
+    .FALSE., &                            ! ASstd
+    !.FALSE., &                            ! Signif
+    .TRUE., &                             ! Empty
+
+    NAv, &                                ! AS_co_X        
+    NAp, &                                ! etc.   
     NAv, &             
     NAp, &          
     NAv, &             
     NAp, &         
-    !
-    NAv, &     ! AS_co_Y        
+
+    NAv, &                                ! AS_co_Y        
     NAp, &         
     NAv, &             
     NAp, &          
     NAv, &             
     NAp, &         
-    !
-    NAv, &     ! AS_co_0        
+
+    NAv, &                                ! AS_co_0        
     NAp, &         
     NAv, &             
     NAp, &          
     NAv, &             
     NAp, &         
-    !
-    NAv, &     ! AS_cc        
+
+    NAv, &                                ! AS_cc        
     NAp, &         
     NAv, &             
     NAp, &          
@@ -655,32 +718,49 @@ MODULE EPI_PARAMS
 
   !! Define empty record parameter
   TYPE(TMPTYPEmin), PARAMETER :: NAtmpmin = TMPTYPEmin(  &
-    NAp, &      ! AS-PT4p   
-    NAp, &      ! AS-PT1p   
-    NAp, &      ! DS-PT4p   
-    NAp, &      ! DS-PT1p   
-    NAp, &      ! PT4p
-    NAp, &      ! PT1p
-    NAp, &      ! PTPO4p
-    NAp, &      ! PTPO1p
-    NAp, &      ! AS4p  
-    NAp, &      ! AS1p  
-    NAp, &      ! DSp  
-    NAp, &      ! CSp
-    -1, &          ! Error AS-PT4
-    -1, &          ! Error AS-PT1
-    -1, &          ! Error DS-PT4
-    -1, &          ! Error DS-PT1
-    -1, &          ! Error PT4
-    -1, &          ! Error PT1
-    -1, &          ! Error PTPO4
-    -1, &          ! Error PTPO1
-    -1, &          ! Error AS4
-    -1, &          ! Error AS1
-    -1, &          ! Error DS
-    -1, &          ! Error CS
-    NAneg, &       ! PLevel
-    -1 &           ! Pos 
+
+    NAp, &                                 ! PTAS4p   
+    NAp, &                                 ! PTAS1p   
+    NAp, &                                 ! PTDS4p   
+    NAp, &                                 ! PTDS1p   
+    NAp, &                                 ! PT4p     
+    NAp, &                                 ! PT1p     
+    NAp, &                                 ! PTPO4p   
+    NAp, &                                 ! PTPO1p   
+    NAp, &                                 ! AS4p     
+    NAp, &                                 ! AS1p     
+    NAp, &                                 ! DSp      
+    NAp, &                                 ! CSp      
+
+    -1, &                                  ! errPTAS4 
+    -1, &                                  ! errPTAS1 
+    -1, &                                  ! errPTDS4 
+    -1, &                                  ! errPTDS1 
+    -1, &                                  ! errPT4   
+    -1, &                                  ! errPT1   
+    -1, &                                  ! errPTPO4 
+    -1, &                                  ! errPTPO1 
+    -1, &                                  ! errAS4   
+    -1, &                                  ! errAS1   
+    -1, &                                  ! errDS    
+    -1, &                                  ! errCS    
+
+    !INT(-1,2), &                           ! errPTAS4
+    !INT(-1,2), &                           ! errPTAS1
+    !INT(-1,2), &                           ! errPTDS4
+    !INT(-1,2), &                           ! errPTDS1
+    !INT(-1,2), &                           ! errPT4  
+    !INT(-1,2), &                           ! errPT1  
+    !INT(-1,2), &                           ! errPTPO4
+    !INT(-1,2), &                           ! errPTPO1
+    !INT(-1,2), &                           ! errAS4  
+    !INT(-1,2), &                           ! errAS1  
+    !INT(-1,2), &                           ! errDS   
+    !INT(-1,2), &                           ! errCS   
+
+    NAneg, &                               ! PLevel
+    -1 &                                   ! Pos
+
     )        
 
 END MODULE EPI_PARAMS

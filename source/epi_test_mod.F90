@@ -288,6 +288,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   !! Set deltas so that it can be evaluate whether DS pretest needs to be
   !! reported 
   CALL SetDeltas(WT1, dAS, dDS, cntrgrp, dASco, dASca, dDSco, dDSca)
+  
   IF((dASco /= dDSco .OR. dASca /= dDSca) .AND. doS1) THEN
     IF(doDS4) doPTDS4 = .TRUE.
     IF(doDS1 .OR. doDS4) THEN
@@ -324,6 +325,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
 
   !! Nulify variables
   text = ""
+  CALL Prnt("Nullifying result arrays ...", flush=.TRUE.)
   tmp  = NAtmp
 
   !! Set indicators of which two-stage procedures should be done
@@ -333,9 +335,9 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           
   !! Announce the start of testing stage
   CALL Prnt("Number of tests to perform: "//i2c(maxntests))
-  IF(ntests < maxntests)& 
+  IF(ntests < maxntests) & 
     CALL Prnt("User set limit on the number of tests: "//i2c(ntests))
-  CALL Prnt("Testing in progress ...")
+  CALL Prnt("Testing in progress ...", flush=.TRUE.)
 
   !! ******************************* !!
   !! START TESTING LOOP OVER SAMPLES !!
@@ -539,8 +541,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           !! Skip all of the extra pretests if "do all pretests" is false
           IF(icycle>1 .AND. (.NOT.do_all_pretests .OR. skip_S1)) CYCLE
           
-        !write(70,'(A)') "B"
-
           !! Select which test is to be done now
           SELECT CASE (icycle)
           CASE(1)
@@ -607,7 +607,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           se_beta1 = -one
           ASstd = .TRUE.
 
-          !print *,OMP_GET_THREAD_NUM(),"--------------"
           !! Reread status info, sex info, x_all, etc. since these could have 
           !! been modified by ScanData on the previous loop (ii x jj)
           sts_all = sts_o
@@ -616,7 +615,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           ssAS_all = ssAS_o
           ssDS_all = ssDS_o
           
-        !write(70,'(A)') "C"
           !! Assign values to temporary gene data storage y_all
           XX = X(1+(isamp-1)*xrow:isamp*xrow, jj) 
           CALL Bed2Ped(XX, y_all, bed_major, ped_minor, chrjj, sex_all)
@@ -643,8 +641,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
             ENDIF          
           ENDIF
           
-          !! Clean up the data in terms of invalid values and NAs and get counts
-          !! for AS
+          !! Clean up the data wrt invalid values and NAs and get counts for AS
           IF(doAS .OR. doPO .OR. doCS) THEN
           
             CALL ScanData(n, sts_all, x_all, y_all, nv, ie0AS, dASco, dASca, &
@@ -663,7 +660,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
             
           ENDIF
           
-          !print *,"D"
           !! Get counts for DS. If delta's are the same for AS and DS the counts
           !! for AS will be used by DS. Otherwise, rescan the data
           IF(doDS) THEN
@@ -697,7 +693,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
             
           ENDIF
           
-          !print *,"D2"
           !! Save samplesizes
           PTASNco = INT(SUM(ccAS_co1))               ! PTAS controls
           PTASNca = INT(SUM(ccAS_ca1))               ! PTAS cases
@@ -710,8 +705,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           CSNco = INT(SUM(ccAS_co1+ccAS_co2))    ! full sample controls (CS, PTPO4, PTPO1)
           CSNca = INT(SUM(ccAS_ca1+ccAS_ca2))    ! full sample cases (CS, PTPO4, PTPO1)
             
-          !print *,"D2"
-        !write(70,'(A)') "E"
           !! If counts corrected register it and remove error indicator
           IF(icycle==1 .AND. ANY((/ie0AS,ie0DS/) == err_low_cell_cor)) THEN
             NumLowCellNumCor = NumLowCellNumCor + 1
@@ -804,13 +797,10 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           !!!!!    CALL PRETEST SUBROUTINES     !!!!!!!!!!!!!!!!!!!!
           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-        !write(70,'(A)') "E2"
-          !print *,OMP_GET_THREAD_NUM(),"a"
           !! Do S1 only if level_S1 is smaller than 1
           IF(doS1) THEN
           
             !! Perform selected S1 and/or S2 test(s)
-            !print *,"A"
             IF(doAS .OR. doPO) &
               CALL TestS1(ccAS_co1, ccAS_ca1, ccAS_co2, ccAS_ca2, WT1=WT11, &
                           T4=PTAS4, T4p=PTAS4p, ierrT4=ie1AS(1), T4df=T1_df, &
@@ -827,13 +817,11 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
                           zero_margs=zermarAS, cntrgrp=cntrgrp1, &
                           var_grouped=var_grouped, var_indep=var_indep, &
                           divided=regres_divided, model=model_S1)
-            !print *,"B"
 
-            !print *,OMP_GET_THREAD_NUM(),"b"
             IF(doDS) THEN
             
-              IF(.FALSE. .AND. XOR(doAS4, doDS4) .AND. XOR(doAS1, doDS1) .AND. dASco==dDSco &
-               .AND. dASca==dDSca) THEN
+              IF(.FALSE. .AND. XOR(doAS4, doDS4) .AND. XOR(doAS1, doDS1) .AND. &
+                dASco==dDSco .AND. dASca==dDSca) THEN
               
                 ie1DS(1:2) = ie1AS(1:2)
                 PTDS4 = PTAS4
@@ -843,38 +831,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
                 
               ELSE
               
-  if(.false.) then
-              
-  print *,""              
-  print *,"cco=", ccDS_co1(1,:)+ccDS_co2(1,:)
-  print *,"cco=", ccDS_co1(2,:)+ccDS_co2(2,:)
-  print *,"cco=", ccDS_co1(3,:)+ccDS_co2(3,:)
-  print *,""              
-  print *,"ccDS_co1=", ccDS_co1(1,:)
-  print *,"ccDS_co1=", ccDS_co1(2,:)
-  print *,"ccDS_co1=", ccDS_co1(3,:)
-  print *,""              
-  print *,"ccDS_co2=", ccDS_co2(1,:)
-  print *,"ccDS_co2=", ccDS_co2(2,:)
-  print *,"ccDS_co2=", ccDS_co2(3,:)
-  print *,""              
-  print *,"cca=", ccDS_ca1(1,:)+ccDS_ca2(1,:)
-  print *,"cca=", ccDS_ca1(2,:)+ccDS_ca2(2,:)
-  print *,"cca=", ccDS_ca1(3,:)+ccDS_ca2(3,:)
-  print *,""              
-  print *,"ccDS_ca1=", ccDS_ca1(1,:)
-  print *,"ccDS_ca1=", ccDS_ca1(2,:)
-  print *,"ccDS_ca1=", ccDS_ca1(3,:)
-  print *,""              
-  print *,"ccDS_ca2=", ccDS_ca2(1,:)
-  print *,"ccDS_ca2=", ccDS_ca2(2,:)
-  print *,"ccDS_ca2=", ccDS_ca2(3,:)
-  print *,""
-  
-  endif              
-
-            !print *,OMP_GET_THREAD_NUM(),"b1"
-              !print *,"Aa"
                 CALL TestS1(ccDS_co1, ccDS_ca1, ccDS_co2, ccDS_ca2, WT11, &
                             T4=PTDS4, T4p=PTDS4p, ierrT4=ie1DS(1), &
                             T4df=T1_df, T1=PTDS1, T1p=PTDS1p, &
@@ -882,12 +838,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
                             min_margin=min_marg_cnt, zero_margs=zermarDS, &
                             cntrgrp=cntrgrp1, var_grouped=var_grouped, &
                             var_indep=var_indep, model=model_S1)
-              !print *,"Bb"
-
-                !print *,"B PTDS1=", PTDS1
-                !print *,"B PTDS1p=", PTDS1p
-                                
-            !print *,OMP_GET_THREAD_NUM(),'b2'
+                            
               ENDIF
               
             ENDIF
@@ -1050,7 +1001,6 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           ENDIF
           
           !! Get DS
-          !print *,"C"
           IF(doDS) &
             CALL TestS2(sts2DS(1:nv2DS), x2DS(1:nv2DS), y2DS(1:nv2DS), nv2DS, &
                         nv2DS, model_S2, DS, DSp, ie2DS, var_use_beta1, &
@@ -1154,18 +1104,11 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
 
         IF(.NOT.out_it) CYCLE
 
-        !write(70,'(A)') "G"
-
 !$OMP CRITICAL
         nrec = nrec + 1
         k = nrec
 !$OMP END CRITICAL
 
-        !print *,"report_all=", report_all
-        !print *,"report_errs=", report_errs
-        !print *, "olim1=", olim1, "olim2=", olim2, "min_p1=", min_p1, "min_p2=", min_p2
-        !print *,"ii=", ii, "jj=", jj, "k=", k
-        
         !! Check if all ok with where a record will be stored
         IF(k > nrow) & 
           CALL PrntE("ARRAY BOUNDS EXCEEDED! (k="//i2cp(k)//", nrow="//&

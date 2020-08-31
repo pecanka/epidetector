@@ -1349,13 +1349,13 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   cntrgrp1 = 0
   tol1 = epstol
   WT21 = 0
-  IF(PRESENT(doPT4))       doPT41 = doPT4 
-  IF(PRESENT(doPT1))       doPT11 = doPT1 
-  IF(PRESENT(doPO4))       doPO41 = doPO4 
-  IF(PRESENT(doPO1))       doPO11 = doPO1 
-  IF(PRESENT(doAS4))       doAS41 = doAS4 
-  IF(PRESENT(doAS1))       doAS11 = doAS1 
-  IF(PRESENT(doDS))        doDS1 = doDS 
+  IF(PRESENT(doPT4))        doPT41 = doPT4 
+  IF(PRESENT(doPT1))        doPT11 = doPT1 
+  IF(PRESENT(doPO4))        doPO41 = doPO4 
+  IF(PRESENT(doPO1))        doPO11 = doPO1 
+  IF(PRESENT(doAS4))        doAS41 = doAS4 
+  IF(PRESENT(doAS1))        doAS11 = doAS1 
+  IF(PRESENT(doDS))         doDS1 = doDS 
   IF(PRESENT(min_margin))   min_mc = min_margin
   IF(PRESENT(var_grouped))  grp_var = var_grouped
   IF(PRESENT(cntrgrp))      cntrgrp1 = cntrgrp
@@ -1619,8 +1619,6 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
       !print *,"without AS"
     ENDIF
     
-    !print *,"Tsp11=",Tsp11
-
     !! Return the calculated values
     IF(PRESENT(Tsp1))  Tsp1 = Tsp11
     IF(PRESENT(Tsp1p)) Tsp1p = Tsp1p1
@@ -1637,7 +1635,6 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     RETURN
   ENDIF    
 
-  !print *," T5b"
   !! *************************************** !!
   !!       CHECK WHETHER COUNTS ARE OK       !!
   !! *************************************** !!
@@ -1649,20 +1646,20 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   !! Sample size checks (CURRENTLY DISABLED)
   IF(.FALSE.) THEN
     IF(WT21>0) THEN
-      IF(WT1==T1cc .AND. MIN(N_co2,N_ca2)==zero .AND. (doDS1 .OR. cntrgrp1>0)) GOTO 102
-      IF(WT1==T1co .AND. N_co2==zero .AND. doDS1) GOTO 102
-      IF(WT1==T1co .AND. cntrgrp1>0 .AND. N_co2==zero .AND. both1) GOTO 102
-      IF(WT1==T1co .AND. cntrgrp1>0 .AND. N_ca2==zero .AND. both2) GOTO 102
-      IF(WT1==T1ca .AND. N_ca2==zero .AND. doDS1)  GOTO 102
-      IF(WT1==T1ca .AND. cntrgrp1>0 .AND. N_ca2==zero .AND. both1) GOTO 102
-      IF(WT1==T1ca .AND. cntrgrp1>0 .AND. N_co2==zero .AND. both2) GOTO 102
+      IF(WT1==T1cc .AND. MIN(N_co2,N_ca2)==zero .AND. & 
+          (doDS1 .OR. cntrgrp1>0))                                  GOTO 102
+      IF(WT1==T1co .AND. N_co2==zero .AND. doDS1)                   GOTO 102
+      IF(WT1==T1co .AND. cntrgrp1>0 .AND. N_co2==zero .AND. both1)  GOTO 102
+      IF(WT1==T1co .AND. cntrgrp1>0 .AND. N_ca2==zero .AND. both2)  GOTO 102
+      IF(WT1==T1ca .AND. N_ca2==zero .AND. doDS1)                   GOTO 102
+      IF(WT1==T1ca .AND. cntrgrp1>0 .AND. N_ca2==zero .AND. both1)  GOTO 102
+      IF(WT1==T1ca .AND. cntrgrp1>0 .AND. N_co2==zero .AND. both2)  GOTO 102
     ENDIF
   ENDIF
 
   !! If score pretest selected skip the rest
   IF(WT1 == T1sc) RETURN
 
-  !print *," Z0"
   !! *************************************** !!
   !!      CHECK WHETHER H0 COUNTS ARE OK     !!
   !! *************************************** !!
@@ -1675,25 +1672,24 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   CALL GetGenoFreqs(ccca1, P_ca1, mp_ca1, mq_ca1, P_ca1H0)
   CALL GetGenoFreqs(ccca2, P_ca2, mp_ca2, mq_ca2, P_ca2H0)
 
-  !print *," Z1"
   zero_margs1 = .FALSE.
   IF(ANY(P_coH0*N_co < min_mc)) GOTO 201
   IF(ANY(P_caH0*N_ca < min_mc)) GOTO 201
   IF(WT1>0) THEN
   
     IF(WT1/=T1ca) THEN
-      IF(ANY(P_co1H0*N_co1 == zero)) zero_margs1 = .TRUE.
-      IF(ANY(P_co1H0*N_co1 < min_mc)) GOTO 201
+      IF(ANY(P_co1H0*N_co1 == zero))    zero_margs1 = .TRUE.
+      IF(ANY(P_co1H0*N_co1 < min_mc))   GOTO 201
     ENDIF
     IF(WT1/=T1co) THEN
-      IF(ANY(P_ca1H0*N_ca1 == zero)) zero_margs1 = .TRUE.
-      IF(ANY(P_ca1H0*N_ca1 < min_mc)) GOTO 201
+      IF(ANY(P_ca1H0*N_ca1 == zero))    zero_margs1 = .TRUE.
+      IF(ANY(P_ca1H0*N_ca1 < min_mc))   GOTO 201
     ENDIF
     IF(WT1==T1cc .AND. (cntrgrp1>0 .OR. doDS1)) THEN
-      IF(ANY(P_co2H0*N_co2 == zero)) zero_margs1 = .TRUE.
-      IF(ANY(P_ca2H0*N_ca2 == zero)) zero_margs1 = .TRUE.
-      IF(ANY(P_co2H0*N_co2 < min_mc)) GOTO 201
-      IF(ANY(P_ca2H0*N_ca2 < min_mc)) GOTO 201
+      IF(ANY(P_co2H0*N_co2 == zero))    zero_margs1 = .TRUE.
+      IF(ANY(P_ca2H0*N_ca2 == zero))    zero_margs1 = .TRUE.
+      IF(ANY(P_co2H0*N_co2 < min_mc))   GOTO 201
+      IF(ANY(P_ca2H0*N_ca2 < min_mc))   GOTO 201
     ENDIF
     IF(WT1==T1co .AND. cntrgrp1>0) THEN
       IF(both1.AND.ANY(P_co2H0*N_co2 < min_mc)) GOTO 201
@@ -1727,15 +1723,14 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     VTn4 = V_co + V_ca * rho2
 
     !!! remove this once the code is simplified, since VTn4 is already computed above !!!
-    CALL PseudoInv(VTn4, I=V4_I, SqI=V4_SqI, tol=tol1, ierr=ierrT4)
-    IF(ierrT4/=0) RETURN
+    !CALL PseudoInv(VTn4, I=V4_I, SqI=V4_SqI, tol=tol1, ierr=ierrT4)
+    !IF(ierrT4/=0) RETURN
   ENDIF
 
   !! *************************************** !!
   !!        GET THE CHISQUARE VECTOR         !!
   !! *************************************** !!
 
-  !print *," Z2"
   T4p = one
   T1p = one
   IF(WT1 == T1cc) THEN
@@ -1753,7 +1748,6 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     T1p = Tsp1p1
   ENDIF
   
-  !print *," Z3"
   !! Return chisquare statistics and no errors if null .FALSE.
   IF(PRESENT(Tn4)) Tn4 = Tn41
   IF(PRESENT(Tn1)) Tn1 = Tn11
@@ -1764,9 +1758,8 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   !!   CALCULATE STUFF NECESSARY FOR ADJUSTING   !!
   !! ******************************************* !!
   
-  !print *," Z4"
   !! Calculate centering variables (if centering wanted)
-  IF(doAS41 .OR. doAS11 .AND. cntrgrp1 > 0) THEN
+  IF((doAS41 .OR. doAS11) .AND. cntrgrp1 > 0) THEN
 
     !! Center the pretest vector for regression in the main test
     SELECT CASE (WT1)
@@ -1802,29 +1795,20 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
       !print *,"VETn1=", VETn1 
   
       !! Restandardize the variance matrices
-      !print *,"  X1=" 
       rho2 = NT / NE
-      !print *,"  X2=" 
       VETn4 = VETn4 * rho2
-      !print *,"  X3=" 
       VETn1 = VETn1 * rho2
        
     END SELECT
 
     !! Do the "centering" and get the corresponding variance matrices
-    !print *,"  X4=" 
     IF(PRESENT(Tn4)) Tn4 = Tn4 - ETn4
-    !print *,"  X5=" 
     IF(PRESENT(Tn1)) Tn1 = Tn1 - ETn1
-    !print *,"  X6="
     IF(PRESENT(V4))  V4 = VTn4 + VETn4
-    !print *,"  X7=" 
     IF(PRESENT(V1))  V1 = VTn1 + VETn1
-    !print *,"  X8="
     
   ENDIF
 
-  !print *," Z5"
   !! If adjusting through regression not done, make sure the variances are 0
   IF(.NOT.doAS41) THEN
     IF(PRESENT(V4))     V4 = zero
@@ -1838,24 +1822,10 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     IF(PRESENT(V1_SqI)) V1_SqI = zero
   ENDIF
   
-  !print *,""
-  !print *, "V4=", SUM(ABS(V4))
-  !print *, "V4_I=", SUM(ABS(V4_I))
-  !print *, "V4_SqI=", SUM(ABS(V4_SqI))
-  !print *, "V1=", SUM(ABS(V1))
-  !print *, "V1_I=", SUM(ABS(V1_I))
-  !print *, "V1_SqI=", SUM(ABS(V1_SqI))
-  !print *, "ETn4=", SUM(ABS(ETn4))
-  !print *, "VETn4=", SUM(ABS(VETn4))
-  !print *, "ETn1=", SUM(ABS(ETn1))
-  !print *, "VETn1=", SUM(ABS(VETn1))
-  !stop
-  
   !!! ***************************************** !!!
   !!!     END OF CALCULATING ADJUSTED STUFF     !!!  
   !!! ***************************************** !!!
   
-  !print *," T6"
   RETURN
 
   !! Error in number of cases or controls (data for STAGE 2) 
