@@ -10,3 +10,5 @@ cp ../binary/EpiDetector.exe .
 #  --ncases 1500 --ncontrols 2500 --nloci 50 --nsamples 1 --prevalence 0.01 --OR1 1 --OR2 1 \
 #  --mincellcount 0 --cellcorrection 1 --reportdisjoint --reportscore --reportall --alwaysscore \
 #  --rejectall --ndigits-pval 3 --HWE --nthreads 1 --out-minimalistic --seed 47897
+
+rm EpiDetector.exe
