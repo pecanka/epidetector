@@ -9,14 +9,13 @@ MODULE EPI_REPORT
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 
-SUBROUTINE Report(exec_start, exec_end, cmdline_call, &
-              used_args, input_opts, data_summary, simul_input, &
-              test_only_neighbours, test_opts, &
-              test_start, test_end, test_report, &
-              no_pretests, all_pretests_rejected, cycle_length, no_auto_level, &
-              auto_level, auto_level_value, delta, ntests_limit, &
-              all_excl, all_but_one_excl, all_on_same_chr, &
-              partial_fam, centering_problem, starttime, stoptime, runtime, &
+SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
+              data_summary, simul_input, test_only_neighbours, test_opts, &
+              test_start, test_end, test_report, no_pretests, &
+              all_pretests_rejected, cycle_length, no_auto_level, auto_level, &
+              auto_level_value, delta, ntests_limit, all_excl, &
+              all_but_one_excl, all_on_same_chr, partial_fam, &
+              centering_problem, starttime, stoptime, runtime, &
               check_too_many_threads, check_no_parallelism, memory_hint, &
               nthreads)
 !! Prints information on screen and into log file, uses global variables 
@@ -385,66 +384,66 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, &
         IF(ped_nfiles>0) THEN
           DO k=1,SIZE(ped_file)
             IF(k==1) THEN
-              CALL Prnt(" PED > ["//TRIM(ped_file(1))//"]", lead=3)
+              CALL Prnt("PED <- ["//TRIM(ped_file(1))//"]", lead=8)
             ELSE
-              CALL Prnt("       ["//TRIM(ped_file(k))//"]", lead=3)
+              CALL Prnt("       ["//TRIM(ped_file(k))//"]", lead=8)
             ENDIF
           ENDDO
         ENDIF
         
         !! Print filenames - BED
         IF(bed_nfiles>0) &
-          CALL Prnt(" BED < ["//TRIM(bed_file(1))//"]", lead=3)
+          CALL Prnt("BED <- ["//TRIM(bed_file(1))//"]", lead=8)
         
         !! Print filenames - MAP / BIM
         IF(map_nfiles>0) THEN
           IF(input_format==1) &
-            CALL Prnt(" BIM < ["//TRIM(map_file(1))//"]", lead=3)
+            CALL Prnt("BIM <- ["//TRIM(map_file(1))//"]", lead=8)
           IF(input_format==2) &
-            CALL Prnt(" MAP < ["//TRIM(map_file(1))//"]", lead=3)
+            CALL Prnt("MAP <- ["//TRIM(map_file(1))//"]", lead=8)
           DO k=2,SIZE(map_file)
-            CALL Prnt0("         ["//TRIM(map_file(k))//"]", lead=3)
+            CALL Prnt0("       ["//TRIM(map_file(k))//"]", lead=8)
           ENDDO
         ELSE
-          CALL Prnt(" MAP < No mapping file specified")
+          CALL Prnt("MAP <- No mapping file specified")
         ENDIF
   
         !! Print filenames - FAM (pedigree info)
         IF(fam_nfiles>0) &
-          CALL Prnt(" FAM < ["//TRIM(fam_file)//"]", lead=3)
+          CALL Prnt("FAM <- ["//TRIM(fam_file)//"]", lead=8)
   
         !! Print filenames - SUBMAP (subset mapping file)
         IF(sub_nfiles>0) THEN
-          CALL Prnt(" SUB < ["//TRIM(sub_file(1))//"]", lead=3)
+            CALL Prnt("SUB <- ["//TRIM(sub_file(1))//"]", lead=8)
           DO k=2,SIZE(sub_file)
-            CALL Prnt0("         ["//TRIM(sub_file(k))//"]", lead=3)
+            CALL Prnt0("       ["//TRIM(sub_file(k))//"]", lead=8)
           ENDDO
         ENDIF
   
         !! Print filenames - PSS (pretest selection status)
         IF(pss_nfiles>0) &
-          CALL Prnt(" PSS < ["//TRIM(pss_file)//"]", lead=3)
+          CALL Prnt("PSS <- ["//TRIM(pss_file)//"]", lead=8)
   
         !CALL Prnt0("")
       ENDIF
       
-      CALL Prnt("Output files :")
+      CALL Prnt("I/O files :")
 
-      CALL Prnt(" OUT > ["//TRIM(out_file)//"]", lead=3)
-      CALL Prnt(" LOG > ["//TRIM(log_file)//"]", lead=3)
+      CALL Prnt("OUT -> ["//TRIM(out_file)//"]", lead=8)
+      CALL Prnt("LOG -> ["//TRIM(log_file)//"]", lead=8)
       IF(do_out_maf) &
-        CALL Prnt(" MAF > ["//TRIM(out_maf_file)//"]", lead=3)
+        CALL Prnt("MAF -> ["//TRIM(out_maf_file)//"]", lead=8)
       IF(do_out_pss) &
-        CALL Prnt(" PSS > ["//TRIM(out_pss_file)//"]", lead=3)
+        CALL Prnt("PSS -> ["//TRIM(out_pss_file)//"]", lead=8)
       
       IF(save_input_data) THEN
         IF(save_binary) THEN
-          CALL Prnt(" BED > ["//TRIM(save_ped_file)//"]", lead=3)
-          CALL Prnt(" BIM > ["//TRIM(save_map_file)//"]", lead=3)
-          CALL Prnt(" FAM > ["//TRIM(save_fam_file)//"]", lead=3)
+          CALL Prnt("BED <- ["//TRIM(save_ped_file)//"]", lead=8)
+          CALL Prnt("BIM <- ["//TRIM(save_map_file)//"]", lead=8)
+          CALL Prnt("FAM <- ["//TRIM(save_fam_file)//"]", lead=8)
         ELSE
-          CALL Prnt(" PED > ["//TRIM(save_ped_file)//"]", lead=3)
-          CALL Prnt(" MAP > ["//TRIM(save_map_file)//"]", lead=3)
+          CALL Prnt("PED <- ["//TRIM(save_ped_file)//"]", lead=8)
+          CALL Prnt("MAP <- ["//TRIM(save_map_file)//"]", lead=8)
         ENDIF
       ENDIF
       
@@ -808,9 +807,9 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, &
         !! **************************************************************** !!
         IF(.NOT.doS2) THEN
           IF(doCS_all) THEN
-            CALL Prnt0(" * In S2 only CS will be performed", skip1=1, lead=3)
+            CALL Prnt0("In S2 only CS will be performed.")
           ELSE
-            CALL Prnt0(" * No S2 tests will be performed", skip1=1, lead=3)
+            CALL Prnt0("No S2 tests will be performed.")
           ENDIF     
         ELSE
 

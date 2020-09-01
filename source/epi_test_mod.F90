@@ -53,7 +53,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
                      DebugAS(sDebug), levels(SIZE(MatOpt,2),SIZE(MatOpt,3)), &
                      weights(SIZE(MatOpt,2),SIZE(MatOpt,3))
   INTEGER(ikb)    :: ij, tmp_nl, tmp_cor, ntested, nrec, prcnt, maxntests, &
-                     NumTests, k, ntests_cd
+                     NumTests, k, ntests_cd, mem_tmp
   INTEGER         :: ii, iii, jj, xrow, nthreads, nloci, ieAPL, ie0AS, ie0DS, &
                      ie1(4), ie1AS(2), ie1DS(2), ie1a4, ie1a1, ie1PO(2), &
                      ie2(4), ie2AS(2), ie2DS, ieCS, isamp, i_lbnd, i_ubnd, &
@@ -322,10 +322,12 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
 
   !! Get the number of lines in X that contain current sample data
   xrow = (n + 3)/4
+  
+  mem_tmp = memusage(storage_size(tmp), nrow)
+  CALL Prnt("Estimated memory usage during testing: "//i2c(mem_tmp)//" MB")
 
   !! Nulify variables
   text = ""
-  CALL Prnt("Nullifying result arrays ...", flush=.TRUE.)
   tmp  = NAtmp
 
   !! Set indicators of which two-stage procedures should be done

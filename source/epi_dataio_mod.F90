@@ -3116,8 +3116,7 @@ ENDIF
 
   !! Warn about the dereased number of pedigree columns
   IF(fam_ncols_decreased) &
-    CALL PrntW("The number of pedigree information columns was"//&
-                      " lowered to 1 for memory reasons.")
+    CALL PrntW("The number of pedigree columns decreased to 1 to save memory.")
 
   RETURN
       

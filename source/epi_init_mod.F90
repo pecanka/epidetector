@@ -1557,10 +1557,6 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
         sub_include = .FALSE.
         sub_nfiles = 1
       CASE ("--out", "--output")
-        !log_file = TRIM(arg)
-        !out_file = TRIM(arg)
-        !sort_file = TRIM(arg)
-        !pss_file = TRIM(arg)
         file_base = TRIM(arg)
         save_file = TRIM(arg)
         user_set_out = .TRUE.
@@ -2031,11 +2027,6 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
       args_used(i) = .TRUE.
     ENDIF
     
-    !PRINT *,""
-    !PRINT *,"carg_found=",carg_found,"carg=", TRIM(carg)
-    !PRINT *,"parg_found=",parg_found,"parg=", TRIM(parg)
-    !PRINT *,".NOT.carg_found .AND. .NOT.parg_found=",.NOT.carg_found .AND. .NOT.parg_found
-    
     !! Save the arguments if NOT successfully identified
     IF(.NOT.carg_found .AND. .NOT.parg_found) THEN
       nargsunknown = nargsunknown + 1
@@ -2065,8 +2056,6 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
     CALL PrntE("No valid command line arguments found!", skip1=1)
     CALL Prnt("Use --help to see the list of possible arguments.", &
                    Q=.TRUE., premature=.FALSE.)
-    !exit_code = 1
-    !RETURN
   ENDIF
   
   !! Remove unnecessary space in args_unknown
@@ -2098,27 +2087,22 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   !! ----------------------------------------------------------------------- !!
 
   !! Get filenames from user input
-  CALL GetFilenames(ped_nfiles, uped, ped_file, pedfile_list, delim, &
-                    comment)
-  CALL GetFilenames(map_nfiles, umap, map_file, mapfile_list, delim, &
-                    comment)
-  CALL GetFilenames(sub_nfiles, umap, sub_file, subfile_list, delim, &
-                    comment)
+  CALL GetFilenames(ped_nfiles, uped, ped_file, pedfile_list, delim, comment)
+  CALL GetFilenames(map_nfiles, umap, map_file, mapfile_list, delim, comment)
+  CALL GetFilenames(sub_nfiles, umap, sub_file, subfile_list, delim, comment)
 
   !! User specified both ped and bed files -> QUIT
   IF(ped_nfiles>0 .AND. bed_nfiles>0) &
-    CALL PrntE("Pedding file(s) (--ped, --pedlist) and binary ped"//&
-                    " file(s) (--bed) cannot be inputted simultaneously.",&
+    CALL PrntE("Pedding file(s) (--ped, --pedlist) and binary ped"// &
+               " file(s) (--bed) cannot be inputted simultaneously.", &
                    log=silent, Q=.TRUE., premature=.FALSE.)
   
   !! Warn about missing map and fam files
   IF(bed_nfiles>0 .AND. (map_nfiles==0 .OR. fam_nfiles==0)) THEN
     IF(map_nfiles==0) & 
-      CALL PrntE("Mapping file cannot be missing when binary ped"//&
-                      " file specified.", skip1=1)
+      CALL PrntE("MAP file cannot be missing when BED file specified.", skip1=1)
     IF(fam_nfiles==0) & 
-      CALL PrntE("Pedigree (family) information file cannot be missing"//&
-                      " when binary ped file specified.", skip1=1)
+      CALL PrntE("PED file cannot be missing when BED file specified.", skip1=1)
     CALL Prnt0("", Q=.TRUE., premature=.FALSE.)
   ENDIF
 
@@ -2133,7 +2117,7 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   
   IF(map_rscol<1) &
     CALL PrntE("RS column of a mapping file must be positive!", Q=.TRUE., &
-                    premature=.FALSE.)
+               premature=.FALSE.)
   
   map_ncols = MAX(map_ncols, map_rscol, map_chcol)
 
@@ -2141,7 +2125,7 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   IF(sub_rscol==1 .AND. sub_chcol==sub_rscol) sub_chcol = 0 
   IF(sub_rscol<1) &
     CALL PrntE("RS column of a submap file must be positive!", Q=.TRUE., &
-                    premature=.FALSE.)
+               premature=.FALSE.)
   
   sub_ncols = MAX(sub_ncols, sub_rscol, sub_chcol)
 
@@ -2156,10 +2140,8 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   IF(fam_ncols < fam_stscol) text = TRIM(text)//" STATUS"
 
   IF(LEN_TRIM(text)>0) &
-    CALL PrntE("Given position of"//TRIM(text)//" column(s) is larger"//&
-                    " than the total number of columns.", Q=.TRUE., &
-                    premature=.FALSE.)
-  !fam_ncols = MAX(fam_ncols, fam_stscol, fam_sexcol)
+    CALL PrntE("Given position of"//TRIM(text)//" column(s) is larger than"//&
+               " the total number of columns.", Q=.TRUE., premature=.FALSE.)
 
   !! Column separators
   IF(sep_ascii) THEN
@@ -2717,8 +2699,8 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   !! ======================================================================= !!
   IF(run_analysis) THEN
     !! Read the names of output files to analyze and verify existence
-    CALL GetFilenames(results_nfiles, ures, res_file, res_filelist, &
-                      delim, comment)
+    CALL GetFilenames(results_nfiles, ures, res_file, res_filelist, delim, &
+                      comment)
     RETURN
   ELSE
     IF(ALLOCATED(res_file)) DEALLOCATE(res_file)

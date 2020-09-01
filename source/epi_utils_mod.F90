@@ -2770,15 +2770,30 @@ FUNCTION round(A, n)
   
   IF(PRESENT(n)) THEN
     IF(n>0) THEN
-      round = B+REAL(INT(10**n*(A-B)+half), dpp)/10**n
+      round = B + REAL(INT(10**n*(A-B)+half), dpp)/10**n
     ELSE
-      round = B+REAL(INT((A-B)+half), dpp)
+      round = B + REAL(INT((A-B)+half), dpp)
     ENDIF
   ELSE
-    round = B+REAL(INT((A-B)+half), dpp)
+    round = B + REAL(INT((A-B)+half), dpp)
   ENDIF
   
 END FUNCTION round
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+FUNCTION memusage(bitsize, size, unit) RESULT(mem)
+  INTEGER, INTENT(IN)           :: bitsize, size
+  INTEGER, INTENT(IN), OPTIONAL :: unit
+  INTEGER(ikb)                  :: mem
+  INTEGER                       :: u
+  
+  u = 2
+  IF(PRESENT(unit)) u = unit
+  
+  mem = CEILING( REAL(bitsize / 8, dpp) * size / 1024**u , ikb)
+  
+END FUNCTION memusage
 
 !!**************************************************************************!!  
 !!******************       CHARACTER MANIPULATION       ********************!! 
@@ -4253,6 +4268,8 @@ SUBROUTINE FlushOutput(units)
   IF(PRESENT(units)) us = units
   
   DO i=1,nu
+  
+    IF(us(i)==ulog .AND. no_log) CYCLE
   
 #ifdef __INTEL_COMPILER
     IF(unit1==usto) THEN
