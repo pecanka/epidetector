@@ -1,0 +1,4077 @@
+EpiDetector 0.1 beta log file created at 14:03:39.465 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:03:39.465
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+
+Random seed initialized to: 70336 70373 70410 70447 70484 70521 70558 70595 
+70632 70669 70706 70743 70780 70817 70854 70891 70928 70965 71002 71039 71076 
+71113 71150 71187 71224 71261 71298 71335 71372 71409 71446 71483 71520
+Note: The seed can be set via '--seed 70336:70373:70410:70447:70484:70521:70558
+:70595:70632:70669:70706:70743:70780:70817:70854:70891:70928:70965:71002:71039:
+71076:71113:71150:71187:71224:71261:71298:71335:71372:71409:71446:71483:71520'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:03:40.281
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:03:40.360
+Testing runtime was 00:00:00.079
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.204):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:03:40.658
+Total program runtime was 00:00:01.193
+Program terminated.
+
+
+File [test.log] already exists.
+EpiDetector 0.1 beta log file created at 14:06:46.052 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:06:46.052
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+
+Random seed initialized to: 14183 14220 14257 14294 14331 14368 14405 14442 
+14479 14516 14553 14590 14627 14664 14701 14738 14775 14812 14849 14886 14923 
+14960 14997 15034 15071 15108 15145 15182 15219 15256 15293 15330 15367
+Note: The seed can be set via '--seed 14183:14220:14257:14294:14331:14368:14405
+:14442:14479:14516:14553:14590:14627:14664:14701:14738:14775:14812:14849:14886:
+14923:14960:14997:15034:15071:15108:15145:15182:15219:15256:15293:15330:15367'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:06:50.848
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:06:50.926
+Testing runtime was 00:00:00.078
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+
+File [test.epi] already exists.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.266):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:06:54.350
+Total program runtime was 00:00:08.298
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:13:15.326 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:13:15.326
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 6555 6592 6629 6666 6703 6740 6777 6814 6851 6888 
+6925 6962 6999 7036 7073 7110 7147 7184 7221 7258 7295 7332 7369 7406 7443 7480 
+7517 7554 7591 7628 7665 7702 7739
+Note: The seed can be set via '--seed 6555:6592:6629:6666:6703:6740:6777:6814:6
+851:6888:6925:6962:6999:7036:7073:7110:7147:7184:7221:7258:7295:7332:7369:7406:
+7443:7480:7517:7554:7591:7628:7665:7702:7739'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:13:16.152
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:13:16.224
+Testing runtime was 00:00:00.072
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.413):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:13:16.717
+Total program runtime was 00:00:01.391
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:16:02.394 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:16:02.394
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 102568 102605 102642 102679 102716 102753 102790 
+102827 102864 102901 102938 102975 103012 103049 103086 103123 103160 103197 
+103234 103271 103308 103345 103382 103419 103456 103493 103530 103567 103604 
+103641 103678 103715 103752
+Note: The seed can be set via '--seed 102568:102605:102642:102679:102716:102753
+:102790:102827:102864:102901:102938:102975:103012:103049:103086:103123:103160:1
+03197:103234:103271:103308:103345:103382:103419:103456:103493:103530:103567:103
+604:103641:103678:103715:103752'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:16:03.221
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:16:03.297
+Testing runtime was 00:00:00.076
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.585):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:16:03.958
+Total program runtime was 00:00:01.564
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:21:31.307 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:21:31.307
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 81842 81879 81916 81953 81990 82027 82064 82101 
+82138 82175 82212 82249 82286 82323 82360 82397 82434 82471 82508 82545 82582 
+82619 82656 82693 82730 82767 82804 82841 82878 82915 82952 82989 83026
+Note: The seed can be set via '--seed 81842:81879:81916:81953:81990:82027:82064
+:82101:82138:82175:82212:82249:82286:82323:82360:82397:82434:82471:82508:82545:
+82582:82619:82656:82693:82730:82767:82804:82841:82878:82915:82952:82989:83026'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:21:32.553
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:21:32.656
+Testing runtime was 00:00:00.103
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.655):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:21:33.422
+Total program runtime was 00:00:02.115
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:28:57.914 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:28:57.914
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 82450 82487 82524 82561 82598 82635 82672 82709 
+82746 82783 82820 82857 82894 82931 82968 83005 83042 83079 83116 83153 83190 
+83227 83264 83301 83338 83375 83412 83449 83486 83523 83560 83597 83634
+Note: The seed can be set via '--seed 82450:82487:82524:82561:82598:82635:82672
+:82709:82746:82783:82820:82857:82894:82931:82968:83005:83042:83079:83116:83153:
+83190:83227:83264:83301:83338:83375:83412:83449:83486:83523:83560:83597:83634'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:28:58.742
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:28:58.866
+Testing runtime was 00:00:00.124
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.633):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:28:59.580
+Total program runtime was 00:00:01.666
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:35:05.910 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:35:05.910
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 70413 70450 70487 70524 70561 70598 70635 70672 
+70709 70746 70783 70820 70857 70894 70931 70968 71005 71042 71079 71116 71153 
+71190 71227 71264 71301 71338 71375 71412 71449 71486 71523 71560 71597
+Note: The seed can be set via '--seed 70413:70450:70487:70524:70561:70598:70635
+:70672:70709:70746:70783:70820:70857:70894:70931:70968:71005:71042:71079:71116:
+71153:71190:71227:71264:71301:71338:71375:71412:71449:71486:71523:71560:71597'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:35:06.829
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:35:06.971
+Testing runtime was 00:00:00.142
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.646):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:35:07.709
+Total program runtime was 00:00:01.799
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:37:45.508 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:37:45.508
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 100481 100518 100555 100592 100629 100666 100703 
+100740 100777 100814 100851 100888 100925 100962 100999 101036 101073 101110 
+101147 101184 101221 101258 101295 101332 101369 101406 101443 101480 101517 
+101554 101591 101628 101665
+Note: The seed can be set via '--seed 100481:100518:100555:100592:100629:100666
+:100703:100740:100777:100814:100851:100888:100925:100962:100999:101036:101073:1
+01110:101147:101184:101221:101258:101295:101332:101369:101406:101443:101480:101
+517:101554:101591:101628:101665'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:37:46.379
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:37:46.585
+Testing runtime was 00:00:00.206
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.574):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:37:47.245
+Total program runtime was 00:00:01.737
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 14:50:07.863 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 14:50:07.863
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 77329 77366 77403 77440 77477 77514 77551 77588 
+77625 77662 77699 77736 77773 77810 77847 77884 77921 77958 77995 78032 78069 
+78106 78143 78180 78217 78254 78291 78328 78365 78402 78439 78476 78513
+Note: The seed can be set via '--seed 77329:77366:77403:77440:77477:77514:77551
+:77588:77625:77662:77699:77736:77773:77810:77847:77884:77921:77958:77995:78032:
+78069:78106:78143:78180:78217:78254:78291:78328:78365:78402:78439:78476:78513'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 14:50:08.734
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 14:50:09.000
+Testing runtime was 00:00:00.266
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.707):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 14:50:09.791
+Total program runtime was 00:00:01.928
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 15:25:53.409 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 15:25:53.409
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 61233 61270 61307 61344 61381 61418 61455 61492 
+61529 61566 61603 61640 61677 61714 61751 61788 61825 61862 61899 61936 61973 
+62010 62047 62084 62121 62158 62195 62232 62269 62306 62343 62380 62417
+Note: The seed can be set via '--seed 61233:61270:61307:61344:61381:61418:61455
+:61492:61529:61566:61603:61640:61677:61714:61751:61788:61825:61862:61899:61936:
+61973:62010:62047:62084:62121:62158:62195:62232:62269:62306:62343:62380:62417'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 15:25:54.227
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 15:25:54.486
+Testing runtime was 00:00:00.259
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.100):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 15:25:54.670
+Total program runtime was 00:00:01.261
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 15:43:32.922 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 15:43:32.922
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 58792 58829 58866 58903 58940 58977 59014 59051 
+59088 59125 59162 59199 59236 59273 59310 59347 59384 59421 59458 59495 59532 
+59569 59606 59643 59680 59717 59754 59791 59828 59865 59902 59939 59976
+Note: The seed can be set via '--seed 58792:58829:58866:58903:58940:58977:59014
+:59051:59088:59125:59162:59199:59236:59273:59310:59347:59384:59421:59458:59495:
+59532:59569:59606:59643:59680:59717:59754:59791:59828:59865:59902:59939:59976'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 15:43:33.822
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 15:43:33.932
+Testing runtime was 00:00:00.110
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.090):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 15:43:34.121
+Total program runtime was 00:00:01.199
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 16:09:12.142 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 16:09:12.142
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 85065 85102 85139 85176 85213 85250 85287 85324 
+85361 85398 85435 85472 85509 85546 85583 85620 85657 85694 85731 85768 85805 
+85842 85879 85916 85953 85990 86027 86064 86101 86138 86175 86212 86249
+Note: The seed can be set via '--seed 85065:85102:85139:85176:85213:85250:85287
+:85324:85361:85398:85435:85472:85509:85546:85583:85620:85657:85694:85731:85768:
+85805:85842:85879:85916:85953:85990:86027:86064:86101:86138:86175:86212:86249'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 16:09:12.946
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 16:09:13.041
+Testing runtime was 00:00:00.095
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+
+ERROR: Cannot open file [test.epi] (IOSTAT 13).
+
+NOTE: The file appears to be already opened and blocked by a process. Unlock it 
+  and try again.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.078):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+IMPORTANT: There was 1 ERROR!
+Execution finished on 2022-02-14 at 16:10:09.829
+Total program runtime was 00:00:57.687
+
+LIST OF ISSUED ERRORS :
+  ERROR: Cannot open file [test.epi] (IOSTAT 13).
+
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:16:39.047 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:16:39.047
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 66217 66254 66291 66328 66365 66402 66439 66476 
+66513 66550 66587 66624 66661 66698 66735 66772 66809 66846 66883 66920 66957 
+66994 67031 67068 67105 67142 67179 67216 67253 67290 67327 67364 67401
+Note: The seed can be set via '--seed 66217:66254:66291:66328:66365:66402:66439
+:66476:66513:66550:66587:66624:66661:66698:66735:66772:66809:66846:66883:66920:
+66957:66994:67031:67068:67105:67142:67179:67216:67253:67290:67327:67364:67401'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:16:39.885
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:16:39.994
+Testing runtime was 00:00:00.109
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+
+ERROR: Cannot open file [test.epi] (IOSTAT 13).
+
+NOTE: The file appears to be already opened and blocked by a process. Unlock it 
+  and try again.
+
+WARNING: Premature termination probably occurred! Inspect the log and output 
+files for more details.
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:21:52.076 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:21:52.076
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 19036 19073 19110 19147 19184 19221 19258 19295 
+19332 19369 19406 19443 19480 19517 19554 19591 19628 19665 19702 19739 19776 
+19813 19850 19887 19924 19961 19998 20035 20072 20109 20146 20183 20220
+Note: The seed can be set via '--seed 19036:19073:19110:19147:19184:19221:19258
+:19295:19332:19369:19406:19443:19480:19517:19554:19591:19628:19665:19702:19739:
+19776:19813:19850:19887:19924:19961:19998:20035:20072:20109:20146:20183:20220'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:21:52.825
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:21:52.919
+Testing runtime was 00:00:00.094
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 40
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 40 results (0 error-free, 40 with errors, 
+writing time 00:00:00.071):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:21:53.100
+Total program runtime was 00:00:01.024
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:24:32.051 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:24:32.051
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 86228 86265 86302 86339 86376 86413 86450 86487 
+86524 86561 86598 86635 86672 86709 86746 86783 86820 86857 86894 86931 86968 
+87005 87042 87079 87116 87153 87190 87227 87264 87301 87338 87375 87412
+Note: The seed can be set via '--seed 86228:86265:86302:86339:86376:86413:86450
+:86487:86524:86561:86598:86635:86672:86709:86746:86783:86820:86857:86894:86931:
+86968:87005:87042:87079:87116:87153:87190:87227:87264:87301:87338:87375:87412'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:24:32.887
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:24:32.980
+Testing runtime was 00:00:00.093
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.077):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:24:33.143
+Total program runtime was 00:00:01.092
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:50:01.739 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:50:01.739
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 47018 47055 47092 47129 47166 47203 47240 47277 
+47314 47351 47388 47425 47462 47499 47536 47573 47610 47647 47684 47721 47758 
+47795 47832 47869 47906 47943 47980 48017 48054 48091 48128 48165 48202
+Note: The seed can be set via '--seed 47018:47055:47092:47129:47166:47203:47240
+:47277:47314:47351:47388:47425:47462:47499:47536:47573:47610:47647:47684:47721:
+47758:47795:47832:47869:47906:47943:47980:48017:48054:48091:48128:48165:48202'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:50:02.556
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:50:02.658
+Testing runtime was 00:00:00.102
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.083):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:50:02.818
+Total program runtime was 00:00:01.079
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:53:55.070 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:53:55.070
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 20927 20964 21001 21038 21075 21112 21149 21186 
+21223 21260 21297 21334 21371 21408 21445 21482 21519 21556 21593 21630 21667 
+21704 21741 21778 21815 21852 21889 21926 21963 22000 22037 22074 22111
+Note: The seed can be set via '--seed 20927:20964:21001:21038:21075:21112:21149
+:21186:21223:21260:21297:21334:21371:21408:21445:21482:21519:21556:21593:21630:
+21667:21704:21741:21778:21815:21852:21889:21926:21963:22000:22037:22074:22111'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:53:55.912
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:53:56.003
+Testing runtime was 00:00:00.091
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.084):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:53:56.171
+Total program runtime was 00:00:01.101
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:55:48.444 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:55:48.444
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 61766 61803 61840 61877 61914 61951 61988 62025 
+62062 62099 62136 62173 62210 62247 62284 62321 62358 62395 62432 62469 62506 
+62543 62580 62617 62654 62691 62728 62765 62802 62839 62876 62913 62950
+Note: The seed can be set via '--seed 61766:61803:61840:61877:61914:61951:61988
+:62025:62062:62099:62136:62173:62210:62247:62284:62321:62358:62395:62432:62469:
+62506:62543:62580:62617:62654:62691:62728:62765:62802:62839:62876:62913:62950'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:55:49.358
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:55:49.468
+Testing runtime was 00:00:00.110
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.078):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:55:49.647
+Total program runtime was 00:00:01.203
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 18:55:57.065 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 18:55:57.065
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 41167 41204 41241 41278 41315 41352 41389 41426 
+41463 41500 41537 41574 41611 41648 41685 41722 41759 41796 41833 41870 41907 
+41944 41981 42018 42055 42092 42129 42166 42203 42240 42277 42314 42351
+Note: The seed can be set via '--seed 41167:41204:41241:41278:41315:41352:41389
+:41426:41463:41500:41537:41574:41611:41648:41685:41722:41759:41796:41833:41870:
+41907:41944:41981:42018:42055:42092:42129:42166:42203:42240:42277:42314:42351'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 18:55:57.873
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 18:55:57.966
+Testing runtime was 00:00:00.093
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.079):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 18:55:58.123
+Total program runtime was 00:00:01.058
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 19:35:36.164 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 19:35:36.164
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+
+Random seed initialized to: 63090 63127 63164 63201 63238 63275 63312 63349 
+63386 63423 63460 63497 63534 63571 63608 63645 63682 63719 63756 63793 63830 
+63867 63904 63941 63978 64015 64052 64089 64126 64163 64200 64237 64274
+Note: The seed can be set via '--seed 63090:63127:63164:63201:63238:63275:63312
+:63349:63386:63423:63460:63497:63534:63571:63608:63645:63682:63719:63756:63793:
+63830:63867:63904:63941:63978:64015:64052:64089:64126:64163:64200:64237:64274'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 19:35:37.028
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 19:35:37.122
+Testing runtime was 00:00:00.094
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.079):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 19:35:37.295
+Total program runtime was 00:00:01.131
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 19:37:38.115 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 19:37:38.115
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 51963 52000 52037 52074 52111 52148 52185 52222 
+52259 52296 52333 52370 52407 52444 52481 52518 52555 52592 52629 52666 52703 
+52740 52777 52814 52851 52888 52925 52962 52999 53036 53073 53110 53147
+Note: The seed can be set via '--seed 51963:52000:52037:52074:52111:52148:52185
+:52222:52259:52296:52333:52370:52407:52444:52481:52518:52555:52592:52629:52666:
+52703:52740:52777:52814:52851:52888:52925:52962:52999:53036:53073:53110:53147'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+PED <- [test_20220214193738115pid16708.ped]
+MAP <- [test_20220214193738115pid16708.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214193738115pid16708.ped]
+  [test_20220214193738115pid16708.map]
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 19:37:39.260
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 19:37:39.370
+Testing runtime was 00:00:00.110
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (0 error-free, 20 with errors, 
+writing time 00:00:00.079):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 19:37:39.542
+Total program runtime was 00:00:01.427
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 19:45:51.107 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 19:45:51.107
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 71686 71723 71760 71797 71834 71871 71908 71945 
+71982 72019 72056 72093 72130 72167 72204 72241 72278 72315 72352 72389 72426 
+72463 72500 72537 72574 72611 72648 72685 72722 72759 72796 72833 72870
+Note: The seed can be set via '--seed 71686:71723:71760:71797:71834:71871:71908
+:71945:71982:72019:72056:72093:72130:72167:72204:72241:72278:72315:72352:72389:
+72426:72463:72500:72537:72574:72611:72648:72685:72722:72759:72796:72833:72870'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PSS -> [test.pss]
+PED <- [test_20220214194551107pid10012.ped]
+MAP <- [test_20220214194551107pid10012.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Generating PHASE1 subsample ... 
+Finished generating PHASE1 subsample.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214194551107pid10012.ped]
+  [test_20220214194551107pid10012.map]
+Saving PHASE1 selection status into file ... 
+PHASE1 selection saved into file [test.pss]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly once and fixed for all PHASE1 tests
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 19:45:52.391
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 19:45:52.642
+Testing runtime was 00:00:00.251
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.094):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 19:45:52.815
+Total program runtime was 00:00:01.708
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 21:26:27.180 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 21:26:27.180
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 19258 19295 19332 19369 19406 19443 19480 19517 
+19554 19591 19628 19665 19702 19739 19776 19813 19850 19887 19924 19961 19998 
+20035 20072 20109 20146 20183 20220 20257 20294 20331 20368 20405 20442
+Note: The seed can be set via '--seed 19258:19295:19332:19369:19406:19443:19480
+:19517:19554:19591:19628:19665:19702:19739:19776:19813:19850:19887:19924:19961:
+19998:20035:20072:20109:20146:20183:20220:20257:20294:20331:20368:20405:20442'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214212627180pid12044.ped]
+MAP <- [test_20220214212627180pid12044.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214212627180pid12044.ped]
+  [test_20220214212627180pid12044.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 21:26:28.075
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 21:26:28.206
+Testing runtime was 00:00:00.131
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.078):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 21:26:28.373
+Total program runtime was 00:00:01.193
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 21:32:32.940 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 21:32:32.940
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 22258 22295 22332 22369 22406 22443 22480 22517 
+22554 22591 22628 22665 22702 22739 22776 22813 22850 22887 22924 22961 22998 
+23035 23072 23109 23146 23183 23220 23257 23294 23331 23368 23405 23442
+Note: The seed can be set via '--seed 22258:22295:22332:22369:22406:22443:22480
+:22517:22554:22591:22628:22665:22702:22739:22776:22813:22850:22887:22924:22961:
+22998:23035:23072:23109:23146:23183:23220:23257:23294:23331:23368:23405:23442'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214213232940pid3832.ped]
+MAP <- [test_20220214213232940pid3832.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214213232940pid3832.ped]
+  [test_20220214213232940pid3832.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 21:32:33.819
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 21:32:33.960
+Testing runtime was 00:00:00.141
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+
+ERROR: Cannot open file [test.epi] (IOSTAT 13).
+
+NOTE: The file appears to be already opened and blocked by a process. Unlock it 
+  and try again.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.078):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+IMPORTANT: There was 1 ERROR!
+Execution finished on 2022-02-14 at 21:32:40.312
+Total program runtime was 00:00:07.372
+
+LIST OF ISSUED ERRORS :
+  ERROR: Cannot open file [test.epi] (IOSTAT 13).
+
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 21:42:28.265 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 21:42:28.265
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 95270 95307 95344 95381 95418 95455 95492 95529 
+95566 95603 95640 95677 95714 95751 95788 95825 95862 95899 95936 95973 96010 
+96047 96084 96121 96158 96195 96232 96269 96306 96343 96380 96417 96454
+Note: The seed can be set via '--seed 95270:95307:95344:95381:95418:95455:95492
+:95529:95566:95603:95640:95677:95714:95751:95788:95825:95862:95899:95936:95973:
+96010:96047:96084:96121:96158:96195:96232:96269:96306:96343:96380:96417:96454'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214214228265pid18564.ped]
+MAP <- [test_20220214214228265pid18564.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214214228265pid18564.ped]
+  [test_20220214214228265pid18564.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 21:42:29.159
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 21:42:29.269
+Testing runtime was 00:00:00.110
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.094):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 21:42:29.442
+Total program runtime was 00:00:01.177
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 21:47:50.243 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 21:47:50.243
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 40827 40864 40901 40938 40975 41012 41049 41086 
+41123 41160 41197 41234 41271 41308 41345 41382 41419 41456 41493 41530 41567 
+41604 41641 41678 41715 41752 41789 41826 41863 41900 41937 41974 42011
+Note: The seed can be set via '--seed 40827:40864:40901:40938:40975:41012:41049
+:41086:41123:41160:41197:41234:41271:41308:41345:41382:41419:41456:41493:41530:
+41567:41604:41641:41678:41715:41752:41789:41826:41863:41900:41937:41974:42011'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214214750243pid18692.ped]
+MAP <- [test_20220214214750243pid18692.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214214750243pid18692.ped]
+  [test_20220214214750243pid18692.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 21:47:51.315
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 21:47:51.476
+Testing runtime was 00:00:00.161
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.097):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 21:47:51.672
+Total program runtime was 00:00:01.429
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 21:51:59.452 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 21:51:59.452
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 9822 9859 9896 9933 9970 10007 10044 10081 10118 
+10155 10192 10229 10266 10303 10340 10377 10414 10451 10488 10525 10562 10599 
+10636 10673 10710 10747 10784 10821 10858 10895 10932 10969 11006
+Note: The seed can be set via '--seed 9822:9859:9896:9933:9970:10007:10044:1008
+1:10118:10155:10192:10229:10266:10303:10340:10377:10414:10451:10488:10525:10562
+:10599:10636:10673:10710:10747:10784:10821:10858:10895:10932:10969:11006'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214215159452pid15152.ped]
+MAP <- [test_20220214215159452pid15152.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214215159452pid15152.ped]
+  [test_20220214215159452pid15152.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 21:52:00.354
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 21:52:00.471
+Testing runtime was 00:00:00.117
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.085):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+
+Execution finished on 2022-02-14 at 21:52:00.636
+Total program runtime was 00:00:01.184
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 22:07:49.916 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 22:07:49.916
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 95407 95444 95481 95518 95555 95592 95629 95666 
+95703 95740 95777 95814 95851 95888 95925 95962 95999 96036 96073 96110 96147 
+96184 96221 96258 96295 96332 96369 96406 96443 96480 96517 96554 96591
+Note: The seed can be set via '--seed 95407:95444:95481:95518:95555:95592:95629
+:95666:95703:95740:95777:95814:95851:95888:95925:95962:95999:96036:96073:96110:
+96147:96184:96221:96258:96295:96332:96369:96406:96443:96480:96517:96554:96591'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214220749916pid7932.ped]
+MAP <- [test_20220214220749916pid7932.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214220749916pid7932.ped]
+  [test_20220214220749916pid7932.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 22:07:50.812
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 22:07:50.908
+Testing runtime was 00:00:00.096
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.079):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+   * Excluded pairs on same chromosome   :                    46
+   * Included pairs on same chromosome   :                     0
+   * Skipped pairs with low sample size  :                     0
+
+   * Testing runtime : 00:00:00.096
+
+
+>>> TESTING REPORT <<<
+
+  STAGE 1  >  Selected test : 4
+
+   * Attempted tests                     :                    18
+   * Successful tests                    :                    18
+   * Erroneous tests                     :                     0
+   * PHASE1 sample size ratio            :                   0.5
+   * Average sample size (error-free)    :                   433
+   * Level of significance               :                  0.01
+   * Number of significant statistics    :                     1 *
+   * Ratio of significance               :          0.0555555556
+
+  STAGE 2  >  Selected test : 1
+
+  ** ADJUSTED-4 SCORE TEST (AS4) **                             
+
+   * Attempted tests                     :                     1
+   * Successful tests                    :                     1
+   * Erroneous tests                     :                     0
+   * Average sample size (error-free)    :                11,998
+   * Level of significance               :                  0.05
+   * Multiple testing correction         :                     0
+   * Significant p-values (raw)          :                     0
+   * Ratio of significance (raw)         :                     0
+   * Significant p-values (corrected)    :                     0 *
+   * Ratio of significance (corrected)   :                     0
+
+  ** ADJUSTED-1 SCORE TEST (AS1) **                             
+
+   * Attempted tests                     :                     1
+   * Successful tests                    :                     1
+   * Erroneous tests                     :                     0
+   * Average sample size (error-free)    :                11,998
+   * Level of significance               :                  0.05
+   * Multiple testing correction         :                     1
+   * Significant p-values (raw)          :                     0
+   * Ratio of significance (raw)         :                     0
+   * Significant p-values (corrected)    :                     0 *
+   * Ratio of significance (corrected)   :                     0
+
+  ** DISJOINT-4 SCORE TEST (DS4) **                             
+
+   * Attempted tests                     :                     1
+   * Successful tests                    :                     1
+   * Erroneous tests                     :                     0
+   * Average sample size (error-free)    :                10,234
+   * Level of significance               :                  0.05
+   * Multiple testing correction         :                     0
+   * Significant p-values (raw)          :                     0
+   * Ratio of significance (raw)         :                     0
+   * Significant p-values (corrected)    :                     0 *
+   * Ratio of significance (corrected)   :                     0
+
+  ** CLASSICAL SCORE TEST (CS) **                               
+
+   * Attempted tests                     :                     1
+   * Successful tests                    :                     1
+   * Erroneous tests                     :                     0
+   * Average sample size (error-free)    :                11,998
+   * Level of significance               :                  0.05
+   * Multiple testing correction         :                    18
+   * Significant p-values (raw)          :                     0
+   * Ratio of significance (raw)         :                     0
+   * Significant p-values (corrected)    :                     0 *
+   * Ratio of significance (corrected)   :                     0
+
+****************************************
+
+Execution finished on 2022-02-14 at 22:07:51.463
+Total program runtime was 00:00:01.547
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 22:12:43.255 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 22:12:43.255
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 53587 53624 53661 53698 53735 53772 53809 53846 
+53883 53920 53957 53994 54031 54068 54105 54142 54179 54216 54253 54290 54327 
+54364 54401 54438 54475 54512 54549 54586 54623 54660 54697 54734 54771
+Note: The seed can be set via '--seed 53587:53624:53661:53698:53735:53772:53809
+:53846:53883:53920:53957:53994:54031:54068:54105:54142:54179:54216:54253:54290:
+54327:54364:54401:54438:54475:54512:54549:54586:54623:54660:54697:54734:54771'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214221243255pid15580.ped]
+MAP <- [test_20220214221243255pid15580.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214221243255pid15580.ped]
+  [test_20220214221243255pid15580.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 22:12:44.129
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 22:12:44.215
+Testing runtime was 00:00:00.086
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.082):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+46 pairs on the same chromosome were excluded.
+0 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:00.086
+
+>>> TESTING REPORT <<<
+
+  STAGE 1  >  Selected test : 4
+
+   * Attempted tests                     :                    18
+   * Successful tests                    :                    18
+   * Erroneous tests                     :                     0
+   * PHASE1 sample size ratio            :                   0.5
+   * Average sample size (error-free)    :                   440
+   * Level of significance               :                  0.01
+   * Number of significant statistics    :                     0 *
+   * Ratio of significance               :                     0
+
+  STAGE 2  >  Selected test : 1
+
+  ** ADJUSTED-4 SCORE TEST (AS4) **                             
+
+   * Attempted tests                     :                     0
+
+  ** ADJUSTED-1 SCORE TEST (AS1) **                             
+
+   * Attempted tests                     :                     0
+
+  ** DISJOINT-4 SCORE TEST (DS4) **                             
+
+   * Attempted tests                     :                     0
+
+  ** CLASSICAL SCORE TEST (CS) **                               
+
+   * Attempted tests                     :                     0
+
+****************************************
+
+Execution finished on 2022-02-14 at 22:12:44.525
+Total program runtime was 00:00:01.270
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 22:16:03.570 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 22:16:03.570
+
+Call arguments: --bfile PDcontrols_APOE-GAB2 --report-all --out test 
+--overwrite --save-ped
+
+Effective arguments :
+
+  --bfile PDcontrols_APOE-GAB2
+  --report-all
+  --out test
+  --overwrite
+  --save-ped
+
+Random seed initialized to: 4203 4240 4277 4314 4351 4388 4425 4462 4499 4536 
+4573 4610 4647 4684 4721 4758 4795 4832 4869 4906 4943 4980 5017 5054 5091 5128 
+5165 5202 5239 5276 5313 5350 5387
+Note: The seed can be set via '--seed 4203:4240:4277:4314:4351:4388:4425:4462:4
+499:4536:4573:4610:4647:4684:4721:4758:4795:4832:4869:4906:4943:4980:5017:5054:
+5091:5128:5165:5202:5239:5276:5313:5350:5387'
+
+>>> DATA <<<
+Input files:
+BED <- [PDcontrols_APOE-GAB2.bed]
+BIM <- [PDcontrols_APOE-GAB2.bim]
+FAM <- [PDcontrols_APOE-GAB2.fam]
+I/O files :
+OUT -> [test.epi]
+LOG -> [test.log]
+PED <- [test_20220214221603570pid9408.ped]
+MAP <- [test_20220214221603570pid9408.map]
+MAP file separator: [tab/space]
+FAM file separator: [tab/space]
+Excluded chromosomes (if present): NONE
+Sex check active (males excluded for chromosome X, females for chromosome Y)
+Reading MAP file (6 columns expected) ... 
+Finished reading MAP data!
+Validating chromosome information ... 
+Chromosome validation finished.
+Total of 12 input lines found.
+Reading FAM file ... 
+Finished reading FAM file.
+Sample size 11,263 (controls: 8,000 | cases: 3,263 || males: 4,815 | females: 
+2,230)
+Reading BED data ... 
+Finished reading BED file!
+Input BED file has the Plink v1.00 SNP-major format.
+Processing input data ...
+Currently 12 loci are included.
+Excluding loci based on chromosome, BP and RS numbers ... 
+Finished excluding loci based on chromosome, BP and RS numbers.
+Currently 12 loci are included.
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 12 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_20220214221603570pid9408.ped]
+  [test_20220214221603570pid9408.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 11,263
+ - valid status                :                 11,263
+   - controls                  :                  8,000
+   - cases                     :                  3,263
+   - males                     :                  4,815
+   - females                   :                  2,230
+ - missing status              :                      0
+ - missing sex                 :                  4,218
+Total number of markers        :                     12
+Total number of markers pairs  :                     66
+Number of included markers     :                     12
+Number of excluded markers     :                      0
+Number of included pairs       :                     66
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only cases
+PHASE1 p-value threshold is 0.01
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using cases
+Variance of PHASE1 generating vector is estimated using only cases from PHASE1
+CS will be computed only for the pairs rejected in PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+Pairs of markers on the same chromosome will not be tested
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 22:16:04.461
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 66
+Testing in progress ...
+Testing finished on 2022-02-14 at 22:16:04.546
+Testing runtime was 00:00:00.085
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 20
+Writing error-free results into output file(s) ... 
+Writing erroneous results into output file(s) ... 
+1 output file(s) produced with 20 results (18 error-free, 2 with errors, 
+writing time 00:00:00.081):
+[test.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+46 pairs on the same chromosome were excluded.
+0 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:00.085
+
+Execution finished on 2022-02-14 at 22:16:04.735
+Total program runtime was 00:00:01.165
+Program terminated.
+

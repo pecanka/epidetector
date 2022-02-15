@@ -139,10 +139,10 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   IF((auto_level_report .OR. auto_level_use) .AND. auto_level_single .AND. &
   auto_level_optim<zero) THEN
 
-    !! Announce that S1 level is automatically determined (if selected)
+    !! Announce that PHASE1 level is automatically determined (if selected)
     CALL Report(auto_level=auto_level_report .OR. auto_level_use)
 
-    stext = "Determining optimal S1 level ..."
+    stext = "Determining optimal PHASE1 level ..."
     ij = 0
     
     !! Loop over samples 
@@ -152,8 +152,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
       DO ii = 1, nloci-1
         
         !! Print countdown
-        CALL PrintCD(text, ij, ntests_cd, prcnt, stext=stext, finish=.TRUE., &
-                     adv=.FALSE.)     
+        CALL PrintCD(text, ij, ntests_cd, prcnt, stext=stext, finish=.TRUE., adv=.FALSE.)     
                             
         !! Set bounds
         j_lbnd = ii + 1
@@ -195,7 +194,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           IF(auto_level_DS) cc_co2(1,1) = (one-dAS) * nco
           
           ieAPL = 0
-          !! Determine optimal S1 level using mafs and other parameters
+          !! Determine optimal PHASE1 level using mafs and other parameters
           CALL GetAutoLevel(auto_level_optim, optpower, lambda, slope, &
                             model_S2, mafii, mafjj, level_S2, auto_level_min, &
                             auto_level_max, ntests_assumed, auto_level_prev, &
@@ -210,7 +209,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
       
     ENDDO
     
-    !! Get the optimal level by weighing the individual optimal S1 levels
+    !! Get the optimal level by weighing the individual optimal PHASE1 levels
     !! by optimal power
     levels = LOG10(MAX(MIN(ABS(MatOpt(1,:,:)), one), minimum_test_level))
     weights = MAX(MatOpt(2,:,:), zero)
@@ -227,11 +226,12 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
     !! Print countdown finish
     CALL PrintCD(text, ij, ntests_cd, prcnt, finish=.TRUE.)
   
-    IF(auto_level_use .AND. auto_level_optim>0) level_S1 = auto_level_optim 
+    IF(auto_level_use .AND. auto_level_optim>0) &
+      level_S1 = auto_level_optim 
 
   ENDIF
   
-  !! Announce the automatically determined S1 level
+  !! Announce the automatically determined PHASE1 level
   IF(auto_level_report .OR. auto_level_use) &
     CALL Report(auto_level_value=.TRUE.)
     
@@ -273,7 +273,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   !! Announce that delta is automatically determined (if selected)
   CALL Report(delta=.TRUE.)
   
-  !! Check and warn that the settings make all pairs pass S1
+  !! Check and warn that the settings make all pairs pass PHASE1
   CALL Report(all_pretests_rejected=reject_all_pretests)
   
   !! Announce the length of a temp cycle
@@ -311,7 +311,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   ENDIF
   
   !! Reset the counters
-  prcnt = -1
+  prcnt   = -1
   tmp_nl  = -1
   ij      = 0
   nrec    = 0
@@ -347,7 +347,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   
   DO isamp=1,nsamp  !! Announce the start of testing stage
 
-    !! Reread case-control status, sex and S1 selection status info
+    !! Reread case-control status, sex and PHASE1 selection status info
     IF(SIZE(sts)==n) THEN
       sts_o = sts
       sex_o = sex
@@ -501,7 +501,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
         
         !! Skip this pair if excluded
         IF(.NOT.sub_make_pairs) THEN
-          IF(.NOT.InclLoc(JJ)) CYCLE
+          IF(.NOT.InclLoc(jj)) CYCLE
         ENDIF
 
         !! Count the included loci
@@ -662,6 +662,26 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
             
           ENDIF
           
+          !print *,'---------------------'
+          !! Save samplesizes
+          PTASNco = INT(SUM(ccAS_co1))               ! PTAS controls
+          PTASNca = INT(SUM(ccAS_ca1))               ! PTAS cases
+          PTDSNco = INT(SUM(ccDS_co1))               ! PTDS controls
+          PTDSNca = INT(SUM(ccDS_ca1))               ! PTDS cases
+          ASNco = INT(SUM(ccAS_co1+ccAS_co2))        ! AS4&AS1 controls
+          ASNca = INT(SUM(ccAS_ca1+ccAS_ca2))        ! AS4&AS1 cases
+          DSNco = INT(SUM(ccDS_co2))                 ! DS4&DS1 controls
+          DSNca = INT(SUM(ccDS_ca2))                 ! DS4&DS1 cases
+          CSNco = INT(SUM(ccAS_co1+ccAS_co2))        ! full sample controls (CS, PTPO4, PTPO1)
+          CSNca = INT(SUM(ccAS_ca1+ccAS_ca2))        ! full sample cases (CS, PTPO4, PTPO1)
+          
+          !print *,'1 ASNco=',ASNco
+          !print *,'1 ASNca=',ASNca
+          !print *,'1 DSNco=',DSNco
+          !print *,'1 DSNca=',DSNca
+          !print *,'1 CSNco=',CSNco
+          !print *,'1 CSNca=',CSNca
+          
           !! Get counts for DS. If delta's are the same for AS and DS the counts
           !! for AS will be used by DS. Otherwise, rescan the data
           IF(doDS) THEN
@@ -700,12 +720,19 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           PTASNca = INT(SUM(ccAS_ca1))               ! PTAS cases
           PTDSNco = INT(SUM(ccDS_co1))               ! PTDS controls
           PTDSNca = INT(SUM(ccDS_ca1))               ! PTDS cases
-          ASNco = INT(SUM(ccAS_co1+ccAS_co2))    ! AS4&AS1 controls
-          ASNca = INT(SUM(ccAS_ca1+ccAS_ca2))    ! AS4&AS1 cases
+          ASNco = INT(SUM(ccAS_co1+ccAS_co2))        ! AS4&AS1 controls
+          ASNca = INT(SUM(ccAS_ca1+ccAS_ca2))        ! AS4&AS1 cases
           DSNco = INT(SUM(ccDS_co2))                 ! DS4&DS1 controls
           DSNca = INT(SUM(ccDS_ca2))                 ! DS4&DS1 cases
-          CSNco = INT(SUM(ccAS_co1+ccAS_co2))    ! full sample controls (CS, PTPO4, PTPO1)
-          CSNca = INT(SUM(ccAS_ca1+ccAS_ca2))    ! full sample cases (CS, PTPO4, PTPO1)
+          CSNco = INT(SUM(ccAS_co1+ccAS_co2))        ! full sample controls (CS, PTPO4, PTPO1)
+          CSNca = INT(SUM(ccAS_ca1+ccAS_ca2))        ! full sample cases (CS, PTPO4, PTPO1)
+          
+          !print *,'2 ASNco=',ASNco
+          !print *,'2 ASNca=',ASNca
+          !print *,'2 DSNco=',DSNco
+          !print *,'2 DSNca=',DSNca
+          !print *,'2 CSNco=',CSNco
+          !print *,'2 CSNca=',CSNca
             
           !! If counts corrected register it and remove error indicator
           IF(icycle==1 .AND. ANY((/ie0AS,ie0DS/) == err_low_cell_cor)) THEN
@@ -738,7 +765,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           !!!!!    DETERMINE OPTIMAL PRETEST LEVEL     !!!!!!!!!!!!!
           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-          !! Get the optimal S1 level if it has not been determined already
+          !! Get the optimal PHASE1 level if it has not been determined already
           IF(auto_level_report .AND. auto_level_optim < zero) THEN
             
             !! If pretest is based on LD in controls, perform power maximization
@@ -792,17 +819,20 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           !! If pretest level implies no pretest, just skip it
           IF(level_S1 >= one .AND. .NOT.always_pretest) skip_S1 = .TRUE.
   
-          !! Check for negative S1 level (we are being VERY cautious)
+          !! Check for negative PHASE1 level (we are being VERY cautious)
           IF(level_S1 < zero) level_S1 = def_level1
   
           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           !!!!!    CALL PRETEST SUBROUTINES     !!!!!!!!!!!!!!!!!!!!
           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          
+          !!print *,'PTAS4=',PTAS4
+          !!print *,'PTAS4p=',PTAS4p
   
-          !! Do S1 only if level_S1 is smaller than 1
+          !! Do PHASE1 only if level_S1 is smaller than 1
           IF(doS1) THEN
           
-            !! Perform selected S1 and/or S2 test(s)
+            !! Perform selected PHASE1 and/or PHASE2 test(s)
             IF(doAS .OR. doPO) &
               CALL TestS1(ccAS_co1, ccAS_ca1, ccAS_co2, ccAS_ca2, WT1=WT11, &
                           T4=PTAS4, T4p=PTAS4p, ierrT4=ie1AS(1), T4df=T1_df, &
@@ -844,6 +874,8 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
               ENDIF
               
             ENDIF
+            !!print *,'PTAS4=',PTAS4
+            !!print *,'PTAS4p=',PTAS4p
             
             !! Erase results that are not to be reported
             IF(.NOT.doAS4) THEN 
@@ -875,7 +907,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
             ie1 = (/ie1AS, ie1DS/)
             IF(ANY(ie1 > 0)) THEN
             
-              !! Increase the erroneous S1 test counter
+              !! Increase the erroneous PHASE1 test counter
               IF(icycle==1) NumS1NotOK = NumS1NotOK + 1
               
               !! Check for low sample size errors
@@ -899,7 +931,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   
             ELSE
               
-              !! Increase S1 test counter of OK tests if no error occured
+              !! Increase PHASE1 test counter of OK tests if no error occured
               IF(icycle==1) NumS1OK = NumS1OK + 1
               
               !! Increase the counter of detected LD if pretest significant
@@ -936,7 +968,7 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           !! Always indicate rejection in stage 1 when no pretest wanted 
           IF(skip_S1 .OR. reject_all_pretests) rejected = .TRUE.
           
-          !! If S2 not wanted, skip it
+          !! If PHASE2 not wanted, skip it
           IF(only_S1) GOTO 25
           IF(.NOT.doS2 .AND. .NOT.doCS_all .AND. skip_S1) GOTO 24
           IF(.NOT.doS2 .AND. .NOT.doCS_all) GOTO 22
@@ -1099,11 +1131,14 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
         min_p2 = MIN(AS4p,AS1p,DSp,CSp)
         any_neg_err = ANY((/ie1AS, ie1AS, ie2AS, ie1DS, ie2DS, ieCS, ie1a4, ie1PO/)<=0)
         any_pos_err = ANY((/ie1AS, ie1AS, ie2AS, ie1DS, ie2DS, ieCS, ie1a4, ie1PO/)>0)
+        
         out_it = .FALSE.
         IF(report_all .AND. any_neg_err)       out_it = .TRUE.
         IF(report_errs .AND. any_pos_err)      out_it = .TRUE.
         IF(min_p1 < olim1 .OR. min_p2 < olim2) out_it = .TRUE.
 
+        !!print *,'nrec=',nrec
+        !!print *,'out_it=', out_it
         IF(.NOT.out_it) CYCLE
 
 !$OMP CRITICAL
@@ -1124,6 +1159,8 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
           print *,"----------------"
           print *,"ii=", ii, "jj=", jj, "PTAS1p=", PTAS1p, "AS4p=", AS4p, &
                 "AS1p=", AS1p, "PTDS4p=", PTDS4p, "PTDS1p=", PTDS1p, "DSp=", DSp 
+          print *,"ii=", ii, "jj=", jj, "PTAS1=", PTAS1, "AS4=", AS4, &
+                "AS1=", AS1, "PTDS4=", PTDS4p, "PTDS1=", PTDS1, "DS=", DS
         endif
 
         !! Store the obtained results into shared variables
@@ -1307,8 +1344,11 @@ SUBROUTINE DoTests(X, sts, sex, n, nco, nca, nsamp, dAS, dDS, ssAS, ssDS, &
   !! Write the output file with corrected the p-values
   IF(.NOT.no_output) CALL WriteOutputFile(tmp_file, append=out_append)
           
-  !! Print final report
-  CALL Report(test_report=.TRUE., runtime=runtime)
+  !! Print report about pair inclusion/exclusion from testing
+  CALL Report(pair_report=.TRUE., runtime=runtime)
+  
+  !! Print report about test results
+  CALL Report(test_report=.NOT.no_testing_report, runtime=runtime)
   
   RETURN
 

@@ -4620,49 +4620,49 @@ SUBROUTINE AskUser(response, question, retry, cont, newfile, confirm_delete, &
   
   IF(PRESENT(terminate)) THEN
     qc = 2
-    question1 = "> Terminate program? (Y or N)"
+    question1 = "Terminate? (Y or N)"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "N"
   ENDIF
 
   IF(PRESENT(overwriteall)) THEN
     qc = 3
-    question1 = "> Overwrite? (Y(es), N(o), A(ll))"
+    question1 = "Overwrite? (Y(es), N(o), A(ll))"
     answers(1:qc) = (/"Y","N","A"/)
     def_answer = "Y"
   ENDIF
 
   IF(PRESENT(overwrite)) THEN
     qc = 2
-    question1 = "> Overwrite? (Y(es), N(o))"
+    question1 = "Overwrite? (Y(es), N(o))"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "Y"
   ENDIF
 
   IF(PRESENT(confirm_delete)) THEN
     qc = 2
-    question1 = "> Are you sure you want to delete the file? (Y(es), N(o))"
+    question1 = "Are you sure you want to delete the file? (Y(es), N(o))"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "N"
   ENDIF
 
   IF(PRESENT(retry)) THEN
     qc = 2
-    question1 = "> Retry? (Y or N)"
+    question1 = "Retry? (Y or N)"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "Y"
   ENDIF
   
   IF(PRESENT(cont)) THEN
     qc = 2
-    question1 = "> Are you sure you want to continue? (Y or N)"
+    question1 = "Are you sure you want to continue? (Y or N)"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "Y"
   ENDIF
 
   IF(PRESENT(newfile)) THEN
     qc = 2
-    question1 = "> Would you like to enter a different filename? (Y or N)"
+    question1 = "Would you like to enter a different filename? (Y or N)"
     answers(1:qc) = (/"Y","N"/)
     def_answer = "N"
   ENDIF

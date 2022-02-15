@@ -771,7 +771,7 @@ SUBROUTINE SimulateMap(MAPA, nloci, ncols, chcol, rscol, dscol, bpcol, &
                                    ch_start1, rs_start1, chr1
   LOGICAL                       :: binary1, sglchr1
                 
-  binary1     = .FALSE.
+  binary1 = .FALSE.
   sglchr1 = .TRUE.
   chcol1 = def_map_chcol
   rscol1 = def_map_rscol

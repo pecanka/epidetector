@@ -1,0 +1,854 @@
+EpiDetector 0.1 beta log file created at 22:20:20.004 2022-02-14 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-14 at 22:20:20.004
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 2 
+--ncases 500 --ncontrols 1000 --nsamples 1000 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 2
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1000
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+
+Random seed initialized to: 846 883 920 957 994 1031 1068 1105 1142 1179 1216 
+1253 1290 1327 1364 1401 1438 1475 1512 1549 1586 1623 1660 1697 1734 1771 1808 
+1845 1882 1919 1956 1993 2030
+Note: The seed can be set via '--seed 846:883:920:957:994:1031:1068:1105:1142:1
+179:1216:1253:1290:1327:1364:1401:1438:1475:1512:1549:1586:1623:1660:1697:1734:
+1771:1808:1845:1882:1919:1956:1993:2030'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1,000
+  Total number of markers    :   2
+  Causal markers             :   2
+  Neutral markers            :   0
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,232
+Actual observed prevalence of cases: 0.5519713262
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+WARNING: There were 4 loci (0.2% of 2000 loci checked) with MAF above 0.5!
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 2 markers left.
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :              1,500,000
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :              1,498,500
+ - missing sex                 :              1,500,000
+Number of samples              :                  1,000
+Number of markers per sample   :                      2
+Number of pairs per sample     :                      1
+Number of included markers     :                      2
+Number of excluded markers     :                      0
+Number of included pairs       :                  1,000
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only controls
+PHASE1 p-value threshold is 1
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using controls
+Variance of PHASE1 generating vector is estimated using only controls from 
+   PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-14 at 22:20:21.481
+AS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+DS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the PHASE1 level level to 1.0, which causes 
+all PHASE1 tests to be rejected irrespective of their p-values
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 1,000
+Testing in progress ...
+Testing finished on 2022-02-14 at 22:20:24.731
+Testing runtime was 00:00:03.250
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 1000
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 1,000 results (1,000 error-free, 0 with errors, 
+writing time 00:00:00.251):
+[test_simul.epi]
+Results summary (significant corrected p-values): AS4: 105, AS1: 105, DS4: 112, 
+DS1: 112, PO4: 244, PO1: 244, CS: 244
+0 pairs on the same chromosome were excluded.
+1,000 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:03.250
+
+IMPORTANT: There was 1 warning!
+Execution finished on 2022-02-14 at 22:20:25.108
+Total program runtime was 00:00:05.104
+
+LIST OF ISSUED WARNINGS :
+  WARNING: There were 4 loci (0.2% of 2000 loci checked) with MAF above 0.5!
+
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 19:34:12.408 2022-02-15 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-15 at 19:34:12.408
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 2 
+--ncases 500 --ncontrols 1000 --nsamples 1000 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc 
+--save-ped
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 2
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1000
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+  --save-ped
+
+Random seed initialized to: 22135 22172 22209 22246 22283 22320 22357 22394 
+22431 22468 22505 22542 22579 22616 22653 22690 22727 22764 22801 22838 22875 
+22912 22949 22986 23023 23060 23097 23134 23171 23208 23245 23282 23319
+Note: The seed can be set via '--seed 22135:22172:22209:22246:22283:22320:22357
+:22394:22431:22468:22505:22542:22579:22616:22653:22690:22727:22764:22801:22838:
+22875:22912:22949:22986:23023:23060:23097:23134:23171:23208:23245:23282:23319'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+PED <- [test_simul_20220215193412408pid7556.ped]
+MAP <- [test_simul_20220215193412408pid7556.map]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1,000
+  Total number of markers    :   2
+  Causal markers             :   2
+  Neutral markers            :   0
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,230
+Actual observed prevalence of cases: 0.5515695067
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 2 markers left.
+Saving ped data into file in a plain format ... 
+EpiDetector 0.1 beta log file created at 19:37:11.096 2022-02-15 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-15 at 19:37:11.096
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 2 
+--ncases 500 --ncontrols 1000 --nsamples 1 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc 
+--save-ped
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 2
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+  --save-ped
+
+Random seed initialized to: 68618 68655 68692 68729 68766 68803 68840 68877 
+68914 68951 68988 69025 69062 69099 69136 69173 69210 69247 69284 69321 69358 
+69395 69432 69469 69506 69543 69580 69617 69654 69691 69728 69765 69802
+Note: The seed can be set via '--seed 68618:68655:68692:68729:68766:68803:68840
+:68877:68914:68951:68988:69025:69062:69099:69136:69173:69210:69247:69284:69321:
+69358:69395:69432:69469:69506:69543:69580:69617:69654:69691:69728:69765:69802'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+PED <- [test_simul_20220215193711096pid11692.ped]
+MAP <- [test_simul_20220215193711096pid11692.map]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1
+  Total number of markers    :   2
+  Causal markers             :   2
+  Neutral markers            :   0
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,408
+Actual observed prevalence of cases: 0.5847176080
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 2 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_simul_20220215193711096pid11692.ped]
+  [test_simul_20220215193711096pid11692.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                  1,500
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :                      0
+ - missing sex                 :                  1,500
+Total number of markers        :                      2
+Total number of markers pairs  :                      1
+Number of included markers     :                      2
+Number of excluded markers     :                      0
+Number of included pairs       :                      1
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only controls
+PHASE1 p-value threshold is 1
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using controls
+Variance of PHASE1 generating vector is estimated using only controls from 
+   PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-15 at 19:37:12.681
+AS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+DS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the PHASE1 level level to 1.0, which causes 
+all PHASE1 tests to be rejected irrespective of their p-values
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 1
+Testing in progress ...
+Testing finished on 2022-02-15 at 19:37:12.901
+Testing runtime was 00:00:00.220
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+
+ERROR: Cannot open file [test_simul.epi] (IOSTAT 13).
+
+NOTE: The file appears to be already opened and blocked by a process. Unlock it 
+  and try again.
+Records in temporary result files: 1
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 1 results (1 error-free, 0 with errors, writing 
+time 00:00:00.079):
+[test_simul.epi]
+Results summary (significant corrected p-values): AS4: 1, AS1: 1, DS4: 1, DS1: 
+1, PO4: 1, PO1: 1, CS: 1
+0 pairs on the same chromosome were excluded.
+1 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:00.220
+
+IMPORTANT: There was 1 ERROR!
+Execution finished on 2022-02-15 at 20:05:55.216
+Total program runtime was 00:28:44.120
+
+LIST OF ISSUED ERRORS :
+  ERROR: Cannot open file [test_simul.epi] (IOSTAT 13).
+
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 20:06:25.109 2022-02-15 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-15 at 20:06:25.109
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 10 
+--ncases 500 --ncontrols 1000 --nsamples 1 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc 
+--save-ped
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 10
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+  --save-ped
+
+Random seed initialized to: 20926 20963 21000 21037 21074 21111 21148 21185 
+21222 21259 21296 21333 21370 21407 21444 21481 21518 21555 21592 21629 21666 
+21703 21740 21777 21814 21851 21888 21925 21962 21999 22036 22073 22110
+Note: The seed can be set via '--seed 20926:20963:21000:21037:21074:21111:21148
+:21185:21222:21259:21296:21333:21370:21407:21444:21481:21518:21555:21592:21629:
+21666:21703:21740:21777:21814:21851:21888:21925:21962:21999:22036:22073:22110'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+PED <- [test_simul_20220215200625109pid8128.ped]
+MAP <- [test_simul_20220215200625109pid8128.map]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1
+  Total number of markers    :   10
+  Causal markers             :   2
+  Neutral markers            :   8
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,298
+Actual observed prevalence of cases: 0.5648389904
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 10 markers left.
+Saving ped data into file in a plain format ... 
+Saving mapping data into file ... 
+Data were saved into the files
+  [test_simul_20220215200625109pid8128.ped]
+  [test_simul_20220215200625109pid8128.map]
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                  1,500
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :                      0
+ - missing sex                 :                  1,500
+Total number of markers        :                     10
+Total number of markers pairs  :                     45
+Number of included markers     :                     10
+Number of excluded markers     :                      0
+Number of included pairs       :                     45
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only controls
+PHASE1 p-value threshold is 1
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using controls
+Variance of PHASE1 generating vector is estimated using only controls from 
+   PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-15 at 20:06:26.983
+AS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+DS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the PHASE1 level level to 1.0, which causes 
+all PHASE1 tests to be rejected irrespective of their p-values
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 45
+Testing in progress ...
+Testing finished on 2022-02-15 at 20:06:27.353
+Testing runtime was 00:00:00.370
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 45
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 45 results (45 error-free, 0 with errors, 
+writing time 00:00:00.128):
+[test_simul.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 0, DS1: 
+0, PO4: 0, PO1: 0, CS: 0
+0 pairs on the same chromosome were excluded.
+45 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:00.370
+
+Execution finished on 2022-02-15 at 20:06:27.727
+Total program runtime was 00:00:02.618
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 20:09:49.514 2022-02-15 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-15 at 20:09:49.514
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 10 
+--ncases 500 --ncontrols 1000 --nsamples 1 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 10
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 1
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+
+Random seed initialized to: 102070 102107 102144 102181 102218 102255 102292 
+102329 102366 102403 102440 102477 102514 102551 102588 102625 102662 102699 
+102736 102773 102810 102847 102884 102921 102958 102995 103032 103069 103106 
+103143 103180 103217 103254
+Note: The seed can be set via '--seed 102070:102107:102144:102181:102218:102255
+:102292:102329:102366:102403:102440:102477:102514:102551:102588:102625:102662:1
+02699:102736:102773:102810:102847:102884:102921:102958:102995:103032:103069:103
+106:103143:103180:103217:103254'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   1
+  Total number of markers    :   10
+  Causal markers             :   2
+  Neutral markers            :   8
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,258
+Actual observed prevalence of cases: 0.5571302037
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 10 markers left.
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                  1,500
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :                      0
+ - missing sex                 :                  1,500
+Total number of markers        :                     10
+Total number of markers pairs  :                     45
+Number of included markers     :                     10
+Number of excluded markers     :                      0
+Number of included pairs       :                     45
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only controls
+PHASE1 p-value threshold is 1
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using controls
+Variance of PHASE1 generating vector is estimated using only controls from 
+   PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-15 at 20:09:51.162
+AS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+DS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the PHASE1 level level to 1.0, which causes 
+all PHASE1 tests to be rejected irrespective of their p-values
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 45
+Testing in progress ...
+Testing finished on 2022-02-15 at 20:09:51.671
+Testing runtime was 00:00:00.509
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 45
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 45 results (45 error-free, 0 with errors, 
+writing time 00:00:00.141):
+[test_simul.epi]
+Results summary (significant corrected p-values): AS4: 0, AS1: 0, DS4: 1, DS1: 
+1, PO4: 1, PO1: 1, CS: 1
+0 pairs on the same chromosome were excluded.
+45 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:00.509
+
+Execution finished on 2022-02-15 at 20:09:52.022
+Total program runtime was 00:00:02.508
+Program terminated.
+
+EpiDetector 0.1 beta log file created at 20:11:34.380 2022-02-15 
+ 
+ ==========================================================================
+ +                                                                        +
+ +                         EpiDetector 0.1 beta                           +
+ +        Compiled on Feb 14 2022 with GNU Fortran Compiler 9.3.0         +
+ +                     Compiled under unknown system                      +
+ +                                                                        +
+ ==========================================================================
+ 
+Execution started on 2022-02-15 at 20:11:34.380
+
+Call arguments: --simulateinput --test 1 --pretest 3 --delta 0.5 --nloci 10 
+--ncases 500 --ncontrols 1000 --nsamples 10 --OR 1.5 --reportdisjoint 
+--reportscore --reportall --rejectall --out-maf --out test_simul --out-loc
+
+Effective arguments :
+
+  --simulateinput
+  --test 1
+  --pretest 3
+  --delta 0.5
+  --nloci 10
+  --ncases 500
+  --ncontrols 1000
+  --nsamples 10
+  --OR 1.5
+  --reportdisjoint
+  --reportscore
+  --reportall
+  --rejectall
+  --out-maf
+  --out test_simul
+  --out-loc
+
+Random seed initialized to: 4985 5022 5059 5096 5133 5170 5207 5244 5281 5318 
+5355 5392 5429 5466 5503 5540 5577 5614 5651 5688 5725 5762 5799 5836 5873 5910 
+5947 5984 6021 6058 6095 6132 6169
+Note: The seed can be set via '--seed 4985:5022:5059:5096:5133:5170:5207:5244:5
+281:5318:5355:5392:5429:5466:5503:5540:5577:5614:5651:5688:5725:5762:5799:5836:
+5873:5910:5947:5984:6021:6058:6095:6132:6169'
+Automatically determined minor allele frequency for simulation is 0.29.
+
+>>> DATA <<<
+I/O files :
+OUT -> [test_simul.epi]
+LOG -> [test_simul.log]
+
+INPUT DATA SIMULATION SETTINGS :
+
+  Total sample size          :   1,500
+  Number of cases            :   500
+  Number of controls         :   1,000
+  Number of samples          :   10
+  Total number of markers    :   10
+  Causal markers             :   2
+  Neutral markers            :   8
+  Pairs of markers in LD     :   0
+  Amount of LD               :   0
+  * Causal pair simulation settings *
+  MAF (lower bound)          :   0.29
+  Interaction model          :   A
+  Population prevalence      :   0.01
+  Main effect 1 (OR1)        :   1
+  Main effect 2 (OR2)        :   1
+  Interaction effect (OR)    :   1.5
+
+MAFs used in simulation: 0.29 0.29 0.29
+Simulating input data ... 
+Data simulation finished.
+Total number of simulated individuals: 2,354
+Actual observed prevalence of cases: 0.5751911640
+Getting minor allele frequencies in the whole sample ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the controls ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+Getting minor allele frequencies in the cases ...
+Calculating allele frequencies ... 
+Finished calculating allele frequencies.
+After all checks there are 10 markers left.
+
+>>> INPUT DATA SUMMARY <<<
+Total sample size              :                 15,000
+ - valid status                :                  1,500
+   - controls                  :                  1,000
+   - cases                     :                    500
+   - males                     :                      0
+   - females                   :                      0
+ - missing status              :                 13,500
+ - missing sex                 :                 15,000
+Number of samples              :                     10
+Number of markers per sample   :                     10
+Number of pairs per sample     :                     45
+Number of included markers     :                     10
+Number of excluded markers     :                      0
+Number of included pairs       :                    450
+
+>>> ANALYSIS <<<
+PHASE1 tests will be performed using only controls
+PHASE1 p-value threshold is 1
+PHASE1 subsample is determined randomly for each PHASE1 test
+Sample ratio in PHASE1 for AS tests is 0.5
+Sample ratio in PHASE1 for DS tests is 0.5
+Significance level for PHASE2 is 0.05
+Variance error bound for PHASE2 is 0.00001
+Pre-regression centering within AS in PHASE2 will be done using controls
+Variance of PHASE1 generating vector is estimated using only controls from 
+   PHASE1
+Minimal sample size to perform a test is 100
+Minimal number of controls to perform a test is 50
+Minimal number of cases to perform a test is 50
+No mapping file specified. Performing all possible tests
+All results will be reported
+Parallelization is not available. To enable parallel processing recompile
+ the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.
+Testing started on 2022-02-15 at 20:11:35.804
+AS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+DS: PHASE1 subsample determined randomly using the user-given ratio 0.5
+Flag --reject-all sets the value of the PHASE1 level level to 1.0, which causes 
+all PHASE1 tests to be rejected irrespective of their p-values
+Results saved (approx.) every 100,000 tests
+Estimated memory usage during testing: 82 MB
+Number of tests to perform: 450
+Testing in progress ...
+Testing finished on 2022-02-15 at 20:11:38.127
+Testing runtime was 00:00:02.323
+Saving results ... 
+Results saved.
+Output file size check every 50,000 records.
+Records in temporary result files: 450
+Writing error-free results into output file(s) ... 
+1 output file(s) produced with 450 results (450 error-free, 0 with errors, 
+writing time 00:00:00.377):
+[test_simul.epi]
+Results summary (significant corrected p-values): AS4: 2, AS1: 2, DS4: 4, DS1: 
+4, PO4: 6, PO1: 6, CS: 6
+0 pairs on the same chromosome were excluded.
+450 pairs on the same chromosome were included.
+0 pairs skipped due to low sample size.
+Testing runtime was 00:00:02.323
+
+Execution finished on 2022-02-15 at 20:11:38.739
+Total program runtime was 00:00:04.359
+Program terminated.
+

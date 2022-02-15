@@ -190,10 +190,10 @@ SUBROUTINE GetAutoDelta(delta, level1, simple_delta, simple_delta_frac, &
 
   !! Announce candidate levels
   IF(nd==1) THEN
-    text = TRIM(i2c(nlevel1))//" considered S1 levels range between "//&
+    text = TRIM(i2c(nlevel1))//" considered PHASE1 levels range between "//&
            TRIM(r2c(min_level1))//" and "//TRIM(r2c(max_level1))//"."
   ELSE
-    text = TRIM(i2c(nlevel1))//" considered S1 level is "//&
+    text = TRIM(i2c(nlevel1))//" considered PHASE1 level is "//&
            TRIM(r2c(alphas(1)))//"."
   ENDIF
   CALL Prnt(text)
@@ -398,21 +398,21 @@ SUBROUTINE GetAutoDelta(delta, level1, simple_delta, simple_delta_frac, &
       ENDIF
       text = "There was still no rejection by DS or CS even after "//&
              TRIM(i2c(nrep*ntests))//" tests. Giving up on finding optimal"//&
-             " S1 sample size ratio and using value "//TRIM(r2c(delta))//"."//&
+             " PHASE1 sample size ratio and using value "//TRIM(r2c(delta))//"."//&
              " It is recommended to try different input parameters."
       CALL PrntW(text)
       level1 = one
     ENDIF
   !! Check for no difference in rejection counts
   ELSEIF(ALL(NR2==MINVAL(NR2))) THEN
-    text = "All considered S1 sample size ratios and levels yield the"//&
+    text = "All considered PHASE1 sample size ratios and levels yield the"//&
            " same number of rejections "//TRIM(i2c(NR2(1,1)))//". It is"//&
            " probably a good idea to try different input parameters."
     CALL PrntW(text, skip1=1, skip2=1)
   ENDIF
 
   !! Announce "optimal" delta
-  text = "Optimized S1 sample size ratio: "//TRIM(r2c(delta))
+  text = "Optimized PHASE1 sample size ratio: "//TRIM(r2c(delta))
   IF(delta==MINVAL(deltas)) text = TRIM(text)//" (smallest considered value)"
   IF(delta==MAXVAL(deltas)) text = TRIM(text)//" (biggest considered value)"
   CALL Prnt(text)
@@ -421,7 +421,7 @@ SUBROUTINE GetAutoDelta(delta, level1, simple_delta, simple_delta_frac, &
   IF(delta==zero .AND. .NOT.comeback) THEN
     IF(WT1==T1co) deltas = MAX(zero, REAL(nco - nca, dpp) / nco)
     IF(WT1==T1ca) deltas = MAX(zero, REAL(nca - nco, dpp) / nca)
-    CALL PrntW("Replacing S1 ratio 0.0 with the 'balancing' value "//TRIM(r2c(delta))//"!")
+    CALL PrntW("Replacing PHASE1 ratio 0.0 with the 'balancing' value "//TRIM(r2c(delta))//"!")
     NR1 = 0
     NR2 = 0
     comeback = .TRUE.
@@ -434,7 +434,7 @@ SUBROUTINE GetAutoDelta(delta, level1, simple_delta, simple_delta_frac, &
   IF(delta==zero) THEN
     level1 = one
   ELSE
-    text = "Optimized S1 level: "//TRIM(r2c(level1))
+    text = "Optimized PHASE1 level: "//TRIM(r2c(level1))
     IF(level1==MINVAL(alphas)) text = TRIM(text)//" (smallest considered value)"
     IF(level1==MAXVAL(alphas)) text = TRIM(text)//" (biggest considered value)"
     CALL Prnt(text)
@@ -841,12 +841,12 @@ SUBROUTINE GetData()
   !! Read in case-control status from a separate file
   IF(sts_nfiles>0) CALL ReadPSSFile(sts_file, sts, sts_nskip)
     
-  !! Check for conflict between pss and S1 test
+  !! Check for conflict between pss and PHASE1 test
   IF(WT1==T1co .AND. COUNT(pss_AS==1_iks .AND. sts==NumCo)==0) &
-    CALL PrntE("S1 tests require controls but none were selected.", Q=.TRUE.)
+    CALL PrntE("The selected PHASE1 tests require controls but none were selected.", Q=.TRUE.)
                              
   IF(WT1==T1ca .AND. COUNT(pss_AS==1_iks .AND. sts==NumCa)==0) &
-    CALL PrntE("S1 tests require cases but none were selected.", Q=.TRUE.)
+    CALL PrntE("The selected PHASE1 tests require cases but none were selected.", Q=.TRUE.)
 
   RETURN
    
@@ -989,7 +989,7 @@ END SUBROUTINE SaveData
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 
 SUBROUTINE SavePSS(fn, subsample)
-!! Routine that writes the S1 selection status into file
+!! Routine that writes the PHASE1 selection status into file
   IMPLICIT NONE
   INTEGER, PARAMETER          :: upss = 32 
   CHARACTER(*), INTENT(INOUT) :: fn
@@ -1000,20 +1000,20 @@ SUBROUTINE SavePSS(fn, subsample)
   
   c = comment
   !! Announce sorting
-  CALL Prnt("Saving S1 selection status into file ... ", ADVANCE='NO')
+  CALL Prnt("Saving PHASE1 selection status into file ... ", ADVANCE='NO')
   
   CALL PrintProgramHeader(unit=upss, file=fn, commented=.TRUE.)
   
   ih = 1
-  h(ih,1) = c//" This is a S1 selection status (PSS) file generated"//&
+  h(ih,1) = c//" This is a PHASE1 selection status (PSS) file generated"//&
                " at "//starttime_full
   ih = ih + 1
   h(ih,1) = c//" It contains information about which individuals were"//&
-               " selected for the S1 tests."
+               " selected for the PHASE1 tests."
   ih = ih + 1
   h(ih,1) = c//" Possible values: 0 (not selected), 1 (selected)"
   ih = ih + 1
-  h(ih,1) = c//" You can edit this file to change the S1"//&
+  h(ih,1) = c//" You can edit this file to change the PHASE1"//&
                " selection status of an individual and"
   ih = ih + 1
   h(ih,1) = c//" use it during analysis by adding --pss "//TRIM(fn)
@@ -1032,12 +1032,12 @@ SUBROUTINE SavePSS(fn, subsample)
   !! Write the file header 
   CALL WriteFile(fn, upss, h(1:ih,:), attach=.TRUE.)
 
-  !! Write the S1 selection status into file 
+  !! Write the PHASE1 selection status into file 
   CALL WriteFile(fn, upss, PSS, attach=.TRUE.)
 
   !! Announce the end of writing
   CALL Prnt0("Finished.", log=.FALSE.)
-  CALL Prnt("S1 selection saved into file ["//TRIM(fn)//"]", screen=.FALSE.)
+  CALL Prnt("PHASE1 selection saved into file ["//TRIM(fn)//"]", screen=.FALSE.)
   
   RETURN
 
@@ -1412,9 +1412,8 @@ SUBROUTINE ReadFAMfile(fn, sts, sex, FAM, ncols, nskip, sep, nco, nca, nmale, &
   CALL Prnt("Finished reading FAM file.", screen=.FALSE.)
   
   !IF(show_summary) THEN
-    CALL Prnt("Sample size "//i2c(SIZE(sts))//" ("//i2c(nco)//"/"//&
-              i2c(nca)//" controls/cases, "//i2c(nmale)//"/"//i2c(nfema)&
-              //" males/females)")
+    CALL Prnt("Sample size "//i2c(SIZE(sts))//" (controls: "//i2c(nco)//" | cases: "//&
+              i2c(nca)//" || males: "//i2c(nmale)//" | females: "//i2c(nfema)//")")
   !ENDIF
   
   RETURN
@@ -1648,10 +1647,10 @@ END SUBROUTINE ReadPEDfile
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
   
 SUBROUTINE ReadPSSFile(fn, status, nskip, d, pss)
-!! Read the S1 selection status file. This file must contain the same
+!! Read the PHASE1 selection status file. This file must contain the same
 !! number of lines as the ped_file (i.e. entire sample size) and the first
 !! column (it shouldn't have more columns, but it's not a problem) contains
-!! the S1 selection status. That is 1 in n-th row if the n-th individual
+!! the PHASE1 selection status. That is 1 in n-th row if the n-th individual
 !! in the sample is supposed to be selected for pretest and 0 otherwise.  
   IMPLICIT NONE
   INTEGER, PARAMETER               :: fu = 32
@@ -1671,7 +1670,7 @@ SUBROUTINE ReadPSSFile(fn, status, nskip, d, pss)
   
   !! Announce what is being read
   IF(pss1) THEN
-    CALL Prnt("Reading S1 selection status data ... ", advance='NO')
+    CALL Prnt("Reading PHASE1 selection status data ... ", advance='NO')
   ELSE
     CALL Prnt("Reading status data ... ", advance='NO')
   ENDIF
@@ -1731,12 +1730,12 @@ SUBROUTINE ReadPSSFile(fn, status, nskip, d, pss)
     ENDDO 
   ENDDO
   
-  !! Set the S1 sample size ratio
+  !! Set the PHASE1 sample size ratio
   IF(PRESENT(d)) d = Mean(status)
 
   !! Announce the end of file processing
   IF(pss1) THEN
-    CALL Prnt("Finished reading S1 selection status!", screen=.FALSE.)
+    CALL Prnt("Finished reading PHASE1 selection status!", screen=.FALSE.)
   ELSE  
     CALL Prnt("Finished reading PSS file!", screen=.FALSE.)
   ENDIF
@@ -2385,8 +2384,7 @@ SUBROUTINE SavePrev(prev_file, prev)
                 FORM='F', ACCESS='S', chck_exist=.TRUE., &
                 overwrite=overwrite_files)
                 
-  !! Write the header: chromosome, snp, allele1, allele2, maf, non-missing 
-  !! allele count
+  !! Write the header: chromosome, snp, allele1, allele2, maf, non-missing allele count
   WRITE(umaf,'(A)') "Actual observed prevalence of cases: "//TRIM(r2c(prev))
 
   CLOSE(umaf)
@@ -3935,33 +3933,33 @@ SUBROUTINE SyncTmpFromTmpmin(tmp, tmpmin)
   TYPE(TMPTYPE), INTENT(OUT)   :: tmp
   TYPE(TMPTYPEmin), INTENT(IN) :: tmpmin
   
-  tmp = NAtmp
-  tmp%PTAS4p = tmpmin%PTAS4p
-  tmp%PTAS1p = tmpmin%PTAS1p
-  tmp%PTDS4p = tmpmin%PTDS4p
-  tmp%PTDS1p = tmpmin%PTDS1p
-  tmp%PT4p = tmpmin%PT4p
-  tmp%PT1p = tmpmin%PT1p
-  tmp%PTPO4p = tmpmin%PTPO4p
-  tmp%PTPO1p = tmpmin%PTPO1p
-  tmp%AS4p = tmpmin%AS4p
-  tmp%AS1p = tmpmin%AS1p
-  tmp%DSp = tmpmin%DSp
-  tmp%CSp = tmpmin%CSp
+  tmp          = NAtmp
+  tmp%PTAS4p   = tmpmin%PTAS4p
+  tmp%PTAS1p   = tmpmin%PTAS1p
+  tmp%PTDS4p   = tmpmin%PTDS4p
+  tmp%PTDS1p   = tmpmin%PTDS1p
+  tmp%PT4p     = tmpmin%PT4p
+  tmp%PT1p     = tmpmin%PT1p
+  tmp%PTPO4p   = tmpmin%PTPO4p
+  tmp%PTPO1p   = tmpmin%PTPO1p
+  tmp%AS4p     = tmpmin%AS4p
+  tmp%AS1p     = tmpmin%AS1p
+  tmp%DSp      = tmpmin%DSp
+  tmp%CSp      = tmpmin%CSp
   tmp%errPTAS4 = tmpmin%errPTAS4 
   tmp%errPTAS1 = tmpmin%errPTAS1 
   tmp%errPTDS4 = tmpmin%errPTDS4 
   tmp%errPTDS1 = tmpmin%errPTDS1 
-  tmp%errPT4 = tmpmin%errPT4 
-  tmp%errPT1 = tmpmin%errPT1 
+  tmp%errPT4   = tmpmin%errPT4 
+  tmp%errPT1   = tmpmin%errPT1 
   tmp%errPTPO4 = tmpmin%errPTPO4 
   tmp%errPTPO1 = tmpmin%errPTPO1  
-  tmp%errAS4 = tmpmin%errAS4  
-  tmp%errAS1 = tmpmin%errAS1 
-  tmp%errDS = tmpmin%errDS  
-  tmp%errCS = tmpmin%errCS 
-  tmp%PLevel = tmpmin%PLevel
-  tmp%Pos = tmpmin%Pos  
+  tmp%errAS4   = tmpmin%errAS4  
+  tmp%errAS1   = tmpmin%errAS1 
+  tmp%errDS    = tmpmin%errDS  
+  tmp%errCS    = tmpmin%errCS 
+  tmp%PLevel   = tmpmin%PLevel
+  tmp%Pos      = tmpmin%Pos  
 
   RETURN
   
@@ -4619,9 +4617,8 @@ SUBROUTINE WriteOutputFile(tmp_file, tmp_nl, append)
       
   !! Inform about interaction effect computation
   IF(out_epi_effect) &
-    CALL Prnt("Interaction effects will be computed while output"// &
-              " file is produced. If there are many results to output,"// &
-              " this process might be very slow!")
+    CALL Prnt("Interaction effects will be computed while output file is produced."// &
+              " If there are many results to output this process can be very slow!")
 
   !! Open the latest output file for writing
   CALL OpenFile(UNIT=uout, FILE=fn(out_nfiles), ACTION='W', STATUS="U",&
@@ -4683,9 +4680,8 @@ SUBROUTINE WriteOutputFile(tmp_file, tmp_nl, append)
       CALL PrntE("File ["//TRIM(tmp_file(tmp_nfiles))//"] is corrupted!", Q=.TRUE.)    
 
     !! Open output file and WRITE the report
-    CALL OpenFile(UNIT=utmp, FILE=tmp_file(ifile), ACTION='R', &
-                  STATUS="O", FORM='U', POSITION="R", ACCESS='D', &
-                  RECL=rec_size_tmp)
+    CALL OpenFile(UNIT=utmp, FILE=tmp_file(ifile), ACTION='R', STATUS="O", FORM='U', &
+                  POSITION="R", ACCESS='D', RECL=rec_size_tmp)
 
     tmp_irec = 0
     !! Read from temporary file(s) and write into output file(s)
@@ -4737,9 +4733,9 @@ SUBROUTINE WriteOutputFile(tmp_file, tmp_nl, append)
         IF(doDS1 .AND. ANY((/tmp%ErrPTDS1, tmp%ErrDS/)>0))  is_err = .TRUE.
         IF(doPO4 .AND. ANY((/tmp%ErrPTPO4, tmp%ErrCS/)>0))  is_err = .TRUE.
         IF(doPO1 .AND. ANY((/tmp%ErrPTPO1, tmp%ErrCS/)>0))  is_err = .TRUE.
-        IF(doPT4 .AND. ANY((/tmp%ErrPT4, tmp%ErrAS4/)>0))   is_err = .TRUE.
-        IF(doPT1 .AND. ANY((/tmp%ErrPT1, tmp%ErrAS1/)>0))   is_err = .TRUE.
-        IF(doCS .AND. tmp%ErrCS>0) is_err = .TRUE.
+        IF(doPT4 .AND. ANY((/tmp%ErrPT4,   tmp%ErrAS4/)>0)) is_err = .TRUE.
+        IF(doPT1 .AND. ANY((/tmp%ErrPT1,   tmp%ErrAS1/)>0)) is_err = .TRUE.
+        IF(doCS .AND. tmp%ErrCS>0)                          is_err = .TRUE.
 
         !! Decide whether it should be printed or not
         IF(write_errfree) THEN
@@ -4835,8 +4831,7 @@ SUBROUTINE WriteOutputFile(tmp_file, tmp_nl, append)
 
           IF(out_zipped) CALL ZipFile(fn, announce=.TRUE.)
 
-          CALL ExcessFileSize(fn, uout, out_size, max_out_size, &
-                              nl_now, out_ext, check_size=.FALSE., &
+          CALL ExcessFileSize(fn, uout, out_size, max_out_size, nl_now, out_ext, check_size=.FALSE., &
                               form='F', access='S', rec_size=rec_size_tmp)
 
           out_nfiles = SIZE(fn)
@@ -4852,6 +4847,7 @@ SUBROUTINE WriteOutputFile(tmp_file, tmp_nl, append)
         ENDIF
   
         !! Write the record
+        !!print *,'ij=',ij
         CALL WriteOutputRecord(nl_all, tmp, pCor, MTC, fv, fp, record_length)
         
         out_size = out_size + record_length 
@@ -5835,7 +5831,7 @@ SUBROUTINE PrintHeader(hc, starttime, nfile)
       CALL LH("RS number of the 2nd loci in a test", "RS2", nc)
     ENDIF
 
-    !! Minor allele frequencies (entire sample - used for automatic S1 level)
+    !! Minor allele frequencies (entire sample - used for automatic PHASE1 level)
     IF(out_maf) THEN
       CALL LH("Minor allele frequency of 1st locus (all) (based on the"//&
               " entire sample or all samples if the value given by"//&
@@ -5849,20 +5845,20 @@ SUBROUTINE PrintHeader(hc, starttime, nfile)
         CALL LH("Minor allele frequency of 2nd locus (cases only)", "mafca2", nc)
       ENDIF
       IF(auto_level_report) THEN
-        CALL LH("Allele frequency 1 used for S1 level determination ", "af1o", nc)
-        CALL LH("Allele frequency 2 used for S1 level determination ", "af2o", nc)
+        CALL LH("Allele frequency 1 used for PHASE1 level determination ", "af1o", nc)
+        CALL LH("Allele frequency 2 used for PHASE1 level determination ", "af2o", nc)
       ENDIF
     ENDIF
     
-    !! Used and automatic S1 level
+    !! Used and automatic PHASE1 level
     IF(out_level_S1) THEN
-      CALL LH("Used S1 level", "lev1u", nc)
+      CALL LH("Used PHASE1 level", "lev1u", nc)
       IF(auto_level_report) THEN
-        CALL LH("Automatic S1 level", "lev1a", nc)
+        CALL LH("Automatic PHASE1 level", "lev1a", nc)
         CALL LH("Estimated non-centrality parameter (determines"//&
-                " automatic S1 level)", "ncp", nc)
+                " automatic PHASE1 level)", "ncp", nc)
         CALL LH("Estimated slope parameter (determines automatic"//&
-                " S1 level)", "slope", nc)
+                " PHASE1 level)", "slope", nc)
       ENDIF
     ENDIF
     
@@ -6101,7 +6097,7 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
     ELSE
       !! Check if indices are ok
       IF(MAX(ii,jj)>SIZE(X,2)) &
-        CALL PrntE("Index out of bound (WriteOutputRecord)!", Q=.TRUE.)
+        CALL PrntE("Index out of bound (in WriteOutputRecord)!", Q=.TRUE.)
   
       !! Get genetic data  
       CALL Bed2Ped(X(:,ii), xi, bed_major, ped_minor, c2i(ch1), sex)
@@ -6121,18 +6117,18 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
   IF(do_all_pretests) THEN
     DO icycle=1,12
       SELECT CASE (icycle)
-        CASE(1); S = tmp%PT_co_X; Sp = tmp%PTp_co_X; 
-        CASE(2); S = tmp%AS_co_X; Sp = tmp%ASp_co_X; 
-        CASE(3); S = tmp%DS_co_X; Sp = tmp%DSp_co_X; 
-        CASE(4); S = tmp%PT_co_Y; Sp = tmp%PTp_co_Y; 
-        CASE(5); S = tmp%AS_co_Y; Sp = tmp%ASp_co_Y; 
-        CASE(6); S = tmp%DS_co_Y; Sp = tmp%DSp_co_Y; 
-        CASE(7); S = tmp%PT_co_0; Sp = tmp%PTp_co_0; 
-        CASE(8); S = tmp%AS_co_0; Sp = tmp%ASp_co_0; 
-        CASE(9); S = tmp%DS_co_0; Sp = tmp%DSp_co_0; 
-        CASE(10); S = tmp%PT_cc; Sp = tmp%PTp_cc; 
-        CASE(11); S = tmp%AS_cc; Sp = tmp%ASp_cc; 
-        CASE(12); S = tmp%DS_cc; Sp = tmp%DSp_cc;
+        CASE(1);  S = tmp%PT_co_X; Sp = tmp%PTp_co_X; 
+        CASE(2);  S = tmp%AS_co_X; Sp = tmp%ASp_co_X; 
+        CASE(3);  S = tmp%DS_co_X; Sp = tmp%DSp_co_X; 
+        CASE(4);  S = tmp%PT_co_Y; Sp = tmp%PTp_co_Y; 
+        CASE(5);  S = tmp%AS_co_Y; Sp = tmp%ASp_co_Y; 
+        CASE(6);  S = tmp%DS_co_Y; Sp = tmp%DSp_co_Y; 
+        CASE(7);  S = tmp%PT_co_0; Sp = tmp%PTp_co_0; 
+        CASE(8);  S = tmp%AS_co_0; Sp = tmp%ASp_co_0; 
+        CASE(9);  S = tmp%DS_co_0; Sp = tmp%DSp_co_0; 
+        CASE(10); S = tmp%PT_cc;   Sp = tmp%PTp_cc; 
+        CASE(11); S = tmp%AS_cc;   Sp = tmp%ASp_cc; 
+        CASE(12); S = tmp%DS_cc;   Sp = tmp%DSp_cc;
       END SELECT 
       IF(Sp==NAp) THEN
         LL = NA//cs//TRIM(LL)
@@ -6275,19 +6271,19 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
     IF(out_maf_coca) THEN
       DO k=2,1,-1
         L1 = NA
-        IF(mafcaij(k)/=NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafcaij(k)
+        IF(mafcaij(k) /= NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafcaij(k)
         LL = TRIM(L1)//cs//TRIM(LL)
       ENDDO
       DO k=2,1,-1
         L1 = NA
-        IF(mafcoij(k)/=NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafcoij(k)
+        IF(mafcoij(k) /= NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafcoij(k)
         LL = TRIM(L1)//cs//TRIM(LL)
       ENDDO
     ENDIF
     
     DO k=2,1,-1
       L1 = NA
-      IF(mafij(k)/=NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafij(k)
+      IF(mafij(k) /= NAneg) WRITE(L1,'('//TRIM(fmm)//')') mafij(k)
       LL = TRIM(L1)//cs//TRIM(LL)
     ENDDO
     
@@ -6297,11 +6293,11 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
   
   !! Print mapping info (only if map files were specified)
   IF(out_loc_info) THEN
-    IF(map_nfiles>0) THEN
+    !!IF(map_nfiles>0) THEN
       LL = TRIM(ch1)//cs//TRIM(rs1)//cs//TRIM(ch2)//cs//TRIM(rs2)//cs//TRIM(LL)
-    ELSE
-      LL = NA//cs//NA//cs//NA//cs//NA//cs//TRIM(LL)
-    ENDIF
+    !!ELSE
+    !!  LL = NA//cs//NA//cs//NA//cs//NA//cs//TRIM(LL)
+    !!ENDIF
   ENDIF
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -6329,22 +6325,22 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
     IF(k==5 .AND. (.NOT.doPO4 .OR. .NOT.doPO4CS .OR. out_minimal)) CYCLE
     IF(k==6 .AND. (.NOT.doPO1 .OR. .NOT.doPO1CS .OR. out_minimal)) CYCLE
     IF(k==7 .AND. .NOT.doCS) CYCLE
+    
+    !!print *,'k=',k
 
     IF(k==1) THEN
-      T = tmp%AS4; Tp = tmp%AS4p; Err = tmp%ErrAS4;
-      Nca = tmp%ASNca; Nco = tmp%ASNco  
+      T = tmp%AS4; Tp = tmp%AS4p; Err = tmp%ErrAS4; Nca = tmp%ASNca; Nco = tmp%ASNco
+      !!print *,'================'
+      !!print *,'T=',T
+      !!print *,'Tp=',Tp
     ELSEIF(k==2) THEN
-      T = tmp%AS1; Tp = tmp%AS1p; Err = tmp%ErrAS1;
-      Nca = tmp%ASNca; Nco = tmp%ASNco
+      T = tmp%AS1; Tp = tmp%AS1p; Err = tmp%ErrAS1; Nca = tmp%ASNca; Nco = tmp%ASNco
     ELSEIF(k==3) THEN
-      T = tmp%DS; Tp = tmp%DSp; Err = tmp%ErrDS;
-      Nca = tmp%DSNca; Nco = tmp%DSNco
+      T = tmp%DS;  Tp = tmp%DSp;  Err = tmp%ErrDS;  Nca = tmp%DSNca; Nco = tmp%DSNco
     ELSEIF(k==4) THEN
-      T = tmp%DS; Tp = tmp%DSp; Err = tmp%ErrDS;
-      Nca = tmp%DSNca; Nco = tmp%DSNco
+      T = tmp%DS;  Tp = tmp%DSp;  Err = tmp%ErrDS;  Nca = tmp%DSNca; Nco = tmp%DSNco
     ELSEIF(k>=5) THEN
-      T = tmp%CS; Tp = tmp%CSp; Err = tmp%ErrCS;
-      Nca = tmp%CSNca; Nco = tmp%CSNco
+      T = tmp%CS;  Tp = tmp%CSp;  Err = tmp%ErrCS;  Nca = tmp%CSNca; Nco = tmp%CSNco
     ENDIF
     
     !! Process the error codes for possible printing of the global error
@@ -6470,7 +6466,7 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
     ENDIF
 
     !! Print p-value and test statistics
-    IF(Tp==NAp) THEN
+    IF(Tp==NAp .OR. Tp<zero) THEN
       LL = NA//cs//TRIM(LL)
       IF(out_statistic) L1 = NA
     ELSEIF(Tp==one) THEN
@@ -6486,6 +6482,9 @@ SUBROUTINE WriteOutputRecord(n, tmp, pCor, mtc, fv, fp, rec_len)
     ENDIF
     
     IF(out_statistic) LL = TRIM(L1)//cs//TRIM(LL)
+    
+    !!print *,'LL=', LL(1:30)
+    !!print *,'NA=', NA
 
   ENDDO
   

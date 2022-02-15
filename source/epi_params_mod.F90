@@ -10,7 +10,7 @@ MODULE EPI_PARAMS
 
   !! PROGRAM NAME AND VERSION
   CHARACTER(11), PARAMETER    :: program_name = "EpiDetector"
-  CHARACTER(8), PARAMETER     :: program_version = "0.1 beta"
+  CHARACTER(8), PARAMETER     :: program_version = "0.11 beta"
   CHARACTER(50), PARAMETER    :: contact_email = "EpiDetector@pecanka.net"
   
   !! PROGRAM FULL NAME
@@ -118,8 +118,8 @@ MODULE EPI_PARAMS
     err_low_margin = 5, &          ! Error code for low contingency table marginal count (TestPhase1)    
     err_lin_dep = 6, &             ! Error code for logistic regression linear dependence problem
     err_low_cell = 4, &            ! Error code for low contingency table cell count (TestPhase1)
-    err_low_ss_S1 = 101, &         ! Error code for low sample size in S1   
-    err_low_ss_S2 = 102, &         ! Error code for low sample size in S1
+    err_low_ss_S1 = 101, &         ! Error code for low sample size in PHASE1   
+    err_low_ss_S2 = 102, &         ! Error code for low sample size in PHASE1
     err_no_co = 201, &
     err_no_ca = 202, &
     err_no_cc = 203, &
@@ -370,8 +370,8 @@ MODULE EPI_PARAMS
     NAneg = -nine, &                      ! Must be negative
     NApos = nine, &                       ! Must be positive (and should be bigger than 1)
     rerun_eps = 1e-6_dpp, &               ! "Epsilon" for delta
-    def_delta = half, &                   ! Default S1 portion (no S1)
-    def_level1 = 0.01_dpp, &              ! Default S1 level
+    def_delta = half, &                   ! Default PHASE1 portion
+    def_level1 = 0.01_dpp, &              ! Default PHASE1 level
     def_level2 = 0.05_dpp, &              ! Default main test level
     minimum_test_level = 1.0E-10_dpp, &   ! Minimum allowed level of significance for a test
     maximum_test_level = 0.999_dpp, &     ! Maximum allowed level of significance for a test  

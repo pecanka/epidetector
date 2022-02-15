@@ -11,7 +11,7 @@ MODULE EPI_REPORT
 
 SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
               data_summary, simul_input, test_only_neighbours, test_opts, &
-              test_start, test_end, test_report, no_pretests, &
+              test_start, test_end, test_report, pair_report, no_pretests, &
               all_pretests_rejected, cycle_length, no_auto_level, auto_level, &
               auto_level_value, delta, ntests_limit, all_excl, &
               all_but_one_excl, all_on_same_chr, partial_fam, &
@@ -21,27 +21,21 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 !! Prints information on screen and into log file, uses global variables 
   IMPLICIT NONE
   INTEGER, PARAMETER                  :: lh = sect_width, rws = 55
-  LOGICAL, INTENT(IN), OPTIONAL       :: exec_start, exec_end, &
-                                         cmdline_call, used_args, &
-                                         input_opts, data_summary, simul_input, &
-                                         test_opts, test_start, test_end, &
-                                         test_report, cycle_length, &
-                                         ntests_limit, test_only_neighbours, &
-                                         no_auto_level, auto_level, &
-                                         auto_level_value, delta, &
-                                         no_pretests, all_pretests_rejected, &
-                                         partial_fam, all_but_one_excl, &
-                                         all_excl, all_on_same_chr, &
-                                         centering_problem, memory_hint, &
-                                         check_too_many_threads, &
-                                         check_no_parallelism
+  LOGICAL, INTENT(IN), OPTIONAL       :: exec_start, exec_end, cmdline_call, used_args, &
+                                         input_opts, data_summary, simul_input, test_opts, &
+                                         test_start, test_end, test_report, pair_report, &
+                                         cycle_length, ntests_limit, test_only_neighbours, &
+                                         no_auto_level, auto_level, auto_level_value, &
+                                         delta, no_pretests, all_pretests_rejected, &
+                                         partial_fam, all_but_one_excl, all_excl, &
+                                         all_on_same_chr, centering_problem, memory_hint, &
+                                         check_too_many_threads, check_no_parallelism
   CHARACTER(*), INTENT(IN), OPTIONAL  :: starttime, stoptime, runtime
   INTEGER, INTENT(IN), OPTIONAL       :: nthreads
   
   INTEGER(ikb)                        :: NLociPair, NErrOther 
-  INTEGER                             :: i, j, k, A_N1, D_N1, A_N2, D_N2, &
-                                         width, skip(mntl,2), rw, n_incl_loci, &
-                                         n_excl_loci, n_tests, min_ntests 
+  INTEGER                             :: i, j, k, A_N1, D_N1, A_N2, D_N2, width, skip(mntl,2), &
+                                         rw, n_incl_loci, n_excl_loci, n_tests, min_ntests
   CHARACTER(mfl)                      :: arg
   CHARACTER(mntl)                     :: text, text1
   CHARACTER(mmtl), ALLOCATABLE        :: AT(:,:)
@@ -50,10 +44,8 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
   CHARACTER(3)                        :: typ
   CHARACTER                           :: sep(2)
   
-  INTEGER(ikb)                        :: NS2, NS2PostStand, &
-                                         NS2OK, NS2NotOK, &
-                                         NTest, NErrVar, NLowVar, &
-                                         NNegVar, NLinDep, NS2Sex
+  INTEGER(ikb)                        :: NS2, NS2PostStand, NS2OK, NS2NotOK, NTest, NErrVar, &
+                                         NLowVar, NNegVar, NLinDep, NS2Sex
   REAL(dpp)                           :: Correct, d, AvgSS
 
   DO i=1,LEN(sstars); sstars(i:i) = "*"; ENDDO
@@ -75,19 +67,19 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
     IF(auto_level) THEN 
       IF(report_headers) THEN
         !CALL Prnt0(sstars, skip1=1)
-        !CALL Prnt(text='AUTOMATIC S1 LEVEL CALCULATION', text1='>>>',text2='<<<', l=lh)
+        !CALL Prnt(text='AUTOMATIC PHASE1 LEVEL CALCULATION', text1='>>>',text2='<<<', l=lh)
         !CALL Prnt0(sstars, skip2=1)
-        CALL Prnt('>>> AUTOMATIC S1 LEVEL CALCULATION <<<', skip1=1, skip2=1)
+        CALL Prnt('>>> AUTOMATIC PHASE1 LEVEL CALCULATION <<<', skip1=1, skip2=1)
       ENDIF
 
       !IF(WT1==T1co) THEN
-        CALL Prnt("Assumptions for automatic S1 level calculation:", lead=3)
+        CALL Prnt("Assumptions for automatic PHASE1 level calculation:", lead=3)
         IF(auto_level_DS) THEN
-          CALL Prnt0("   - DS used in S2")
+          CALL Prnt0("   - DS used in PHASE2")
         ELSE
-          CALL Prnt0("   - AS used in S2")
+          CALL Prnt0("   - AS used in PHASE2")
         ENDIF
-        CALL Prnt0("   - all excess controls used for S1")
+        CALL Prnt0("   - all excess controls used for PHASE1")
         CALL Prnt0("   - second step performed on the selected"//&
                         " nominal level that is Bonferroni corrected for"//&
                         " the expected number of tests (under full null of"//&
@@ -95,7 +87,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
                         " second phase", lead=5)
         IF(auto_level_maf) THEN
           CALL Prnt0("   - MAFs for each marker determined from the"//&
-                          " control sample used in S1", lead=5)
+                          " control sample used in PHASE1", lead=5)
         ELSE
           CALL Prnt0("   - MAFs for each marker determined from all"//&
                           " individuals in the entire sample", lead=5)
@@ -119,11 +111,11 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
   IF(PRESENT(auto_level_value)) THEN 
     IF(auto_level_value) THEN 
-      CALL Prnt("Automatically determined S1 level is "//&
+      CALL Prnt("Automatically determined PHASE1 level is "//&
                 TRIM(r2c(auto_level_optim/auto_level_factor)))
       IF(auto_level_factor /= one) &
         CALL Prnt("Due to the user given multiplication factor the"//&
-                  " determined S1 level was changed to "//&
+                  " determined PHASE1 level was changed to "//&
                   TRIM(r2c(auto_level_optim)))
     ENDIF 
   ENDIF
@@ -132,24 +124,24 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
   IF(PRESENT(delta)) THEN 
     IF(pss_nfiles>0) THEN
-      CALL Prnt("AS&DS: S1 subsample determined from PSS file with ratio "//&
+      CALL Prnt("AS&DS: PHASE1 subsample determined from PSS file with ratio "//&
                 TRIM(r2c(dAS)))
     ELSEIF(user_delta) THEN
       IF(doAS4 .OR. doAS1) &
-        CALL Prnt("AS: S1 subsample determined randomly using the"//&
+        CALL Prnt("AS: PHASE1 subsample determined randomly using the"//&
                   " user-given ratio "//TRIM(r2c(dAS)))
       IF(doDS4 .OR. doDS1) &
-        CALL Prnt("DS: S1 subsample determined randomly using the"//&
+        CALL Prnt("DS: PHASE1 subsample determined randomly using the"//&
                   " user-given ratio "//TRIM(r2c(dDS)))
     ELSEIF(auto_delta) THEN 
-      CALL Prnt("AS&DS: S1 subsample determined randomly using the"//&
+      CALL Prnt("AS&DS: PHASE1 subsample determined randomly using the"//&
                 " ratio "//TRIM(r2c(dAS)))
     ELSEIF(auto_d_incapable) THEN
       IF(doAS4 .OR. doAS1) &
-        CALL Prnt("AS: S1 sample portion cannot be determined automatically,"//&
+        CALL Prnt("AS: PHASE1 sample portion cannot be determined automatically,"//&
                   " using default ratio "//TRIM(r2c(dAS)))
       IF(doDS4 .OR. doDS1) &
-        CALL Prnt("DS: S1 sample portion cannot be determined automatically,"//&
+        CALL Prnt("DS: PHASE1 sample portion cannot be determined automatically,"//&
                   " using default ratio "//TRIM(r2c(dDS)))
     ENDIF
   ENDIF
@@ -200,7 +192,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
   IF(PRESENT(all_on_same_chr)) THEN 
     IF(all_on_same_chr) &
       CALL PrntW("All markers are located on the same chromosome, which"//&
-                 " means that no S1 tests were performed. You can use flag"//&
+                 " means that no PHASE1 tests were performed. You can use flag"//&
                  " --pretest-same-chr to change this behavior", skip1=1, skip2=1)
       !CALL PrntW("ALL LOCI ARE LOCATED ON THE SAME CHROMOSOME! NO"//&
       !        " TESTS WERE PERFORMED AND NO OUTPUT FILE WAS PRODUCED!", &
@@ -211,16 +203,15 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
   IF(PRESENT(no_pretests)) THEN 
     IF(no_pretests) & 
-      CALL PrntW("S1 p-value threshold is set to 1.0, which makes all tested"//&
-                 " pairs pass S1")
+      CALL PrntW("PHASE1 p-value threshold is set to 1.0, which makes all tested pairs pass PHASE1.")
   ENDIF
 
   !! *********************************************************************** !!
 
   IF(PRESENT(all_pretests_rejected)) THEN 
     IF(all_pretests_rejected) & 
-      CALL Prnt("Flag --reject-all sets the value of the S1 level"//&
-                " level to 1.0, which causes all S1 tests to be"//&
+      CALL Prnt("Flag --reject-all sets the value of the PHASE1 level"//&
+                " level to 1.0, which causes all PHASE1 tests to be"//&
                 " rejected irrespective of their p-values")
   ENDIF
 
@@ -237,7 +228,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
   IF(PRESENT(centering_problem)) THEN 
     IF(centering_problem) & 
-      CALL PrntW("Sample size used for centering in S1 is very low")
+      CALL PrntW("Sample size used for centering in PHASE1 is very low")
   ENDIF
   
   !! *********************************************************************** !!
@@ -379,12 +370,12 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
       IF(.NOT.simulate_data) THEN
 
         CALL Prnt("Input files:")
-  
+        
         !! Print filenames - PED
         IF(ped_nfiles>0) THEN
           DO k=1,SIZE(ped_file)
             IF(k==1) THEN
-              CALL Prnt("PED <- ["//TRIM(ped_file(1))//"]", lead=8)
+              CALL Prnt("PED -- ["//TRIM(ped_file(1))//"]", lead=8)
             ELSE
               CALL Prnt("       ["//TRIM(ped_file(k))//"]", lead=8)
             ENDIF
@@ -393,28 +384,28 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         
         !! Print filenames - BED
         IF(bed_nfiles>0) &
-          CALL Prnt("BED <- ["//TRIM(bed_file(1))//"]", lead=8)
+          CALL Prnt("BED -- ["//TRIM(bed_file(1))//"]", lead=8)
         
         !! Print filenames - MAP / BIM
         IF(map_nfiles>0) THEN
           IF(input_format==1) &
-            CALL Prnt("BIM <- ["//TRIM(map_file(1))//"]", lead=8)
+            CALL Prnt("BIM -- ["//TRIM(map_file(1))//"]", lead=8)
           IF(input_format==2) &
-            CALL Prnt("MAP <- ["//TRIM(map_file(1))//"]", lead=8)
+            CALL Prnt("MAP -- ["//TRIM(map_file(1))//"]", lead=8)
           DO k=2,SIZE(map_file)
             CALL Prnt0("       ["//TRIM(map_file(k))//"]", lead=8)
           ENDDO
         ELSE
-          CALL Prnt("MAP <- No mapping file specified")
+          CALL Prnt("MAP -- No mapping file specified")
         ENDIF
   
         !! Print filenames - FAM (pedigree info)
         IF(fam_nfiles>0) &
-          CALL Prnt("FAM <- ["//TRIM(fam_file)//"]", lead=8)
+          CALL Prnt("FAM -- ["//TRIM(fam_file)//"]", lead=8)
   
         !! Print filenames - SUBMAP (subset mapping file)
         IF(sub_nfiles>0) THEN
-            CALL Prnt("SUB <- ["//TRIM(sub_file(1))//"]", lead=8)
+            CALL Prnt("SUB -- ["//TRIM(sub_file(1))//"]", lead=8)
           DO k=2,SIZE(sub_file)
             CALL Prnt0("       ["//TRIM(sub_file(k))//"]", lead=8)
           ENDDO
@@ -422,28 +413,28 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
   
         !! Print filenames - PSS (pretest selection status)
         IF(pss_nfiles>0) &
-          CALL Prnt("PSS <- ["//TRIM(pss_file)//"]", lead=8)
+          CALL Prnt("PSS -- ["//TRIM(pss_file)//"]", lead=8)
   
         !CALL Prnt0("")
       ENDIF
       
       CALL Prnt("I/O files :")
 
-      CALL Prnt("OUT -> ["//TRIM(out_file)//"]", lead=8)
-      CALL Prnt("LOG -> ["//TRIM(log_file)//"]", lead=8)
+      CALL Prnt("OUT -- ["//TRIM(out_file)//"]", lead=8)
+      CALL Prnt("LOG -- ["//TRIM(log_file)//"]", lead=8)
       IF(do_out_maf) &
-        CALL Prnt("MAF -> ["//TRIM(out_maf_file)//"]", lead=8)
+        CALL Prnt("MAF -- ["//TRIM(out_maf_file)//"]", lead=8)
       IF(do_out_pss) &
-        CALL Prnt("PSS -> ["//TRIM(out_pss_file)//"]", lead=8)
+        CALL Prnt("PSS -- ["//TRIM(out_pss_file)//"]", lead=8)
       
       IF(save_input_data) THEN
         IF(save_binary) THEN
-          CALL Prnt("BED <- ["//TRIM(save_ped_file)//"]", lead=8)
-          CALL Prnt("BIM <- ["//TRIM(save_map_file)//"]", lead=8)
-          CALL Prnt("FAM <- ["//TRIM(save_fam_file)//"]", lead=8)
+          CALL Prnt("BED -- ["//TRIM(save_ped_file)//"]", lead=8)
+          CALL Prnt("BIM -- ["//TRIM(save_map_file)//"]", lead=8)
+          CALL Prnt("FAM -- ["//TRIM(save_fam_file)//"]", lead=8)
         ELSE
-          CALL Prnt("PED <- ["//TRIM(save_ped_file)//"]", lead=8)
-          CALL Prnt("MAP <- ["//TRIM(save_map_file)//"]", lead=8)
+          CALL Prnt("PED -- ["//TRIM(save_ped_file)//"]", lead=8)
+          CALL Prnt("MAP -- ["//TRIM(save_map_file)//"]", lead=8)
         ENDIF
       ENDIF
       
@@ -684,8 +675,8 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
       ELSE
       
         IF(.NOT.doS1) THEN
-          CALL Prnt("No S1 tests will be performed")     
-          !CALL Prnt("STAGE 1 : No S1 tests will be performed")     
+          CALL Prnt("No PHASE1 tests will be performed")     
+          !CALL Prnt("STAGE 1 : No PHASE1 tests will be performed")     
         ELSE
 
           !CALL Prnt("STAGE 1 : ")
@@ -732,14 +723,14 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
                    " samples"
           ELSEIF(WT1 == T1sc) THEN
             text = " * AS&DS: Score tests for interactions between markers using only"//&
-                   " subset of the sample of controls in S1 (analysis model '"//&
+                   " subset of the sample of controls in PHASE1 (analysis model '"//&
                    TRIM(GetModelName(ana_model))//"')"
             CALL Prnt0(text, lead=3)
           ENDIF
           endif
   
   
-          text = "S1 tests will be performed using"
+          text = "PHASE1 tests will be performed using"
           IF(WT1==T1cc) text = TRIM(text)//" both controls and cases"
           IF(WT1==T1co) text = TRIM(text)//" only controls"
           IF(WT1==T1ca) text = TRIM(text)//" only cases"
@@ -749,7 +740,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
           !text = " * Controlled error rate       :  "//TRIM(ErrorRate1)
           !CALL Prnt0(text)
   
-          text = "S1 p-value threshold is"
+          text = "PHASE1 p-value threshold is"
           IF(auto_level_use) THEN
             text = TRIM(text)//" determined automatically"
           ELSE
@@ -757,13 +748,13 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
           ENDIF
           CALL Prnt(text)
   
-          text = "S1 subsample is determined"
+          text = "PHASE1 subsample is determined"
           IF(pss_nfiles>0) THEN
             text = TRIM(text)//" by PSS file"
           ELSEIF(fix_subsamp) THEN
-            text = TRIM(text)//" randomly once and fixed for all S1 tests"
+            text = TRIM(text)//" randomly once and fixed for all PHASE1 tests"
           ELSE
-            text = TRIM(text)//" randomly for each S1 test"
+            text = TRIM(text)//" randomly for each PHASE1 test"
           ENDIF
           CALL Prnt(text)
   
@@ -778,7 +769,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
               d = dDS
             ENDIF
           
-            text = "Sample ratio in S1 for "//text(1:2)//" tests is"
+            text = "Sample ratio in PHASE1 for "//text(1:2)//" tests is"
             IF(pss_nfiles>0) THEN
               text = TRIM(text)//" determined from PSS file (--delta ignored)"
             ELSE
@@ -795,9 +786,9 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         
           !! VARIANCE COMPUTED UNDER LE/GENERAL ASSUMPTIONS
           IF(var_indep) &
-            CALL Prnt("Variance in S1 computed UNDER independence", lead=3)
+            CALL Prnt("Variance in PHASE1 computed UNDER independence", lead=3)
           !ELSE
-          !  CALL Prnt("Variance in S1 computed WITHOUT independence", lead=3)
+          !  CALL Prnt("Variance in PHASE1 computed WITHOUT independence", lead=3)
           !ENDIF
   
         ENDIF
@@ -807,9 +798,9 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         !! **************************************************************** !!
         IF(.NOT.doS2) THEN
           IF(doCS_all) THEN
-            CALL Prnt0("In S2 only CS will be performed.")
+            CALL Prnt0("In PHASE2 only CS will be performed.")
           ELSE
-            CALL Prnt0("No S2 tests will be performed.")
+            CALL Prnt0("No PHASE2 tests will be performed.")
           ENDIF     
         ELSE
 
@@ -823,18 +814,18 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
           !text = ""
           !IF(WT2==T2sc) THEN
           !  text = " * Test : Score tests for interactions between loci that are"//&     
-          !         " performed independently of the S1 tests only for those pairs of"//&
-          !         " loci that were rejected in S1 (analysis model '"//&
+          !         " performed independently of the PHASE1 tests only for those pairs of"//&
+          !         " loci that were rejected in PHASE1 (analysis model '"//&
           !         TRIM(GetModelName(ana_model))//"')"
           !ELSEIF(WT2==T2cc) THEN
           !  text = " * Test : Chisquare test of difference in LD between cases and"//&     
-          !         " controls will be performed independently of the S1 tests and only"//&
-          !         " for those pairs loci that were rejected in S1"
+          !         " controls will be performed independently of the PHASE1 tests and only"//&
+          !         " for those pairs loci that were rejected in PHASE1"
           !ENDIF
           !CALL Prnt0(text, lead=3)
           
           !text = " * Indepedence of the two steps achieved by regression of the post-test"//&
-          !       " statistic on the vector that generates the S1 statistic"
+          !       " statistic on the vector that generates the PHASE1 statistic"
           !CALL Prnt0(text, lead=3)
           
           IF(var_poststand .AND. WT2==T2sc) THEN
@@ -845,14 +836,14 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
             CALL Prnt0(text, lead=3)
           ENDIF
           
-          CALL Prnt("Significance level for S2 is "//r2c(level_S2_nom))
-          CALL Prnt("Variance error bound for S2 is "//r2c(var_bound))
+          CALL Prnt("Significance level for PHASE2 is "//r2c(level_S2_nom))
+          CALL Prnt("Variance error bound for PHASE2 is "//r2c(var_bound))
           
           IF((doAS4 .OR. doAS1) .AND. WT1>0) THEN
             IF(cntrgrp==0) THEN
-              CALL Prnt("Pre-regression centering within AS in S2 is disabled", lead=3)
+              CALL Prnt("Pre-regression centering within AS in PHASE2 is disabled", lead=3)
             ELSE
-              text = "Pre-regression centering within AS in S2 will be done using"
+              text = "Pre-regression centering within AS in PHASE2 will be done using"
               IF(WT1==T1cc) &
                 text = TRIM(text)//" controls and cases"
               IF(WT1==T1co) THEN
@@ -871,18 +862,18 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
             ENDIF
   
             IF(var_grouped) THEN
-              text = "Variance of S1 generating vector is estimated using all"
+              text = "Variance of PHASE1 generating vector is estimated using all"
               IF(WT1==T1co) text = TRIM(text)//" controls"
               IF(WT1==T1ca) text = TRIM(text)//" cases"
               IF(WT1==T1cc) text = TRIM(text)//" controls and cases"
               IF(WT1==T1po) text = TRIM(text)//" controls and cases (pooled)"
             ELSE
-              text = "Variance of S1 generating vector is estimated using only"
+              text = "Variance of PHASE1 generating vector is estimated using only"
               IF(WT1==T1co) text = TRIM(text)//" controls"
               IF(WT1==T1ca) text = TRIM(text)//" cases"
               IF(WT1==T1cc) text = TRIM(text)//" controls and cases"
               IF(WT1==T1po) text = TRIM(text)//" controls and cases (pooled)"
-              text = TRIM(text)//" from S1"
+              text = TRIM(text)//" from PHASE1"
             ENDIF
             CALL Prnt(text, lead=3)
     
@@ -913,7 +904,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
             ELSEIF(MTC(1)>zero .AND. MTC(k)<one) THEN
               text = TRIM(text)//" Bonferroni correction factor "//TRIM(r2c(MTC(k)))
             ELSEIF(k<=4) THEN
-              text = TRIM(text)//" Bonferroni correction by the number of tests in S2"
+              text = TRIM(text)//" Bonferroni correction by the number of tests in PHASE2"
             ELSE
               text = TRIM(text)//" Bonferroni correction by the total number of tests"
             ENDIF
@@ -924,11 +915,11 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         ENDIF
   
         IF(doCS .AND. .NOT.doCS_all .AND. doS1 .AND. level_S1_nom<one) &
-          CALL Prnt("CS will be computed only for the pairs rejected in S1", lead=3)
+          CALL Prnt("CS will be computed only for the pairs rejected in PHASE1", lead=3)
 
         IF(var_poststand .AND. WT2/=T2sc) THEN
-          CALL Prnt("Post-standardization of the S2 statistic"//&
-                     " is not neccessary for the selected S2 test"//&
+          CALL Prnt("Post-standardization of the PHASE2 statistic"//&
+                     " is not neccessary for the selected PHASE2 test"//&
                      " and it will not be performed", lead=3)
         ENDIF
           
@@ -971,13 +962,13 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
       
         !! REPORTING BOUNDS FOR OUTPUT FILE
         IF(olim3 > zero .AND. olim3 <= one) THEN
-          text = "Reporting only results with S2 corrected"//&
+          text = "Reporting only results with PHASE2 corrected"//&
                  " p-values below "//TRIM(r2c(olim3))
         ELSEIF(olim2 > zero .AND. olim2 <= one) THEN
-          text = "Reporting only results with S2 raw p-values"//&
+          text = "Reporting only results with PHASE2 raw p-values"//&
                  " below "//TRIM(r2c(olim2))
         ELSEIF(olim1 > zero .AND. olim1 <= one) THEN
-          text = "Reporting only results with S1 raw p-values"//& 
+          text = "Reporting only results with PHASE1 raw p-values"//& 
                  " below "//TRIM(r2c(olim1))
         ELSE
           text = "All results will be reported"
@@ -997,31 +988,31 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         D_N2 = ped_ss - round_int(dDS*ped_ss)
         
         IF((doAS4 .OR. doAS1) .AND. A_N1<min_ss) THEN
-          text = "Size of the sample used in S1 for AS may be very small"//&
+          text = "Size of the sample used in PHASE1 for AS may be very small"//&
                  " which may cause stage 1 tests to be unreliable!" 
           CALL PrntW(text, skip1=1, skip2=1)
         ENDIF
         IF((doDS4 .OR. doDS1) .AND. D_N1<min_ss) THEN
-          text = "Size of the sample used in S1 for DS may be very small"//&
+          text = "Size of the sample used in PHASE1 for DS may be very small"//&
                  " which may cause stage 1 tests to be unreliable!" 
           CALL PrntW(text, skip1=1, skip2=1)
         ENDIF
         IF((doAS4 .OR. doAS1) .AND. doS2 .AND. A_N2<min_ss) THEN
-          CALL PrntW("Size of the sample used in S2 may be very"//&
+          CALL PrntW("Size of the sample used in PHASE2 may be very"//&
                     " small which may cause stage 2 tests to be unreliable!", &
                     skip1=1)
-          CALL Prnt("Possible solution: Increase the S2 sample"//&
+          CALL Prnt("Possible solution: Increase the PHASE2 sample"//&
                     " size for example by setting --delta to a smaller value")
         ENDIF
         IF((doDS4 .OR. doDS1) .AND. doS2 .AND. D_N2<min_ss) THEN
-          CALL PrntW("Size of the sample used in S2 may be very"//&
+          CALL PrntW("Size of the sample used in PHASE2 may be very"//&
                     " small which may cause stage 2 tests to be unreliable!", &
                     skip1=1)
-          CALL Prnt("Possible solution: Increase the S2 sample"//&
+          CALL Prnt("Possible solution: Increase the PHASE2 sample"//&
                     " size for example by setting --delta to a smaller value")
         ENDIF
         IF(doS2 .AND. doAS .AND. A_N2-A_N1<min_ss) THEN
-          text = "The data used in S1 and S2 are"
+          text = "The data used in PHASE1 and PHASE2 are"
           IF(A_N2-A_N1>0) text = TRIM(text)//" almost"
           text = TRIM(text)//" equal, which may cause stage 2 tests to be unreliable!"
           CALL PrntW(text, skip1=1)
@@ -1040,7 +1031,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
           IF(report_auto_switch) THEN
             olim2 = one
             text = "Automatically switching to reporting only tests where"//&
-                   " S2 tests were performed (i.e. --report2 1)"
+                   " PHASE2 tests were performed (i.e. --report2 1)"
             CALL Prnt0(text, lead=2)
             text = "Reporting bounds can be set to any value between 0"//&
                    " and 1 by using flags --report1, --report2, --report3"
@@ -1050,14 +1041,10 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
       !! PARALLELIZATION SETTINGS
 #ifdef _OPENMP
-        CALL Prnt("Parallelization: "//i2c(NUMBER_OF_THREADS)//&
-                   " thread(s) will be used", lead=3)
+        CALL Prnt("Parallelization: "//i2c(NUMBER_OF_THREADS)//" thread(s) will be used.", lead=3)
 #else
-        CALL Prnt("PARALLELIZATION IS NOT AVAILABLE (Switch --nthreads is ignored)", lead=3, skip1=1)
-        CALL Prnt("Hint: To enable parallel processing recompile the"//&
-                   " source code with an OPENMP-compliant compiler such as"//&
-                   " GNU Fortran or Intel Fortran using the necessary flags.", &
-                   lead=3, skip1=1)
+        CALL Prnt("Parallelization is not available. To enable parallel processing recompile", lead=3)
+        CALL Prnt(" the source code with an OPENMP compiler such as GNU Fortran or Intel Fortran.", lead=3)
 #endif
 
       ENDIF ! ELSE to IF(no_testing)
@@ -1098,8 +1085,20 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
 
   !! *********************************************************************** !!
 
+  IF(PRESENT(pair_report)) THEN
+    IF(pair_report .AND. .NOT.no_testing) THEN
+      CALL Prnt(i2c(n_samechr_excl)//" pairs on the same chromosome were excluded.")
+      CALL Prnt(i2c(n_samechr_incl)//" pairs on the same chromosome were included.")
+      CALL Prnt(i2c(NumLowSS)//" pairs skipped due to low sample size.")
+                 
+      IF(PRESENT(runtime)) &
+        CALL Prnt("Testing runtime was "//runtime)
+
+    ENDIF
+  ENDIF
+
   IF(PRESENT(test_report)) THEN
-    IF(test_report .AND. .NOT.no_testing .AND. .NOT.no_testing_report) THEN
+    IF(test_report .AND. .NOT.no_testing) THEN
       IF(report_headers) THEN
         !CALL Prnt0(sstars, skip1=1)
         !CALL Prnt0(text='TESTING REPORT', text1='>>>', text2='<<<', l=lh)
@@ -1107,18 +1106,8 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
         CALL Prnt0('>>> TESTING REPORT <<<', skip1=1, skip2=1)
       ENDIF
 
-      IF(PRESENT(runtime)) &
-        CALL Prnt0("   * Testing runtime : "//runtime, skip2=1)
-
-      CALL Prnt0(text1="   * Excluded pairs on same chromosome   : ", &
-                 text2=i2c(n_samechr_excl), l=rw)
-      CALL Prnt0(text1="   * Included pairs on same chromosome   : ", &
-                 text2=i2c(n_samechr_incl), l=rw)
-      CALL Prnt0(text1="   * Skipped pairs with low sample size  : ", &
-                 text2=i2c(NumLowSS), l=rw, skip2=1)
-
       IF(WT1==0) THEN
-        CALL Prnt0("  STAGE 1  >  No S1 tests performed!", skip2=1)
+        CALL Prnt0("  STAGE 1  >  No PHASE1 tests performed!", skip2=1)
         CALL Prnt0(text1="   * Pairs with corrected count error    : ", &
                    text2=i2c(NumLowCellNumCor), l=rw)
         CALL Prnt0(text1="   * Pairs with count error              : ", &
@@ -1158,7 +1147,7 @@ SUBROUTINE Report(exec_start, exec_end, cmdline_call, used_args, input_opts, &
                    text2=i2c(NErrOther), l=rw)
       ENDIF
 
-      CALL Prnt0(text1="   * S1 sample size ratio                : ", &
+      CALL Prnt0(text1="   * PHASE1 sample size ratio            : ", &
                  text2=r2c(dAS), l=rw)                 
 
       IF(NumS1_sex==0) THEN

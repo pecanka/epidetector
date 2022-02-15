@@ -84,7 +84,7 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
   
   !! If d_co or d_ca is missing, then throw an error
   ELSE
-    CALL PrntE("S1 subsample is not fixed but d_co and/or"//&
+    CALL PrntE("PHASE1 subsample is not fixed but d_co and/or"//&
                " d_ca are/is missing! (ScanData).", Q=.TRUE.)
   ENDIF
   
@@ -106,6 +106,12 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
 
   !! Remove the NA values from the data
   CALL CleanUp(n, s, x, y, subs1, nv, n1, n2, ierr, sex, excl_male, excl_fema)
+  
+  !print *,'-----------'
+  !print *,'n=',n
+  !print *,'n1=',n1
+  !print *,'n2=',n2
+  !print *,'nv=',nv
   
   !!! Return modified optional variables
   IF(PRESENT(subs)) subs = subs1
@@ -151,59 +157,59 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
                  
   if(.false.) then
   
-  print *,""              
-  print *,""              
-  print *,"x==0", ANY(x(1:nv)==0_iks)
-  print *,"x==1", ANY(x(1:nv)==1_iks)
-  print *,"x==2", ANY(x(1:nv)==2_iks)
-  print *,""              
-  print *,"x1==0", ANY(x1(1:n1)==0_iks)
-  print *,"x1==1", ANY(x1(1:n1)==1_iks)
-  print *,"x1==2", ANY(x1(1:n1)==2_iks)
-  print *,""              
-  print *,"x2==0", ANY(x2(1:n2)==0_iks)
-  print *,"x2==1", ANY(x2(1:n2)==1_iks)
-  print *,"x2==2", ANY(x2(1:n2)==2_iks)
-  print *,""              
-  print *,"y==0", ANY(y(1:nv)==0_iks)
-  print *,"y==1", ANY(y(1:nv)==1_iks)
-  print *,"y==2", ANY(y(1:nv)==2_iks)
-  print *,""              
-  print *,"y1==0", ANY(y1(1:n1)==0_iks)
-  print *,"y1==1", ANY(y1(1:n1)==1_iks)
-  print *,"y1==2", ANY(y1(1:n1)==2_iks)
-  print *,""              
-  print *,"y2==0", ANY(y2(1:n2)==0_iks)
-  print *,"y2==1", ANY(y2(1:n2)==1_iks)
-  print *,"y2==2", ANY(y2(1:n2)==2_iks)
-  print *,""              
+    print *,""              
+    print *,""              
+    print *,"x==0", ANY(x(1:nv)==0_iks)
+    print *,"x==1", ANY(x(1:nv)==1_iks)
+    print *,"x==2", ANY(x(1:nv)==2_iks)
+    print *,""              
+    print *,"x1==0", ANY(x1(1:n1)==0_iks)
+    print *,"x1==1", ANY(x1(1:n1)==1_iks)
+    print *,"x1==2", ANY(x1(1:n1)==2_iks)
+    print *,""              
+    print *,"x2==0", ANY(x2(1:n2)==0_iks)
+    print *,"x2==1", ANY(x2(1:n2)==1_iks)
+    print *,"x2==2", ANY(x2(1:n2)==2_iks)
+    print *,""              
+    print *,"y==0", ANY(y(1:nv)==0_iks)
+    print *,"y==1", ANY(y(1:nv)==1_iks)
+    print *,"y==2", ANY(y(1:nv)==2_iks)
+    print *,""              
+    print *,"y1==0", ANY(y1(1:n1)==0_iks)
+    print *,"y1==1", ANY(y1(1:n1)==1_iks)
+    print *,"y1==2", ANY(y1(1:n1)==2_iks)
+    print *,""              
+    print *,"y2==0", ANY(y2(1:n2)==0_iks)
+    print *,"y2==1", ANY(y2(1:n2)==1_iks)
+    print *,"y2==2", ANY(y2(1:n2)==2_iks)
+    print *,""              
+      
     
-  
-  print *,""              
-  print *,"cco=", cco1(1,:)+cco2(1,:)
-  print *,"cco=", cco1(2,:)+cco2(2,:)
-  print *,"cco=", cco1(3,:)+cco2(3,:)
-  print *,""              
-  print *,"cco1=", cco1(1,:)
-  print *,"cco1=", cco1(2,:)
-  print *,"cco1=", cco1(3,:)
-  print *,""              
-  print *,"cco2=", cco2(1,:)
-  print *,"cco2=", cco2(2,:)
-  print *,"cco2=", cco2(3,:)
-  print *,""              
-  print *,"cca=", cca1(1,:)+cca2(1,:)
-  print *,"cca=", cca1(2,:)+cca2(2,:)
-  print *,"cca=", cca1(3,:)+cca2(3,:)
-  print *,""              
-  print *,"cca1=", cca1(1,:)
-  print *,"cca1=", cca1(2,:)
-  print *,"cca1=", cca1(3,:)
-  print *,""              
-  print *,"cca2=", cca2(1,:)
-  print *,"cca2=", cca2(2,:)
-  print *,"cca2=", cca2(3,:)
-  print *,""              
+    print *,""              
+    print *,"cco=", cco1(1,:)+cco2(1,:)
+    print *,"cco=", cco1(2,:)+cco2(2,:)
+    print *,"cco=", cco1(3,:)+cco2(3,:)
+    print *,""              
+    print *,"cco1=", cco1(1,:)
+    print *,"cco1=", cco1(2,:)
+    print *,"cco1=", cco1(3,:)
+    print *,""              
+    print *,"cco2=", cco2(1,:)
+    print *,"cco2=", cco2(2,:)
+    print *,"cco2=", cco2(3,:)
+    print *,""              
+    print *,"cca=", cca1(1,:)+cca2(1,:)
+    print *,"cca=", cca1(2,:)+cca2(2,:)
+    print *,"cca=", cca1(3,:)+cca2(3,:)
+    print *,""              
+    print *,"cca1=", cca1(1,:)
+    print *,"cca1=", cca1(2,:)
+    print *,"cca1=", cca1(3,:)
+    print *,""              
+    print *,"cca2=", cca2(1,:)
+    print *,"cca2=", cca2(2,:)
+    print *,"cca2=", cca2(3,:)
+    print *,""              
   
   endif
   
@@ -224,7 +230,7 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
   c01 = zero; IF(PRESENT(c0)) c01 = c0 
 
   !! Yates type correction for zero cell counts and low cell count error removal
-  IF(min_cnt1>zero .OR. c01>zero) THEN
+  IF(min_cnt1 > zero .OR. c01 > zero) THEN
     
     cor_all1 = .FALSE.; IF(PRESENT(cor_all)) cor_all1 = cor_all
      
@@ -272,6 +278,13 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
   N_ca1 = INT(SUM(cca1))
   N_co2 = INT(SUM(cco2))
   N_ca2 = INT(SUM(cca2))
+  
+  !print *,'^^^^^^^^^^^^^'
+  !print *,'N_co1=',N_co1
+  !print *,'N_ca1=',N_ca1
+  !print *,'N_co2=',N_co2
+  !print *,'N_ca2=',N_ca2
+  !print *,'^^^^^^^^^^^^^'
   
   min_co1 = zero 
   min_ca1 = zero
@@ -389,7 +402,7 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
         IF(s(j)==NumCo) N_co = N_co + 1
         IF(s(j)==NumCa) N_ca = N_ca + 1
         
-        !! Count S1 individuals
+        !! Count PHASE1 individuals
         IF(ss(j)==1_iks) n1 = n1 + 1
         
         !! Shift values closer to the beginning of the vectors
@@ -457,15 +470,15 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
         IF(s(j) == NumCo) N_co = N_co + 1
         IF(s(j) == NumCa) N_ca = N_ca + 1
         
-        !! Count S1 individuals
+        !! Count PHASE1 individuals
         IF(ss(j)==1_iks) n1 = n1 + 1
         
         !! Assign valid observations into tx, ty, ts and ts
         nv = nv + 1
-        tx(nv) = x(j)
-        ty(nv) = y(j)
-        ts(nv) = s(j)
-        tss(nv) = ss(j)
+        tx(nv)    = x(j)
+        ty(nv)    = y(j)
+        ts(nv)    = s(j)
+        tss(nv)   = ss(j)
         tsex1(nv) = sex1(j)
       
       ENDDO
@@ -473,11 +486,11 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
       !! Nulify the original variables
       !CALL SetVal(NumNA, x, y, s, sex1, ss) 
       IF(nv<n) THEN
-        x(nv+1:n)  = NumNA
-        y(nv+1:n)  = NumNA
-        s(nv+1:n)  = NumNA
+        x(nv+1:n)    = NumNA
+        y(nv+1:n)    = NumNA
+        s(nv+1:n)    = NumNA
+        ss(nv+1:n)   = NumNA
         sex1(nv+1:n) = NumNA
-        ss(nv+1:n) = NumNA
       ENDIF
       !x  = NumNA
       !y  = NumNA
@@ -487,10 +500,10 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
       
       !! Reassign the data into original variables
       IF(nv>0) THEN
-        x(1:nv)  = tx(1:nv)
-        y(1:nv)  = ty(1:nv)
-        s(1:nv)  = ts(1:nv)
-        ss(1:nv) = tss(1:nv)
+        x(1:nv)    = tx(1:nv)
+        y(1:nv)    = ty(1:nv)
+        s(1:nv)    = ts(1:nv)
+        ss(1:nv)   = tss(1:nv)
         sex1(1:nv) = tsex1(1:nv)
       ENDIF
   
@@ -500,6 +513,12 @@ SUBROUTINE ScanData(n, s, x, y, nv, ierr, &
     ELSE
       STOP "Wrong 'code' in CleanUp."
     ENDIF
+    
+    !print *,'++++++++++++++'
+    !print *,'nv=',nv
+    !print *,'n1=',n1
+    !print *,'n2=',n2
+    !print *,'++++++++++++++'
     
     !! Return modified sex and subs
     IF(PRESENT(sex)) sex = sex1
@@ -729,7 +748,7 @@ SUBROUTINE GetSubsample(subsamp, sts, n, d_co, d_ca, announce)
                     
   !! Announce the action
   IF(announce1) &
-    CALL Prnt("Generating S1 subsample ... ", ADVANCE='NO')
+    CALL Prnt("Generating PHASE1 subsample ... ", ADVANCE='NO')
 
   !! Count valid controls and cases
   N_co = 0
@@ -773,7 +792,7 @@ SUBROUTINE GetSubsample(subsamp, sts, n, d_co, d_ca, announce)
   !! Announce end
   IF(announce1) THEN
     CALL Prnt0("Finished.", log=.FALSE.)
-    CALL Prnt("Finished generating S1 subsample.", screen=.FALSE.)
+    CALL Prnt("Finished generating PHASE1 subsample.", screen=.FALSE.)
   ENDIF
 
   RETURN
@@ -932,7 +951,7 @@ SUBROUTINE GetAutoLevel(plevel, ppower, lambda, slope, model, maf1, maf2, &
     !! If there was an error, revert to default pretest level
     IF(ierr/=0) THEN
       plevel = def_level1
-      CALL PrntE("Cannot compute optimal S1 level for the current test."//&
+      CALL PrntE("Cannot compute optimal PHASE1 level for the current test."//&
                  " Reverting to default level instead.")
       RETURN
     ENDIF
@@ -1086,7 +1105,7 @@ SUBROUTINE GetChiTest(kind, ccT, T, Tp, ierr, df, Tn, ETn, V, VE, Z, model, &
   
   !! Check for missing degrees of freedom variable 
   IF(.NOT.PRESENT(df)) &
-    CALL PrntE("Missing S1 degrees of freedom 'df'! (GetChiTest)", Q=.TRUE.)
+    CALL PrntE("Missing PHASE1 degrees of freedom 'df'! (GetChiTest)", Q=.TRUE.)
       
   !print *,"P4"
   !! Calculate variance matrix V using 'ccV'
@@ -1325,14 +1344,14 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     ierrT1 = 0
   ENDIF
   
-  !! Check for "no data in S1" situation 
+  !! Check for "no data in PHASE1" situation 
   IF(SUM(ccco1 + ccca1) == 0 .AND. WT1>0) THEN
     ierrT4 = err_no_cc 
     ierrT1 = err_no_cc 
     T4 = NAv
     T1 = NAv
-    T4p = zero
-    T1p = zero
+    T4p = NAp
+    T1p = NAp
     RETURN
   ENDIF
   
@@ -1411,7 +1430,7 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   !! SELECTED PRETEST : CONTROLS AND CASES, DO SCORE TEST
   IF(WT1 == T1sc) THEN
   
-    CALL PrntE("S1 tests "//TRIM(i2cp(T1sc))//" has been disabled.", Q=.TRUE.)
+    CALL PrntE("PHASE1 tests "//TRIM(i2cp(T1sc))//" has been disabled.", Q=.TRUE.)
 
     !IF(.NOT.(PRESENT(sts) .AND. PRESENT(x) .AND. PRESENT(y))) &
     !  CALL PrntE("All variables 'sts', 'x', 'y' must be present when"//&
@@ -1537,7 +1556,7 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
                     df=Tpo4df, no_exp=.TRUE., no_var=.TRUE.)
 
     !! Return the calculated values
-    IF(PRESENT(Tpo4)) Tpo4 = Tpo41
+    IF(PRESENT(Tpo4))     Tpo4     = Tpo41
     IF(PRESENT(Tpo4pval)) Tpo4pval = Tpo4pval1
     
   ENDIF
@@ -1550,7 +1569,7 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
                     model=model, no_exp=.TRUE., no_var=.TRUE.)
 
     !! Return the calculated values
-    IF(PRESENT(Tpo1)) Tpo1 = Tpo11
+    IF(PRESENT(Tpo1))     Tpo1     = Tpo11
     IF(PRESENT(Tpo1pval)) Tpo1pval = Tpo1pval1
     
   ENDIF
@@ -1588,7 +1607,7 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
     ENDIF
     
     !! Return the calculated values
-    IF(PRESENT(Tsp4))  Tsp4 = Tsp41
+    IF(PRESENT(Tsp4))  Tsp4  = Tsp41
     IF(PRESENT(Tsp4p)) Tsp4p = Tsp4p1
     
     IF(ierrT4/=0) RETURN
@@ -1675,21 +1694,22 @@ SUBROUTINE TestS1(ccco1, ccca1, ccco2, ccca2, WT1, T4, T4p, ierrT4, T4df, T1, &
   zero_margs1 = .FALSE.
   IF(ANY(P_coH0*N_co < min_mc)) GOTO 201
   IF(ANY(P_caH0*N_ca < min_mc)) GOTO 201
+  
   IF(WT1>0) THEN
   
     IF(WT1/=T1ca) THEN
-      IF(ANY(P_co1H0*N_co1 == zero))    zero_margs1 = .TRUE.
-      IF(ANY(P_co1H0*N_co1 < min_mc))   GOTO 201
+      IF(ANY(P_co1H0*N_co1 == zero))            zero_margs1 = .TRUE.
+      IF(ANY(P_co1H0*N_co1 < min_mc))           GOTO 201
     ENDIF
     IF(WT1/=T1co) THEN
-      IF(ANY(P_ca1H0*N_ca1 == zero))    zero_margs1 = .TRUE.
-      IF(ANY(P_ca1H0*N_ca1 < min_mc))   GOTO 201
+      IF(ANY(P_ca1H0*N_ca1 == zero))            zero_margs1 = .TRUE.
+      IF(ANY(P_ca1H0*N_ca1 < min_mc))           GOTO 201
     ENDIF
     IF(WT1==T1cc .AND. (cntrgrp1>0 .OR. doDS1)) THEN
-      IF(ANY(P_co2H0*N_co2 == zero))    zero_margs1 = .TRUE.
-      IF(ANY(P_ca2H0*N_ca2 == zero))    zero_margs1 = .TRUE.
-      IF(ANY(P_co2H0*N_co2 < min_mc))   GOTO 201
-      IF(ANY(P_ca2H0*N_ca2 < min_mc))   GOTO 201
+      IF(ANY(P_co2H0*N_co2 == zero))            zero_margs1 = .TRUE.
+      IF(ANY(P_ca2H0*N_ca2 == zero))            zero_margs1 = .TRUE.
+      IF(ANY(P_co2H0*N_co2 < min_mc))           GOTO 201
+      IF(ANY(P_ca2H0*N_ca2 < min_mc))           GOTO 201
     ENDIF
     IF(WT1==T1co .AND. cntrgrp1>0) THEN
       IF(both1.AND.ANY(P_co2H0*N_co2 < min_mc)) GOTO 201
@@ -2396,7 +2416,7 @@ SUBROUTINE GetScore4(S, beta0, x, y, sts, ierrCS, &
   varAS4     = -one
   varAS1     = -one
   use_beta11 = .FALSE.
-  doAS1  = .FALSE.
+  doAS1      = .FALSE.
   tol1       = epstol
   var_bnd    = epstol
   var_cor    = one
@@ -2479,8 +2499,8 @@ SUBROUTINE GetScore4(S, beta0, x, y, sts, ierrCS, &
   !print *,"        7"
   !! If ONLY CLASSICAL SCORE statistics wanted skip the rest
   IF(.NOT.doAS1) THEN
-    IF(PRESENT(AS4)) AS4 = S
-    IF(PRESENT(AS1)) AS1 = S
+    IF(PRESENT(AS4))     AS4     = S
+    IF(PRESENT(AS1))     AS1     = S
     IF(PRESENT(ierrAS4)) ierrAS4 = 0  
     IF(PRESENT(ierrAS1)) ierrAS1 = 0  
     GOTO 10
@@ -2594,7 +2614,7 @@ SUBROUTINE GetScore4(S, beta0, x, y, sts, ierrCS, &
   !! Check whether projection onto Tn4 actually makes S0 larger (in abs. value)
   IF(.FALSE. .AND. ABS(S0 - R4) > ABS(S0)) THEN
 
-    AS4 = S0
+    AS4    = S0
     varAS4 = varS0
     
   ELSE

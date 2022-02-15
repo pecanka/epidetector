@@ -186,7 +186,7 @@ MODULE EPI_INIT
 
   CHARACTER, ALLOCATABLE       :: FAM(:,:)
 
-  !! Matrix MatOpt will store the values of the optimal S1 level (1),  
+  !! Matrix MatOpt will store the values of the optimal PHASE1 level (1),  
   !! the non-centrality parameter of the pretest (2) and the slope of the
   !! disjoint score test (3) for various combinations of maf1 and maf2 so that
   !! they have to be computed only once for each combination of maf1 and maf2
@@ -249,7 +249,8 @@ SUBROUTINE InitGlobalVars()
   simulate_data = .FALSE.
   simulate_HWE = .TRUE.
   reuse_data = .FALSE.
-  fix_subsamp = .TRUE.
+  !!fix_subsamp = .TRUE.
+  fix_subsamp = .FALSE.
   fixed_MAF = .FALSE.
   do_out_maf = .FALSE.
   ask_halt = .TRUE.
@@ -550,7 +551,7 @@ SUBROUTINE InitGlobalVars()
   delta_bound = 0.99_dpp
   var_bound = ten**(-5)
   var_cor_AS = one
-  WT1 = def_T1                     ! set default S1 test
+  WT1 = def_T1                     ! set default PHASE1 test
   T1_df = 4                        ! default degrees of freedom for pretest chisquare distribution
   T1_df_co = 4                     ! default degrees of freedom for controls-4 chisquare test
   T1_df_po = 4                     ! default degrees of freedom for pool-4 chisquare test
@@ -578,7 +579,7 @@ SUBROUTINE InitGlobalVars()
   olim2 = two                           ! Report only score test p-values smaller than this bound (must be smaller than NAp) 
   olim3 = two                           ! Report only adjusted score test p-values smaller than this bound (must be smaller than NAp)
   var_use_beta1 = .FALSE.               ! Estimates of variance use either H0 or H1 estimates of beta
-  var_indep = .FALSE.            ! y/n S1 variance will be computed assuming LE
+  var_indep = .FALSE.            ! y/n PHASE1 variance will be computed assuming LE
   res_prev = -one
   
   !! Assign negative NA value to MatOpt
@@ -708,14 +709,13 @@ SUBROUTINE AskForCmdline(cmdline, exit_code)
 
   !! Ask for input from user
   WRITE(*,*) ""
-  3010 WRITE(*,'(A)', ADVANCE='NO') &
-    "> Enter additional command line arguments (0 to exit): "
+  3010 WRITE(*,'(A)', ADVANCE='NO') "> Enter additional command line arguments (0 to exit): "
   READ(*,'(A)', IOSTAT=ios) cmdline
   
   IF(LEN_TRIM(cmdline)==0) THEN
     GOTO 3010
   ELSEIF(TRIM(cmdline)=="0") THEN
-      exit_code = -1
+    exit_code = -1
   ELSE
     IF(FindLastSubstr(cmdline, "-cmdfile")>0) THEN
       exit_code = 1
@@ -1161,7 +1161,7 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
         out_epi_effect = .TRUE.
       CASE ("--out-no-interaction", "--out-no-interactions")
         out_epi_effect = .FALSE.
-      CASE ("--out-loc","--out-location-info")
+      CASE ("--out-loc","--out-loc-info","--out-location-info")
         out_loc_info = .TRUE.
       CASE ("--out-maf")
         out_maf = .TRUE.
@@ -2450,7 +2450,7 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
     doDS1 = .FALSE.
   ENDIF
 
-  !! Assign default S1 degrees of freedom
+  !! Assign default PHASE1 degrees of freedom
   IF(WT1 == T1co) T1_df = T1co_df
   IF(WT1 == T1ca) T1_df = T1ca_df
   IF(WT1 == T1cc) T1_df = T1cc_df
@@ -2463,7 +2463,7 @@ SUBROUTINE GetCmdLineArgs(cmdline, nrun, nrun_delta, nrun_OR, exit_code)
   IF(.NOT.fix_subsamp) THEN
     do_out_pss = .FALSE.
     IF(pss_file_subsample) &
-      CALL PrntE("Pretest sample cannot be random when S1 selection status"//&
+      CALL PrntE("Pretest sample cannot be random when PHASE1 selection status"//&
                  " (PSS) file specified.", Q=.TRUE., premature=.FALSE.)
   ENDIF
   
@@ -3059,6 +3059,7 @@ SUBROUTINE PrintHelpScreen()
   CHARACTER(mltl)              :: label(max_nflag), text
   CHARACTER(mstl)              :: alias(max_nflag), emptysp
   CHARACTER(mstl), ALLOCATABLE :: words(:)
+  CHARACTER(1)                 :: key
   INTEGER                      :: i, j, n, swlen
   
   emptysp = ""
@@ -3432,8 +3433,7 @@ SUBROUTINE PrintHelpScreen()
   n=n+1
   switch(n) = "--nsamples"
   label(n) = "Specifies the number of input data samples that should"//&
-    " be simulated. Use only with --simulateinput."//&
-    " (positive integer)."
+    " be simulated. Use only with --simulateinput (positive integer)."
   n=n+1
 
   !! Testing parameters
@@ -3713,15 +3713,24 @@ SUBROUTINE PrintHelpScreen()
   !! Print available switchers and help
   j = 0
   DO i=1,n
+  
     j = j+1
     IF(j>help_limit) THEN
       WRITE(*,'(A)') ""
-      WRITE(*,'(A)', ADVANCE='NO') " Press enter to continue ..."
-      READ(*,'(A)')      
+      WRITE(*,'(A)', ADVANCE='NO') "Type Q or q to quit or any other key (plus Enter) to continue ... "
+      READ(*,'(A)') key
       WRITE(*,'(A)') ""
       j = 0
     ENDIF
+    
+    !! Check for "quit"
+    IF(upcasef(key) == 'Q') EXIT
 
+    !!IF(LEN_TRIM(key)==0) THEN
+    !!  GOTO 3010
+    !!ELSEIF(TRIM(cmdline)=="0") THEN
+    !!  exit_code = -1
+    
     !! Assign what to print
     text = switch(i)
     text = emptysp(1:nlead)//text(1:swlen)//emptysp(1:lenempty)//label(i)
